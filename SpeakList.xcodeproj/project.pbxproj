@@ -7,35 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		110094ED2A77CCF1008040F1 /* ListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110094EC2A77CCF1008040F1 /* ListFeature.swift */; };
+		110094ED2A77CCF1008040F1 /* PlanFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110094EC2A77CCF1008040F1 /* PlanFeature.swift */; };
 		11064B9C2A7704CC0049B7F1 /* ShopFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11064B9B2A7704CC0049B7F1 /* ShopFeature.swift */; };
 		1120D53C2A7702C800A20688 /* AVSpeechSynthesizerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1120D53B2A7702C800A20688 /* AVSpeechSynthesizerClient.swift */; };
 		112828E92A76C02B0073C418 /* SFSpeechRecognizerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112828E82A76C02A0073C418 /* SFSpeechRecognizerClient.swift */; };
 		112828EB2A76D7790073C418 /* AVAudioEngineClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112828EA2A76D7790073C418 /* AVAudioEngineClient.swift */; };
-		11346F4A2A77CC9C00738D5E /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11346F492A77CC9C00738D5E /* ListView.swift */; };
+		11346F4A2A77CC9C00738D5E /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11346F492A77CC9C00738D5E /* PlanView.swift */; };
 		114A260C2A77D1DE00771CCC /* ItemFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114A260A2A77D1DE00771CCC /* ItemFormView.swift */; };
 		114A260D2A77D1DE00771CCC /* ItemFormFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114A260B2A77D1DE00771CCC /* ItemFormFeature.swift */; };
+		1154F4BC2A7BD5BA009C04F6 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154F4BB2A7BD5BA009C04F6 /* ListItem.swift */; };
 		1155E7732A76B2E6006F842C /* SpeakListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1155E7722A76B2E6006F842C /* SpeakListApp.swift */; };
 		1155E7752A76B2E6006F842C /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1155E7742A76B2E6006F842C /* ShopView.swift */; };
 		1155E7772A76B2E8006F842C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1155E7762A76B2E8006F842C /* Assets.xcassets */; };
 		1155E77A2A76B2E8006F842C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1155E7792A76B2E8006F842C /* Preview Assets.xcassets */; };
 		1155E7822A76B330006F842C /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 1155E7812A76B330006F842C /* ComposableArchitecture */; };
+		117063732A7BD82B003285DB /* StoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117063712A7BD82B003285DB /* StoresView.swift */; };
+		117063742A7BD82B003285DB /* StoresFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117063722A7BD82B003285DB /* StoresFeature.swift */; };
+		1194A0792A7BD65E006EB723 /* GroceryStoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1194A0762A7BD65E006EB723 /* GroceryStoreLocation.swift */; };
+		1194A07A2A7BD65E006EB723 /* GroceryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1194A0772A7BD65E006EB723 /* GroceryStore.swift */; };
+		1194A07B2A7BD65E006EB723 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1194A0782A7BD65E006EB723 /* Location.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		110094EC2A77CCF1008040F1 /* ListFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListFeature.swift; sourceTree = "<group>"; };
+		110094EC2A77CCF1008040F1 /* PlanFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanFeature.swift; sourceTree = "<group>"; };
 		11064B9B2A7704CC0049B7F1 /* ShopFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopFeature.swift; sourceTree = "<group>"; };
 		1120D53B2A7702C800A20688 /* AVSpeechSynthesizerClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVSpeechSynthesizerClient.swift; sourceTree = "<group>"; };
 		112828E82A76C02A0073C418 /* SFSpeechRecognizerClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFSpeechRecognizerClient.swift; sourceTree = "<group>"; };
 		112828EA2A76D7790073C418 /* AVAudioEngineClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioEngineClient.swift; sourceTree = "<group>"; };
-		11346F492A77CC9C00738D5E /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		11346F492A77CC9C00738D5E /* PlanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
 		114A260A2A77D1DE00771CCC /* ItemFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemFormView.swift; sourceTree = "<group>"; };
 		114A260B2A77D1DE00771CCC /* ItemFormFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemFormFeature.swift; sourceTree = "<group>"; };
+		1154F4BB2A7BD5BA009C04F6 /* ListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		1155E76F2A76B2E6006F842C /* SpeakList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeakList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1155E7722A76B2E6006F842C /* SpeakListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakListApp.swift; sourceTree = "<group>"; };
 		1155E7742A76B2E6006F842C /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
 		1155E7762A76B2E8006F842C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1155E7792A76B2E8006F842C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		117063712A7BD82B003285DB /* StoresView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresView.swift; sourceTree = "<group>"; };
+		117063722A7BD82B003285DB /* StoresFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresFeature.swift; sourceTree = "<group>"; };
+		1194A0762A7BD65E006EB723 /* GroceryStoreLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryStoreLocation.swift; sourceTree = "<group>"; };
+		1194A0772A7BD65E006EB723 /* GroceryStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryStore.swift; sourceTree = "<group>"; };
+		1194A0782A7BD65E006EB723 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +62,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1154F4BD2A7BD5E6009C04F6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1194A0772A7BD65E006EB723 /* GroceryStore.swift */,
+				1194A0762A7BD65E006EB723 /* GroceryStoreLocation.swift */,
+				1194A0782A7BD65E006EB723 /* Location.swift */,
+				1154F4BB2A7BD5BA009C04F6 /* ListItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		1155E7662A76B2E6006F842C = {
 			isa = PBXGroup;
 			children = (
@@ -69,16 +92,15 @@
 		1155E7712A76B2E6006F842C /* SpeakList */ = {
 			isa = PBXGroup;
 			children = (
-				114A260B2A77D1DE00771CCC /* ItemFormFeature.swift */,
-				114A260A2A77D1DE00771CCC /* ItemFormView.swift */,
-				110094EC2A77CCF1008040F1 /* ListFeature.swift */,
-				11346F492A77CC9C00738D5E /* ListView.swift */,
-				11064B9B2A7704CC0049B7F1 /* ShopFeature.swift */,
-				1120D53B2A7702C800A20688 /* AVSpeechSynthesizerClient.swift */,
+				1194A0812A7BD7D5006EB723 /* AVAudioEngineClient */,
+				1194A07F2A7BD7BC006EB723 /* AVSpeechSynthesizerClient */,
+				1194A0802A7BD7C7006EB723 /* SFSpeechRecognizerClient */,
+				1194A07C2A7BD785006EB723 /* ItemFormFeature */,
+				1194A07D2A7BD793006EB723 /* PlanFeature */,
+				1194A07E2A7BD7A6006EB723 /* ShopFeature */,
+				1194A0822A7BD7EC006EB723 /* StoresFeature */,
+				1154F4BD2A7BD5E6009C04F6 /* Model */,
 				1155E7722A76B2E6006F842C /* SpeakListApp.swift */,
-				1155E7742A76B2E6006F842C /* ShopView.swift */,
-				112828E82A76C02A0073C418 /* SFSpeechRecognizerClient.swift */,
-				112828EA2A76D7790073C418 /* AVAudioEngineClient.swift */,
 				1155E7762A76B2E8006F842C /* Assets.xcassets */,
 				1155E7782A76B2E8006F842C /* Preview Content */,
 			);
@@ -91,6 +113,66 @@
 				1155E7792A76B2E8006F842C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1194A07C2A7BD785006EB723 /* ItemFormFeature */ = {
+			isa = PBXGroup;
+			children = (
+				114A260B2A77D1DE00771CCC /* ItemFormFeature.swift */,
+				114A260A2A77D1DE00771CCC /* ItemFormView.swift */,
+			);
+			path = ItemFormFeature;
+			sourceTree = "<group>";
+		};
+		1194A07D2A7BD793006EB723 /* PlanFeature */ = {
+			isa = PBXGroup;
+			children = (
+				110094EC2A77CCF1008040F1 /* PlanFeature.swift */,
+				11346F492A77CC9C00738D5E /* PlanView.swift */,
+			);
+			path = PlanFeature;
+			sourceTree = "<group>";
+		};
+		1194A07E2A7BD7A6006EB723 /* ShopFeature */ = {
+			isa = PBXGroup;
+			children = (
+				11064B9B2A7704CC0049B7F1 /* ShopFeature.swift */,
+				1155E7742A76B2E6006F842C /* ShopView.swift */,
+			);
+			path = ShopFeature;
+			sourceTree = "<group>";
+		};
+		1194A07F2A7BD7BC006EB723 /* AVSpeechSynthesizerClient */ = {
+			isa = PBXGroup;
+			children = (
+				1120D53B2A7702C800A20688 /* AVSpeechSynthesizerClient.swift */,
+			);
+			path = AVSpeechSynthesizerClient;
+			sourceTree = "<group>";
+		};
+		1194A0802A7BD7C7006EB723 /* SFSpeechRecognizerClient */ = {
+			isa = PBXGroup;
+			children = (
+				112828E82A76C02A0073C418 /* SFSpeechRecognizerClient.swift */,
+			);
+			path = SFSpeechRecognizerClient;
+			sourceTree = "<group>";
+		};
+		1194A0812A7BD7D5006EB723 /* AVAudioEngineClient */ = {
+			isa = PBXGroup;
+			children = (
+				112828EA2A76D7790073C418 /* AVAudioEngineClient.swift */,
+			);
+			path = AVAudioEngineClient;
+			sourceTree = "<group>";
+		};
+		1194A0822A7BD7EC006EB723 /* StoresFeature */ = {
+			isa = PBXGroup;
+			children = (
+				117063722A7BD82B003285DB /* StoresFeature.swift */,
+				117063712A7BD82B003285DB /* StoresView.swift */,
+			);
+			path = StoresFeature;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,11 +254,17 @@
 				11064B9C2A7704CC0049B7F1 /* ShopFeature.swift in Sources */,
 				112828E92A76C02B0073C418 /* SFSpeechRecognizerClient.swift in Sources */,
 				1155E7752A76B2E6006F842C /* ShopView.swift in Sources */,
-				11346F4A2A77CC9C00738D5E /* ListView.swift in Sources */,
-				110094ED2A77CCF1008040F1 /* ListFeature.swift in Sources */,
+				11346F4A2A77CC9C00738D5E /* PlanView.swift in Sources */,
+				1154F4BC2A7BD5BA009C04F6 /* ListItem.swift in Sources */,
+				110094ED2A77CCF1008040F1 /* PlanFeature.swift in Sources */,
+				1194A07B2A7BD65E006EB723 /* Location.swift in Sources */,
+				1194A0792A7BD65E006EB723 /* GroceryStoreLocation.swift in Sources */,
 				112828EB2A76D7790073C418 /* AVAudioEngineClient.swift in Sources */,
 				1120D53C2A7702C800A20688 /* AVSpeechSynthesizerClient.swift in Sources */,
+				117063742A7BD82B003285DB /* StoresFeature.swift in Sources */,
 				114A260D2A77D1DE00771CCC /* ItemFormFeature.swift in Sources */,
+				1194A07A2A7BD65E006EB723 /* GroceryStore.swift in Sources */,
+				117063732A7BD82B003285DB /* StoresView.swift in Sources */,
 				114A260C2A77D1DE00771CCC /* ItemFormView.swift in Sources */,
 				1155E7732A76B2E6006F842C /* SpeakListApp.swift in Sources */,
 			);

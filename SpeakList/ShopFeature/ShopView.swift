@@ -1,40 +1,6 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct ListItem: Equatable, Identifiable {
-  var id: String {
-    return name
-  }
-
-  var name: String
-  // TODO: should `quantity` be specific to the trip as well?
-  var quantity: Int = 0
-  // TODO: `checked` needs to live somewhere else, it is
-  // specific to a shopping trip
-  var checked: Bool
-
-  var preferredStore: StoreLocation?
-  var otherStores: IdentifiedArrayOf<StoreLocation> = []
-}
-
-struct Store: Equatable {
-  var name: String
-}
-
-enum Location: Equatable {
-  case aisle(String)
-  case dairy
-  case produce
-}
-
-struct StoreLocation: Equatable, Identifiable {
-  var id: String {
-    store.name
-  }
-  var location: Location
-  var store: Store
-}
-
 struct ShopView: View {
   var store: StoreOf<ShopFeature>
 

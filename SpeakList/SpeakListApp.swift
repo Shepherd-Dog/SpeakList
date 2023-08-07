@@ -11,34 +11,43 @@ struct SpeakListApp: App {
 
   var body: some Scene {
     WindowGroup {
-      NavigationStack {
-        TabView {
-          ShopView(
+      TabView {
+        NavigationStack {
+          PlanView(
             store: store.scope(
               state: \.listFeature,
               action: AppFeature.Action.listFeature
             )
           )
-          .tabItem { Text("Plan") }
         }
-        TabView {
+        .tabItem { Text("Plan") }
+        NavigationStack {
           ShopView(
+            store: store.scope(
+              state: \.shopFeature,
+              action: AppFeature.Action.shopFeature
+            )
+          )
+        }
+        .tabItem { Text("Shop") }
+        NavigationStack {
+          PlanView(
             store: store.scope(
               state: \.listFeature,
               action: AppFeature.Action.listFeature
             )
           )
-          .tabItem { Text("Shop") }
         }
-        TabView {
-          ShopView(
+        .tabItem { Text("Stores") }
+        NavigationStack {
+          PlanView(
             store: store.scope(
               state: \.listFeature,
               action: AppFeature.Action.listFeature
             )
           )
-          .tabItem { Text("Settings") }
         }
+        .tabItem { Text("Settings") }
       }
     }
   }
@@ -46,7 +55,8 @@ struct SpeakListApp: App {
 
 struct AppFeature: Reducer {
   struct State: Equatable {
-    var listFeature: ShopFeature.State = .init(
+    var listFeature: PlanFeature.State = .init()
+    var shopFeature: ShopFeature.State = .init(
       items: IdentifiedArrayOf<ListItem>(
         uniqueElements: [
           ListItem(name: "Bananas", checked: false),
@@ -59,15 +69,22 @@ struct AppFeature: Reducer {
   }
 
   enum Action: Equatable {
-    case listFeature(ShopFeature.Action)
+    case listFeature(PlanFeature.Action)
+    case shopFeature(ShopFeature.Action)
   }
 
   var body: some ReducerOf<Self> {
     Scope(
+      state: \.shopFeature,
+      action: /Action.shopFeature
+    ) {
+      ShopFeature()
+    }
+    Scope(
       state: \.listFeature,
       action: /Action.listFeature
     ) {
-      ShopFeature()
+      PlanFeature()
     }
   }
 }

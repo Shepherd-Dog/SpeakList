@@ -1,8 +1,8 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct ListView: View {
-  var store: StoreOf<ListFeature>
+struct PlanView: View {
+  var store: StoreOf<PlanFeature>
 
   var body: some View {
     WithViewStore(
@@ -17,6 +17,7 @@ struct ListView: View {
             Text(item.name)
             Spacer()
             Button {
+              viewStore.send(.didTapEditItem(item))
             } label: {
               Text("Edit")
             }
@@ -39,8 +40,43 @@ struct ListView: View {
                   Text("Add")
                 }
               }
+              ToolbarItem(placement: .cancellationAction) {
+                Button {
+                  viewStore.send(.didCancelAddItem)
+                } label: {
+                  Text("Cancel")
+                }
+              }
             }
             .navigationTitle("Add Item")
+        }
+
+      }
+      .sheet(
+        store: store.scope(
+          state: \.$editItem,
+          action: { .editItem($0) }
+        )
+      ) { store in
+        NavigationStack {
+          ItemFormView(store: store)
+            .toolbar {
+              ToolbarItem {
+                Button {
+                  viewStore.send(.didCompleteEditItem)
+                } label: {
+                  Text("Save")
+                }
+              }
+              ToolbarItem(placement: .cancellationAction) {
+                Button {
+                  viewStore.send(.didCancelEditItem)
+                } label: {
+                  Text("Cancel")
+                }
+              }
+            }
+            .navigationTitle("Edit Item")
         }
       }
       .toolbar {
@@ -59,7 +95,7 @@ struct ListView: View {
 
 #Preview {
   NavigationStack {
-    ListView(
+    PlanView(
       store: .init(
         initialState: .init(
           items: IdentifiedArrayOf<ListItem>(
@@ -71,7 +107,7 @@ struct ListView: View {
             ]
           )
         ),
-        reducer: { ListFeature() }
+        reducer: { PlanFeature() }
       )
     )
   }

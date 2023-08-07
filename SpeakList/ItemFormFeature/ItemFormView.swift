@@ -16,7 +16,7 @@ struct ItemFormView: View {
             TextField(
               "Item",
               text: viewStore.binding(
-                get: \.draftItem.name,
+                get: \.item.name,
                 send: { .didEditItemName($0) }
               )
             )
@@ -28,7 +28,7 @@ struct ItemFormView: View {
             TextField(
               "Item",
               text: viewStore.binding(
-                get: { "\($0.draftItem.quantity)" },
+                get: { "\($0.item.quantity)" },
                 send: { .didEditItemQuantity($0) }
               )
             )
@@ -42,7 +42,7 @@ struct ItemFormView: View {
             TextField(
               "Item",
               text: viewStore.binding(
-                get: { "\($0.draftItem.quantity)" },
+                get: { "\($0.item.quantity)" },
                 send: { .didEditItemQuantity($0) }
               )
             )
@@ -59,10 +59,6 @@ struct ItemFormView: View {
   ItemFormView(
     store: ComposableArchitecture.Store(
       initialState: ItemFormFeature.State(
-        draftItem: .init(
-          name: "Bananas",
-          checked: false
-        ),
         item: .init(
           name: "Bananas",
           checked: false
