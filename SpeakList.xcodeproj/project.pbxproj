@@ -43,6 +43,7 @@
 		1155E7742A76B2E6006F842C /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
 		1155E7762A76B2E8006F842C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1155E7792A76B2E8006F842C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		11609C8D2A80858A0052D80C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		117063712A7BD82B003285DB /* StoresView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresView.swift; sourceTree = "<group>"; };
 		117063722A7BD82B003285DB /* StoresFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresFeature.swift; sourceTree = "<group>"; };
 		1194A0762A7BD65E006EB723 /* GroceryStoreLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryStoreLocation.swift; sourceTree = "<group>"; };
@@ -92,6 +93,7 @@
 		1155E7712A76B2E6006F842C /* SpeakList */ = {
 			isa = PBXGroup;
 			children = (
+				11609C8D2A80858A0052D80C /* Info.plist */,
 				1194A0812A7BD7D5006EB723 /* AVAudioEngineClient */,
 				1194A07F2A7BD7BC006EB723 /* AVSpeechSynthesizerClient */,
 				1194A0802A7BD7C7006EB723 /* SFSpeechRecognizerClient */,
@@ -403,6 +405,7 @@
 				DEVELOPMENT_TEAM = 3NUBUGRL3Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpeakList/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = Meow;
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = Meow;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -434,6 +437,7 @@
 				DEVELOPMENT_TEAM = 3NUBUGRL3Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpeakList/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = Meow;
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = Meow;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
