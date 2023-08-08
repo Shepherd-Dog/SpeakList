@@ -31,10 +31,10 @@ struct SpeakListApp: App {
         }
         .tabItem { Text("Shop") }
         NavigationStack {
-          PlanView(
+          StoresView(
             store: store.scope(
-              state: \.listFeature,
-              action: AppFeature.Action.listFeature
+              state: \.storesFeature,
+              action: AppFeature.Action.storesFeature
             )
           )
         }
@@ -66,14 +66,22 @@ struct AppFeature: Reducer {
         ]
       )
     )
+    var storesFeature: StoresFeature.State = .init()
   }
 
   enum Action: Equatable {
     case listFeature(PlanFeature.Action)
     case shopFeature(ShopFeature.Action)
+    case storesFeature(StoresFeature.Action)
   }
 
   var body: some ReducerOf<Self> {
+    Scope(
+      state: \.listFeature,
+      action: /Action.listFeature
+    ) {
+      PlanFeature()
+    }
     Scope(
       state: \.shopFeature,
       action: /Action.shopFeature
@@ -81,10 +89,10 @@ struct AppFeature: Reducer {
       ShopFeature()
     }
     Scope(
-      state: \.listFeature,
-      action: /Action.listFeature
+      state: \.storesFeature,
+      action: /Action.storesFeature
     ) {
-      PlanFeature()
+      StoresFeature()
     }
   }
 }

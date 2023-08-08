@@ -15,7 +15,76 @@ struct StoresView: View {
         ForEach(viewStore.stores) { store in
           HStack {
             Text(store.name)
+            Spacer()
+            Button {
+              viewStore.send(.editStoreButtonTapped(store))
+            } label: {
+              Text("Edit")
+            }
           }
+        }
+      }
+      .toolbar {
+        ToolbarItem {
+          Button {
+            viewStore.send(.addStoreButtonTapped)
+          } label: {
+            Text("Add")
+          }
+        }
+      }
+      .sheet(
+        store: store.scope(
+          state: \.$addStore,
+          action: { .addStore($0) }
+        )
+      ) { store in
+        NavigationStack {
+          StoreFormView(store: store)
+            .toolbar {
+              ToolbarItem {
+                Button {
+                  viewStore.send(.didCompleteAddStore)
+                } label: {
+                  Text("Add")
+                }
+              }
+              ToolbarItem(placement: .cancellationAction) {
+                Button {
+                  viewStore.send(.didCancelAddStore)
+                } label: {
+                  Text("Cancel")
+                }
+              }
+            }
+            .navigationTitle("Add Store")
+        }
+      }
+      .sheet(
+        store: store.scope(
+          state: \.$editStore,
+          action: { .editStore($0) }
+        )
+      ) { store in
+        NavigationStack {
+          StoreFormView(store: store)
+            .toolbar {
+              ToolbarItem {
+                Button {
+                  viewStore.send(.didCompleteEditStore)
+                } label: {
+                  Text("Save")
+                }
+              }
+              ToolbarItem(placement: .cancellationAction) {
+                Button {
+                  viewStore.send(.didCancelEditStore)
+                } label: {
+                  Text("Cancel")
+                }
+              }
+            }
+            .navigationTitle("Edit Store")
         }
       }
     }

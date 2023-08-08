@@ -21,11 +21,13 @@
 		1155E7772A76B2E8006F842C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1155E7762A76B2E8006F842C /* Assets.xcassets */; };
 		1155E77A2A76B2E8006F842C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1155E7792A76B2E8006F842C /* Preview Assets.xcassets */; };
 		1155E7822A76B330006F842C /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 1155E7812A76B330006F842C /* ComposableArchitecture */; };
+		11609C8F2A80941C0052D80C /* StoreFormFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11609C8E2A80941C0052D80C /* StoreFormFeature.swift */; };
 		117063732A7BD82B003285DB /* StoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117063712A7BD82B003285DB /* StoresView.swift */; };
 		117063742A7BD82B003285DB /* StoresFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117063722A7BD82B003285DB /* StoresFeature.swift */; };
 		1194A0792A7BD65E006EB723 /* GroceryStoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1194A0762A7BD65E006EB723 /* GroceryStoreLocation.swift */; };
 		1194A07A2A7BD65E006EB723 /* GroceryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1194A0772A7BD65E006EB723 /* GroceryStore.swift */; };
 		1194A07B2A7BD65E006EB723 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1194A0782A7BD65E006EB723 /* Location.swift */; };
+		11D4EDAF2A809443005A2E6B /* StoreFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D4EDAE2A809443005A2E6B /* StoreFormView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,11 +46,13 @@
 		1155E7762A76B2E8006F842C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1155E7792A76B2E8006F842C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		11609C8D2A80858A0052D80C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		11609C8E2A80941C0052D80C /* StoreFormFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreFormFeature.swift; sourceTree = "<group>"; };
 		117063712A7BD82B003285DB /* StoresView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresView.swift; sourceTree = "<group>"; };
 		117063722A7BD82B003285DB /* StoresFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresFeature.swift; sourceTree = "<group>"; };
 		1194A0762A7BD65E006EB723 /* GroceryStoreLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryStoreLocation.swift; sourceTree = "<group>"; };
 		1194A0772A7BD65E006EB723 /* GroceryStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryStore.swift; sourceTree = "<group>"; };
 		1194A0782A7BD65E006EB723 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		11D4EDAE2A809443005A2E6B /* StoreFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreFormView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +177,8 @@
 			children = (
 				117063722A7BD82B003285DB /* StoresFeature.swift */,
 				117063712A7BD82B003285DB /* StoresView.swift */,
+				11609C8E2A80941C0052D80C /* StoreFormFeature.swift */,
+				11D4EDAE2A809443005A2E6B /* StoreFormView.swift */,
 			);
 			path = StoresFeature;
 			sourceTree = "<group>";
@@ -260,8 +266,10 @@
 				1154F4BC2A7BD5BA009C04F6 /* ListItem.swift in Sources */,
 				110094ED2A77CCF1008040F1 /* PlanFeature.swift in Sources */,
 				1194A07B2A7BD65E006EB723 /* Location.swift in Sources */,
+				11609C8F2A80941C0052D80C /* StoreFormFeature.swift in Sources */,
 				1194A0792A7BD65E006EB723 /* GroceryStoreLocation.swift in Sources */,
 				112828EB2A76D7790073C418 /* AVAudioEngineClient.swift in Sources */,
+				11D4EDAF2A809443005A2E6B /* StoreFormView.swift in Sources */,
 				1120D53C2A7702C800A20688 /* AVSpeechSynthesizerClient.swift in Sources */,
 				117063742A7BD82B003285DB /* StoresFeature.swift in Sources */,
 				114A260D2A77D1DE00771CCC /* ItemFormFeature.swift in Sources */,

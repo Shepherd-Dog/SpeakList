@@ -89,7 +89,7 @@ struct PlanView: View {
         }
       }
     }
-    .navigationTitle("List")
+    .navigationTitle("Plan")
   }
 }
 
