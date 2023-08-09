@@ -1,6 +1,6 @@
 import Foundation
 
-struct GroceryStore: Equatable, Identifiable {
+struct GroceryStore: Equatable, Hashable, Identifiable {
   var id = UUID()
   var name: String
 }

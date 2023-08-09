@@ -6,7 +6,7 @@ struct ListItem: Equatable, Identifiable {
 
   var name: String
   // TODO: should `quantity` be specific to the trip as well?
-  var quantity: Int = 0
+  var quantity: Int = 1
   // TODO: `checked` needs to live somewhere else, it is
   // specific to a shopping trip
   var checked: Bool

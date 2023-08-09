@@ -3,11 +3,13 @@ import ComposableArchitecture
 struct ItemFormFeature: Reducer {
   struct State: Equatable {
     var item: ListItem
+    var stores: IdentifiedArrayOf<GroceryStore>
   }
 
   enum Action: Equatable {
     case didEditItemName(String)
     case didEditItemQuantity(String)
+    case didEditPreferredStore(GroceryStore)
   }
 
   var body: some ReducerOf<Self> {
@@ -23,6 +25,10 @@ struct ItemFormFeature: Reducer {
         }
 
         state.item.quantity = quantity
+        return .none
+      case let .didEditPreferredStore(store):
+        state.item.preferredStore = store
+
         return .none
       }
     }

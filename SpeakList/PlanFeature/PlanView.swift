@@ -12,14 +12,23 @@ struct PlanView: View {
       }
     ) { viewStore in
       List {
-        ForEach(viewStore.items) { item in
-          HStack {
-            Text(item.name)
-            Spacer()
-            Button {
-              viewStore.send(.didTapEditItem(item))
-            } label: {
-              Text("Edit")
+        ForEach(viewStore.groupedItems) { groupedItem in
+          Section(groupedItem.name) {
+            ForEach(groupedItem.items) { item in
+              HStack {
+                VStack(alignment: .leading, spacing: 8) {
+                  Text(item.name)
+                    .font(.headline)
+                  Text("Quantity: \(item.quantity)")
+                    .font(.subheadline)
+                }
+                Spacer()
+                Button {
+                  viewStore.send(.didTapEditItem(item))
+                } label: {
+                  Text("Edit")
+                }
+              }
             }
           }
         }
@@ -100,10 +109,37 @@ struct PlanView: View {
         initialState: .init(
           items: IdentifiedArrayOf<ListItem>(
             uniqueElements: [
-              ListItem(name: "Bananas", checked: false),
-              ListItem(name: "Apples", checked: false),
-              ListItem(name: "Protein Powder", checked: false),
-              ListItem(name: "Peanut Butter", checked: false),
+              ListItem(
+                name: "Bananas",
+                quantity: 7,
+                checked: false,
+                preferredStore: .init(name: "Zatural Grocers")
+              ),
+              ListItem(
+                name: "Apples",
+                quantity: 7,
+                checked: false,
+                preferredStore: .init(name: "Kroger")
+              ),
+              ListItem(
+                name: "Protein Powder",
+                quantity: 1,
+                checked: false,
+                preferredStore: .init(name: "Natural Grocers")
+              ),
+              ListItem(
+                name: "Peanut Butter",
+                quantity: 1,
+                checked: false
+              ),
+            ]
+          ),
+          stores: IdentifiedArrayOf<GroceryStore>(
+            uniqueElements: [
+              GroceryStore(name: "Albertsons"),
+              GroceryStore(name: "Kroger"),
+              GroceryStore(name: "Natural Grocers"),
+              GroceryStore(name: "Zatural Grocers"),
             ]
           )
         ),

@@ -38,21 +38,31 @@ struct ItemFormView: View {
         }
         Section(header: Text("Store")) {
           VStack(alignment: .leading) {
-            Text("Preferred")
-            TextField(
-              "Item",
-              text: viewStore.binding(
-                get: { "\($0.item.quantity)" },
-                send: { .didEditItemQuantity($0) }
+            Picker(
+              "Preferred",
+              selection: viewStore.binding(
+                get: {
+                  $0.item.preferredStore ?? .none
+                },
+                send: { .didEditPreferredStore($0) }
               )
-            )
-            .padding()
-            .border(.black)
+            ) {
+              Text("None")
+                .tag(GroceryStore.none)
+              ForEach(viewStore.stores) { store in
+                Text(store.name)
+                  .tag(store)
+              }
+            }
           }
         }
       }
     }
   }
+}
+
+extension GroceryStore {
+  static let none: Self = .init(id: .zeros, name: "")
 }
 
 #Preview {
@@ -62,11 +72,19 @@ struct ItemFormView: View {
         item: .init(
           name: "Bananas",
           checked: false
-        )
+        ),
+        stores: [
+          .init(name: "Albertsons"),
+          .init(name: "Natural Grocers"),
+        ]
       ),
       reducer: {
         ItemFormFeature()
       }
     )
   )
+}
+
+extension UUID {
+  static let zeros = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
 }
