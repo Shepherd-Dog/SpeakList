@@ -1,13 +1,5 @@
 import ComposableArchitecture
 
-struct GroupedListItem: Identifiable {
-  var id: String {
-    name
-  }
-  var name: String
-  var items: IdentifiedArrayOf<ListItem>
-}
-
 struct PlanFeature: Reducer {
   struct State: Equatable {
     @PresentationState var addItem: ItemFormFeature.State?
@@ -54,10 +46,14 @@ struct PlanFeature: Reducer {
     case didCancelEditItem
     case didCompleteAddItem
     case didCompleteEditItem
+    case didReceiveGroceryStores(IdentifiedArrayOf<GroceryStore>)
     case didTapAddItem
     case didTapEditItem(ListItem)
     case editItem(PresentationAction<ItemFormFeature.Action>)
+    case onAppear
   }
+
+  @Dependency(\.groceryStoresClient) var groceryStoresClient
 
   var body: some ReducerOf<Self> {
     Reduce { state, action in
@@ -86,6 +82,10 @@ struct PlanFeature: Reducer {
         state.editItem = nil
 
         return .none
+      case let .didReceiveGroceryStores(stores):
+        state.stores = stores
+
+        return .none
       case .didTapAddItem:
         state.addItem = ItemFormFeature.State(
           item: .init(name: "", checked: false),
@@ -102,6 +102,12 @@ struct PlanFeature: Reducer {
         return .none
       case .editItem:
         return .none
+      case .onAppear:
+        return .run { send in
+          let stores = try await groceryStoresClient.fetchGroceryStores()
+
+          await send(.didReceiveGroceryStores(stores))
+        }
       }
     }
     .ifLet(\.$addItem, action: /Action.addItem) {

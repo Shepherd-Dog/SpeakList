@@ -28,6 +28,8 @@
 		1194A07A2A7BD65E006EB723 /* GroceryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1194A0772A7BD65E006EB723 /* GroceryStore.swift */; };
 		1194A07B2A7BD65E006EB723 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1194A0782A7BD65E006EB723 /* Location.swift */; };
 		11D4EDAF2A809443005A2E6B /* StoreFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D4EDAE2A809443005A2E6B /* StoreFormView.swift */; };
+		11F396032A850EE500607F6A /* GroupedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F396022A850EE500607F6A /* GroupedListItem.swift */; };
+		11F396062A850F9700607F6A /* GroceryStoresClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F396052A850F9700607F6A /* GroceryStoresClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,8 @@
 		1194A0772A7BD65E006EB723 /* GroceryStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryStore.swift; sourceTree = "<group>"; };
 		1194A0782A7BD65E006EB723 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		11D4EDAE2A809443005A2E6B /* StoreFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreFormView.swift; sourceTree = "<group>"; };
+		11F396022A850EE500607F6A /* GroupedListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedListItem.swift; sourceTree = "<group>"; };
+		11F396052A850F9700607F6A /* GroceryStoresClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStoresClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,7 @@
 				1194A0762A7BD65E006EB723 /* GroceryStoreLocation.swift */,
 				1194A0782A7BD65E006EB723 /* Location.swift */,
 				1154F4BB2A7BD5BA009C04F6 /* ListItem.swift */,
+				11F396022A850EE500607F6A /* GroupedListItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -100,6 +105,7 @@
 				11609C8D2A80858A0052D80C /* Info.plist */,
 				1194A0812A7BD7D5006EB723 /* AVAudioEngineClient */,
 				1194A07F2A7BD7BC006EB723 /* AVSpeechSynthesizerClient */,
+				11F396042A850F8400607F6A /* GroceryStoresClient */,
 				1194A0802A7BD7C7006EB723 /* SFSpeechRecognizerClient */,
 				1194A07C2A7BD785006EB723 /* ItemFormFeature */,
 				1194A07D2A7BD793006EB723 /* PlanFeature */,
@@ -181,6 +187,14 @@
 				11D4EDAE2A809443005A2E6B /* StoreFormView.swift */,
 			);
 			path = StoresFeature;
+			sourceTree = "<group>";
+		};
+		11F396042A850F8400607F6A /* GroceryStoresClient */ = {
+			isa = PBXGroup;
+			children = (
+				11F396052A850F9700607F6A /* GroceryStoresClient.swift */,
+			);
+			path = GroceryStoresClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,12 +280,14 @@
 				1154F4BC2A7BD5BA009C04F6 /* ListItem.swift in Sources */,
 				110094ED2A77CCF1008040F1 /* PlanFeature.swift in Sources */,
 				1194A07B2A7BD65E006EB723 /* Location.swift in Sources */,
+				11F396032A850EE500607F6A /* GroupedListItem.swift in Sources */,
 				11609C8F2A80941C0052D80C /* StoreFormFeature.swift in Sources */,
 				1194A0792A7BD65E006EB723 /* GroceryStoreLocation.swift in Sources */,
 				112828EB2A76D7790073C418 /* AVAudioEngineClient.swift in Sources */,
 				11D4EDAF2A809443005A2E6B /* StoreFormView.swift in Sources */,
 				1120D53C2A7702C800A20688 /* AVSpeechSynthesizerClient.swift in Sources */,
 				117063742A7BD82B003285DB /* StoresFeature.swift in Sources */,
+				11F396062A850F9700607F6A /* GroceryStoresClient.swift in Sources */,
 				114A260D2A77D1DE00771CCC /* ItemFormFeature.swift in Sources */,
 				1194A07A2A7BD65E006EB723 /* GroceryStore.swift in Sources */,
 				117063732A7BD82B003285DB /* StoresView.swift in Sources */,

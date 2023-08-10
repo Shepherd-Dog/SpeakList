@@ -97,6 +97,9 @@ struct PlanView: View {
           }
         }
       }
+      .onAppear {
+        viewStore.send(.onAppear)
+      }
     }
     .navigationTitle("Plan")
   }
@@ -112,20 +115,17 @@ struct PlanView: View {
               ListItem(
                 name: "Bananas",
                 quantity: 7,
-                checked: false,
-                preferredStore: .init(name: "Zatural Grocers")
+                checked: false
               ),
               ListItem(
                 name: "Apples",
                 quantity: 7,
-                checked: false,
-                preferredStore: .init(name: "Kroger")
+                checked: false
               ),
               ListItem(
                 name: "Protein Powder",
                 quantity: 1,
-                checked: false,
-                preferredStore: .init(name: "Natural Grocers")
+                checked: false
               ),
               ListItem(
                 name: "Peanut Butter",
@@ -136,10 +136,10 @@ struct PlanView: View {
           ),
           stores: IdentifiedArrayOf<GroceryStore>(
             uniqueElements: [
-              GroceryStore(name: "Albertsons"),
-              GroceryStore(name: "Kroger"),
-              GroceryStore(name: "Natural Grocers"),
-              GroceryStore(name: "Zatural Grocers"),
+//              GroceryStore(name: "Albertsons"),
+//              GroceryStore(name: "Kroger"),
+//              GroceryStore(name: "Natural Grocers"),
+//              GroceryStore(name: "Zatural Grocers"),
             ]
           )
         ),

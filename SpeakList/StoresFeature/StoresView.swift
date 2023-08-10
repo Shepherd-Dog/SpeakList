@@ -87,6 +87,9 @@ struct StoresView: View {
             .navigationTitle("Edit Store")
         }
       }
+      .onAppear {
+        viewStore.send(.onAppear)
+      }
     }
     .navigationTitle("Stores")
   }
@@ -99,10 +102,10 @@ struct StoresView: View {
         initialState: .init(
           stores: IdentifiedArrayOf<GroceryStore>(
             uniqueElements: [
-              GroceryStore(name: "Albertsons"),
-              GroceryStore(name: "Kroger"),
-              GroceryStore(name: "Natural Grocers"),
-              GroceryStore(name: "Sprouts"),
+//              GroceryStore(name: "Albertsons"),
+//              GroceryStore(name: "Kroger"),
+//              GroceryStore(name: "Natural Grocers"),
+//              GroceryStore(name: "Sprouts"),
             ]
           )
         ),
