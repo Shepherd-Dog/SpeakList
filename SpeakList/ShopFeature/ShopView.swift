@@ -14,7 +14,12 @@ struct ShopView: View {
       List {
         ForEach(viewStore.items) { item in
           HStack {
-            Text(item.name)
+            VStack(alignment: .leading, spacing: 8) {
+              Text(item.name)
+                .font(.headline)
+              Text("Quantity: \(item.quantity)")
+                .font(.subheadline)
+            }
             Spacer()
             Button {
               viewStore.send(.didTapListItem(item))
@@ -52,10 +57,10 @@ struct ShopView: View {
         initialState: .init(
           items: IdentifiedArrayOf<ListItem>(
             uniqueElements: [
-              ListItem(name: "Bananas", checked: false),
-              ListItem(name: "Apples", checked: false),
-              ListItem(name: "Protein Powder", checked: false),
-              ListItem(name: "Peanut Butter", checked: false),
+//              ListItem(name: "Bananas", checked: false),
+//              ListItem(name: "Apples", checked: false),
+//              ListItem(name: "Protein Powder", checked: false),
+//              ListItem(name: "Peanut Butter", checked: false),
             ]
           )
         ),

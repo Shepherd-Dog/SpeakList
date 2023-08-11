@@ -6,6 +6,7 @@ struct ShopFeature: Reducer {
   }
 
   enum Action: Equatable {
+    case didReceiveShoppingList(IdentifiedArrayOf<ListItem>)
     case didReceiveSpeechRecognition(String)
     case didTapListItem(ListItem)
     case didTapReadButton
@@ -14,6 +15,7 @@ struct ShopFeature: Reducer {
   }
 
   @Dependency(\.mainQueue) var mainQueue
+  @Dependency(\.shoppingListClient) var shoppingListClient
   @Dependency(\.speechSynthesizerClient) var speechSynthesizerClient
   @Dependency(\.speechRecognizerClient) var speechRecognizerClient
 
@@ -23,6 +25,10 @@ struct ShopFeature: Reducer {
         case start
       }
       switch action {
+      case let .didReceiveShoppingList(items):
+        state.items = items
+
+        return .none
       case let .didReceiveSpeechRecognition(speech):
         guard let item = state.items.first(where: { $0.checked == false }) else {
           // TODO: Error
@@ -51,7 +57,11 @@ struct ShopFeature: Reducer {
         speechRecognizerClient.requestAccess()
         speechSynthesizerClient.speak("")
 
-        return .none
+        return .run { send in
+          let list = try await shoppingListClient.fetchShoppingList()
+
+          await send(.didReceiveShoppingList(list))
+        }
       case .startListening:
         return .publisher {
           speechRecognizerClient
@@ -76,7 +86,7 @@ struct ShopFeature: Reducer {
       return .none
     }
 
-    speechSynthesizerClient.speak(item.name)
+    speechSynthesizerClient.speak("\(item.quantity) \(item.name)")
 
     return .publisher {
       speechSynthesizerClient

@@ -47,6 +47,7 @@ struct PlanFeature: Reducer {
     case didCompleteAddItem
     case didCompleteEditItem
     case didReceiveGroceryStores(IdentifiedArrayOf<GroceryStore>)
+    case didReceiveShoppingList(IdentifiedArrayOf<ListItem>)
     case didTapAddItem
     case didTapEditItem(ListItem)
     case editItem(PresentationAction<ItemFormFeature.Action>)
@@ -54,6 +55,7 @@ struct PlanFeature: Reducer {
   }
 
   @Dependency(\.groceryStoresClient) var groceryStoresClient
+  @Dependency(\.shoppingListClient) var shoppingListClient
 
   var body: some ReducerOf<Self> {
     Reduce { state, action in
@@ -73,7 +75,9 @@ struct PlanFeature: Reducer {
         state.items.append(addItem.item)
         state.addItem = nil
 
-        return .none
+        return .run { [items = state.items] _ in
+          try await shoppingListClient.saveShoppingList(items)
+        }
       case .didCompleteEditItem:
         guard let editItem = state.editItem else {
           return .none
@@ -81,9 +85,15 @@ struct PlanFeature: Reducer {
         state.items[id: editItem.item.id] = editItem.item
         state.editItem = nil
 
-        return .none
+        return .run { [items = state.items] _ in
+          try await shoppingListClient.saveShoppingList(items)
+        }
       case let .didReceiveGroceryStores(stores):
         state.stores = stores
+
+        return .none
+      case let .didReceiveShoppingList(items):
+        state.items = items
 
         return .none
       case .didTapAddItem:
@@ -105,8 +115,10 @@ struct PlanFeature: Reducer {
       case .onAppear:
         return .run { send in
           let stores = try await groceryStoresClient.fetchGroceryStores()
+          let list = try await shoppingListClient.fetchShoppingList()
 
           await send(.didReceiveGroceryStores(stores))
+          await send(.didReceiveShoppingList(list))
         }
       }
     }

@@ -1,7 +1,7 @@
 import ComposableArchitecture
 import Foundation
 
-struct ListItem: Equatable, Identifiable {
+struct ListItem: Codable, Equatable, Identifiable {
   var id: UUID = UUID()
 
   var name: String

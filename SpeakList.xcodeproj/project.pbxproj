@@ -30,6 +30,7 @@
 		11D4EDAF2A809443005A2E6B /* StoreFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D4EDAE2A809443005A2E6B /* StoreFormView.swift */; };
 		11F396032A850EE500607F6A /* GroupedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F396022A850EE500607F6A /* GroupedListItem.swift */; };
 		11F396062A850F9700607F6A /* GroceryStoresClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F396052A850F9700607F6A /* GroceryStoresClient.swift */; };
+		11F396092A865A8800607F6A /* ShoppingListClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F396082A865A8800607F6A /* ShoppingListClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		11D4EDAE2A809443005A2E6B /* StoreFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreFormView.swift; sourceTree = "<group>"; };
 		11F396022A850EE500607F6A /* GroupedListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedListItem.swift; sourceTree = "<group>"; };
 		11F396052A850F9700607F6A /* GroceryStoresClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStoresClient.swift; sourceTree = "<group>"; };
+		11F396082A865A8800607F6A /* ShoppingListClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				1194A07F2A7BD7BC006EB723 /* AVSpeechSynthesizerClient */,
 				11F396042A850F8400607F6A /* GroceryStoresClient */,
 				1194A0802A7BD7C7006EB723 /* SFSpeechRecognizerClient */,
+				11F396072A865A7600607F6A /* ShoppingListClient */,
 				1194A07C2A7BD785006EB723 /* ItemFormFeature */,
 				1194A07D2A7BD793006EB723 /* PlanFeature */,
 				1194A07E2A7BD7A6006EB723 /* ShopFeature */,
@@ -195,6 +198,14 @@
 				11F396052A850F9700607F6A /* GroceryStoresClient.swift */,
 			);
 			path = GroceryStoresClient;
+			sourceTree = "<group>";
+		};
+		11F396072A865A7600607F6A /* ShoppingListClient */ = {
+			isa = PBXGroup;
+			children = (
+				11F396082A865A8800607F6A /* ShoppingListClient.swift */,
+			);
+			path = ShoppingListClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,6 +302,7 @@
 				114A260D2A77D1DE00771CCC /* ItemFormFeature.swift in Sources */,
 				1194A07A2A7BD65E006EB723 /* GroceryStore.swift in Sources */,
 				117063732A7BD82B003285DB /* StoresView.swift in Sources */,
+				11F396092A865A8800607F6A /* ShoppingListClient.swift in Sources */,
 				114A260C2A77D1DE00771CCC /* ItemFormView.swift in Sources */,
 				1155E7732A76B2E6006F842C /* SpeakListApp.swift in Sources */,
 			);
