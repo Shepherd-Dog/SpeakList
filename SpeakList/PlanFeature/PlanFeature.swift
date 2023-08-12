@@ -10,7 +10,7 @@ struct PlanFeature: Reducer {
     var groupedItems: IdentifiedArrayOf<GroupedListItem> {
       items.reduce([]) { partialResult, item in
         var updatedResult = partialResult
-        let name = item.preferredStore?.name ?? "None"
+        let name = item.preferredStoreLocation.store.name
 
         if partialResult.contains(where: { $0.name == name }) == false {
           updatedResult.append(.init(name: name, items: .init(uniqueElements: [item])))
@@ -115,9 +115,11 @@ struct PlanFeature: Reducer {
       case .onAppear:
         return .run { send in
           let stores = try await groceryStoresClient.fetchGroceryStores()
-          let list = try await shoppingListClient.fetchShoppingList()
 
           await send(.didReceiveGroceryStores(stores))
+
+          let list = try await shoppingListClient.fetchShoppingList()
+
           await send(.didReceiveShoppingList(list))
         }
       }

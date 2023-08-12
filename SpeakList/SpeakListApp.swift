@@ -11,44 +11,52 @@ struct SpeakListApp: App {
 
   var body: some Scene {
     WindowGroup {
-      TabView {
-        NavigationStack {
-          PlanView(
-            store: store.scope(
-              state: \.listFeature,
-              action: AppFeature.Action.listFeature
-            )
+      AppView(store: store)
+    }
+  }
+}
+
+struct AppView: View {
+  var store: StoreOf<AppFeature>
+
+  var body: some View {
+    TabView {
+      NavigationStack {
+        PlanView(
+          store: store.scope(
+            state: \.listFeature,
+            action: AppFeature.Action.listFeature
           )
-        }
-        .tabItem { Text("Plan") }
-        NavigationStack {
-          ShopView(
-            store: store.scope(
-              state: \.shopFeature,
-              action: AppFeature.Action.shopFeature
-            )
-          )
-        }
-        .tabItem { Text("Shop") }
-        NavigationStack {
-          StoresView(
-            store: store.scope(
-              state: \.storesFeature,
-              action: AppFeature.Action.storesFeature
-            )
-          )
-        }
-        .tabItem { Text("Stores") }
-        NavigationStack {
-          PlanView(
-            store: store.scope(
-              state: \.listFeature,
-              action: AppFeature.Action.listFeature
-            )
-          )
-        }
-        .tabItem { Text("Settings") }
+        )
       }
+      .tabItem { Label("Plan", systemImage: "list.clipboard") }
+      NavigationStack {
+        ShopView(
+          store: store.scope(
+            state: \.shopFeature,
+            action: AppFeature.Action.shopFeature
+          )
+        )
+      }
+      .tabItem { Label("Shop", systemImage: "cart") }
+      NavigationStack {
+        StoresView(
+          store: store.scope(
+            state: \.storesFeature,
+            action: AppFeature.Action.storesFeature
+          )
+        )
+      }
+      .tabItem { Label("Stores", systemImage: "house") }
+      NavigationStack {
+        SettingsView(
+          store: store.scope(
+            state: \.settingsFeature,
+            action: AppFeature.Action.settingsFeature
+          )
+        )
+      }
+      .tabItem { Label("Settings", systemImage: "gear") }
     }
   }
 }
@@ -56,13 +64,14 @@ struct SpeakListApp: App {
 struct AppFeature: Reducer {
   struct State: Equatable {
     var listFeature: PlanFeature.State = .init()
+    var settingsFeature: SettingsFeature.State = .init()
     var shopFeature: ShopFeature.State = .init(
-      items: IdentifiedArrayOf<ListItem>(
+      trips: IdentifiedArrayOf<ShoppingTrip>(
         uniqueElements: [
-          ListItem(name: "Bananas", checked: false),
-          ListItem(name: "Apples", checked: false),
-          ListItem(name: "Protein Powder", checked: false),
-          ListItem(name: "Peanut Butter", checked: false),
+//          ListItem(name: "Bananas", checked: false),
+//          ListItem(name: "Apples", checked: false),
+//          ListItem(name: "Protein Powder", checked: false),
+//          ListItem(name: "Peanut Butter", checked: false),
         ]
       )
     )
@@ -71,6 +80,7 @@ struct AppFeature: Reducer {
 
   enum Action: Equatable {
     case listFeature(PlanFeature.Action)
+    case settingsFeature(SettingsFeature.Action)
     case shopFeature(ShopFeature.Action)
     case storesFeature(StoresFeature.Action)
   }
@@ -81,6 +91,12 @@ struct AppFeature: Reducer {
       action: /Action.listFeature
     ) {
       PlanFeature()
+    }
+    Scope(
+      state: \.settingsFeature,
+      action: /Action.settingsFeature
+    ) {
+      SettingsFeature()
     }
     Scope(
       state: \.shopFeature,
@@ -95,4 +111,13 @@ struct AppFeature: Reducer {
       StoresFeature()
     }
   }
+}
+
+#Preview {
+  AppView(
+    store: .init(
+      initialState: .init()) {
+      AppFeature()
+    }
+  )
 }

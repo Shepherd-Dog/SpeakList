@@ -12,38 +12,33 @@ struct ShopView: View {
       }
     ) { viewStore in
       List {
-        ForEach(viewStore.items) { item in
+        ForEach(viewStore.trips) { trip in
           HStack {
             VStack(alignment: .leading, spacing: 8) {
-              Text(item.name)
+              Text(trip.store.name)
                 .font(.headline)
-              Text("Quantity: \(item.quantity)")
+              Text("Number of items: \(trip.allItems.count)")
                 .font(.subheadline)
             }
             Spacer()
             Button {
-              viewStore.send(.didTapListItem(item))
+              viewStore.send(.didTapShoppingTrip(trip))
             } label: {
-              if item.checked {
-                Image(systemName: "checkmark.circle.fill")
-              } else {
-                Image(systemName: "circle.fill")
-              }
+              Image(systemName: "chevron.forward")
             }
-          }
-        }
-      }
-      .toolbar {
-        ToolbarItem {
-          Button {
-            viewStore.send(.didTapReadButton)
-          } label: {
-            Text("Start")
           }
         }
       }
       .onAppear {
         viewStore.send(.onAppear)
+      }
+      .navigationDestination(
+        store: store.scope(
+          state: \.$shoppingTripFeature,
+          action: ShopFeature.Action.shoppingTripFeature
+        )
+      ) { store in
+        ShoppingTripView(store: store)
       }
     }
     .navigationTitle("Shop")
@@ -55,7 +50,7 @@ struct ShopView: View {
     ShopView(
       store: .init(
         initialState: .init(
-          items: IdentifiedArrayOf<ListItem>(
+          trips: IdentifiedArrayOf<ShoppingTrip>(
             uniqueElements: [
 //              ListItem(name: "Bananas", checked: false),
 //              ListItem(name: "Apples", checked: false),

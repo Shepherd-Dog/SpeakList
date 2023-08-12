@@ -1,102 +1,105 @@
 import ComposableArchitecture
+import Foundation
+
+struct ShoppingTrip: Equatable, Identifiable {
+  var id: GroceryStore.ID {
+    store.id
+  }
+  var store: GroceryStore
+  var groups: IdentifiedArrayOf<GroupedListItem>
+
+  var allItems: IdentifiedArrayOf<ListItem> {
+    return groups.reduce([]) { partialResult, groupedListItem in
+      var updatedResult = partialResult
+
+      updatedResult.append(contentsOf: groupedListItem.items)
+
+      return updatedResult
+    }
+  }
+}
 
 struct ShopFeature: Reducer {
   struct State: Equatable {
-    var items: IdentifiedArrayOf<ListItem> = []
+    @PresentationState var shoppingTripFeature: ShoppingTripFeature.State?
+    var trips: IdentifiedArrayOf<ShoppingTrip> = []
   }
 
   enum Action: Equatable {
     case didReceiveShoppingList(IdentifiedArrayOf<ListItem>)
-    case didReceiveSpeechRecognition(String)
-    case didTapListItem(ListItem)
-    case didTapReadButton
+    case didTapShoppingTrip(ShoppingTrip)
     case onAppear
-    case startListening
+    case shoppingTripFeature(PresentationAction<ShoppingTripFeature.Action>)
   }
 
   @Dependency(\.mainQueue) var mainQueue
   @Dependency(\.shoppingListClient) var shoppingListClient
-  @Dependency(\.speechSynthesizerClient) var speechSynthesizerClient
-  @Dependency(\.speechRecognizerClient) var speechRecognizerClient
 
   var body: some ReducerOf<Self> {
     Reduce { state, action in
-      enum Listening: Hashable {
-        case start
-      }
       switch action {
       case let .didReceiveShoppingList(items):
-        state.items = items
+        state.trips = items.reduce([], { partialResult, item in
+          var updatedResult = partialResult
+          let store = item.preferredStoreLocation.store
+          let groupName = item.preferredStoreLocation.location.name
 
-        return .none
-      case let .didReceiveSpeechRecognition(speech):
-        guard let item = state.items.first(where: { $0.checked == false }) else {
-          // TODO: Error
-          return .none
+          if partialResult.contains(where: { $0.store == store }) == false {
+            updatedResult.append(
+              .init(
+                store: store,
+                groups: .init(
+                  uniqueElements: [
+                    .init(
+                      name: groupName,
+                      items: .init(uniqueElements: [item])
+                    )
+                  ]
+                )
+              )
+            )
+          }
+
+          updatedResult[id: store.id]?.groups[id: groupName]?.items.append(item)
+
+          return IdentifiedArray(
+            uniqueElements: updatedResult
+              .sorted { lhs, rhs in
+                if lhs.store.name == "None" && rhs.store.name == "None" {
+                  return false
+                }
+
+                if lhs.store.name == "None" {
+                  return false
+                }
+
+                if rhs.store.name == "None" {
+                  return true
+                }
+
+                return lhs.store.name < rhs.store.name
+              }
+            )
         }
-        print("Received speech: \(speech)")
-        if speech.lowercased().contains("check") {
-          state.items[id: item.id]?.checked = true
-          // TODO: Need audio confirmation
-          try? speechRecognizerClient.stopListening()
-
-          return .merge(
-            Effect.cancel(id: Listening.start),
-            readNextItem(state: &state)
-          )
-        }
+        )
 
         return .none
-      case let .didTapListItem(item):
-        state.items[id: item.id]?.checked = !item.checked
+      case let .didTapShoppingTrip(trip):
+        state.shoppingTripFeature = .init(trip: trip)
 
         return .none
-      case .didTapReadButton:
-        return readNextItem(state: &state)
       case .onAppear:
-        speechRecognizerClient.requestAccess()
-        speechSynthesizerClient.speak("")
-
         return .run { send in
           let list = try await shoppingListClient.fetchShoppingList()
 
           await send(.didReceiveShoppingList(list))
         }
-      case .startListening:
-        return .publisher {
-          speechRecognizerClient
-            .listen()
-            .map {
-              .didReceiveSpeechRecognition($0)
-            }
-        }.cancellable(
-          id: Listening.start,
-          cancelInFlight: true
-        )
+      case .shoppingTripFeature:
+        return .none
       }
     }
-  }
-
-  private func readNextItem(state: inout State) -> Effect<Action> {
-    enum Speaking: Hashable {
-      case finish
+    .ifLet(\.$shoppingTripFeature, action: /Action.shoppingTripFeature) {
+      ShoppingTripFeature()
     }
-    guard let item = state.items.first(where: { $0.checked == false }) else {
-      // TODO: Error
-      return .none
-    }
-
-    speechSynthesizerClient.speak("\(item.quantity) \(item.name)")
-
-    return .publisher {
-      speechSynthesizerClient
-        .didFinishPublisher()
-        .map { _ in
-          .startListening
-        }
-    }.cancellable(
-      id: Speaking.finish,
-      cancelInFlight: true
-    )
   }
 }

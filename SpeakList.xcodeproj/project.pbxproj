@@ -31,6 +31,10 @@
 		11F396032A850EE500607F6A /* GroupedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F396022A850EE500607F6A /* GroupedListItem.swift */; };
 		11F396062A850F9700607F6A /* GroceryStoresClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F396052A850F9700607F6A /* GroceryStoresClient.swift */; };
 		11F396092A865A8800607F6A /* ShoppingListClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F396082A865A8800607F6A /* ShoppingListClient.swift */; };
+		11F3960C2A87AAE100607F6A /* SettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F3960B2A87AAE100607F6A /* SettingsFeature.swift */; };
+		11F3960E2A87AAEA00607F6A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F3960D2A87AAEA00607F6A /* SettingsView.swift */; };
+		11F396112A87D4ED00607F6A /* ShoppingTripFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F396102A87D4ED00607F6A /* ShoppingTripFeature.swift */; };
+		11F396132A87D4F700607F6A /* ShoppingTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F396122A87D4F700607F6A /* ShoppingTripView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +63,10 @@
 		11F396022A850EE500607F6A /* GroupedListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedListItem.swift; sourceTree = "<group>"; };
 		11F396052A850F9700607F6A /* GroceryStoresClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStoresClient.swift; sourceTree = "<group>"; };
 		11F396082A865A8800607F6A /* ShoppingListClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListClient.swift; sourceTree = "<group>"; };
+		11F3960B2A87AAE100607F6A /* SettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFeature.swift; sourceTree = "<group>"; };
+		11F3960D2A87AAEA00607F6A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		11F396102A87D4ED00607F6A /* ShoppingTripFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingTripFeature.swift; sourceTree = "<group>"; };
+		11F396122A87D4F700607F6A /* ShoppingTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingTripView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +120,9 @@
 				11F396072A865A7600607F6A /* ShoppingListClient */,
 				1194A07C2A7BD785006EB723 /* ItemFormFeature */,
 				1194A07D2A7BD793006EB723 /* PlanFeature */,
+				11F3960A2A87AACF00607F6A /* SettingsFeature */,
 				1194A07E2A7BD7A6006EB723 /* ShopFeature */,
+				11F3960F2A87D4CF00607F6A /* ShoppingTripFeature */,
 				1194A0822A7BD7EC006EB723 /* StoresFeature */,
 				1154F4BD2A7BD5E6009C04F6 /* Model */,
 				1155E7722A76B2E6006F842C /* SpeakListApp.swift */,
@@ -208,6 +218,24 @@
 			path = ShoppingListClient;
 			sourceTree = "<group>";
 		};
+		11F3960A2A87AACF00607F6A /* SettingsFeature */ = {
+			isa = PBXGroup;
+			children = (
+				11F3960B2A87AAE100607F6A /* SettingsFeature.swift */,
+				11F3960D2A87AAEA00607F6A /* SettingsView.swift */,
+			);
+			path = SettingsFeature;
+			sourceTree = "<group>";
+		};
+		11F3960F2A87D4CF00607F6A /* ShoppingTripFeature */ = {
+			isa = PBXGroup;
+			children = (
+				11F396102A87D4ED00607F6A /* ShoppingTripFeature.swift */,
+				11F396122A87D4F700607F6A /* ShoppingTripView.swift */,
+			);
+			path = ShoppingTripFeature;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -285,10 +313,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				11064B9C2A7704CC0049B7F1 /* ShopFeature.swift in Sources */,
+				11F3960E2A87AAEA00607F6A /* SettingsView.swift in Sources */,
 				112828E92A76C02B0073C418 /* SFSpeechRecognizerClient.swift in Sources */,
 				1155E7752A76B2E6006F842C /* ShopView.swift in Sources */,
 				11346F4A2A77CC9C00738D5E /* PlanView.swift in Sources */,
 				1154F4BC2A7BD5BA009C04F6 /* ListItem.swift in Sources */,
+				11F3960C2A87AAE100607F6A /* SettingsFeature.swift in Sources */,
 				110094ED2A77CCF1008040F1 /* PlanFeature.swift in Sources */,
 				1194A07B2A7BD65E006EB723 /* Location.swift in Sources */,
 				11F396032A850EE500607F6A /* GroupedListItem.swift in Sources */,
@@ -297,11 +327,13 @@
 				112828EB2A76D7790073C418 /* AVAudioEngineClient.swift in Sources */,
 				11D4EDAF2A809443005A2E6B /* StoreFormView.swift in Sources */,
 				1120D53C2A7702C800A20688 /* AVSpeechSynthesizerClient.swift in Sources */,
+				11F396112A87D4ED00607F6A /* ShoppingTripFeature.swift in Sources */,
 				117063742A7BD82B003285DB /* StoresFeature.swift in Sources */,
 				11F396062A850F9700607F6A /* GroceryStoresClient.swift in Sources */,
 				114A260D2A77D1DE00771CCC /* ItemFormFeature.swift in Sources */,
 				1194A07A2A7BD65E006EB723 /* GroceryStore.swift in Sources */,
 				117063732A7BD82B003285DB /* StoresView.swift in Sources */,
+				11F396132A87D4F700607F6A /* ShoppingTripView.swift in Sources */,
 				11F396092A865A8800607F6A /* ShoppingListClient.swift in Sources */,
 				114A260C2A77D1DE00771CCC /* ItemFormView.swift in Sources */,
 				1155E7732A76B2E6006F842C /* SpeakListApp.swift in Sources */,

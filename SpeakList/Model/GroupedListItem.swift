@@ -1,6 +1,6 @@
 import ComposableArchitecture
 
-struct GroupedListItem: Identifiable {
+struct GroupedListItem: Equatable, Identifiable {
   var id: String {
     name
   }

@@ -1,4 +1,4 @@
-struct GroceryStoreLocation: Equatable, Identifiable {
+struct GroceryStoreLocation: Codable, Equatable, Hashable, Identifiable {
   var id: String {
     store.name
   }

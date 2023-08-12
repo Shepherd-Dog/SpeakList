@@ -27,7 +27,6 @@ extension DependencyValues {
 extension AVSpeechSynthesizerClient {
   class Delegate: NSObject, AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-      print("Did finish")
       AVSpeechSynthesizerClient.subject.send(true)
     }
   }

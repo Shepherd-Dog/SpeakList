@@ -36,14 +36,12 @@ struct ItemFormView: View {
             .border(.black)
           }
         }
-        Section(header: Text("Store")) {
+        Section(header: Text("Preferred Store")) {
           VStack(alignment: .leading) {
             Picker(
-              "Preferred",
+              "Store",
               selection: viewStore.binding(
-                get: {
-                  $0.item.preferredStore ?? .none
-                },
+                get: \.item.preferredStoreLocation.store,
                 send: { .didEditPreferredStore($0) }
               )
             ) {
@@ -54,8 +52,43 @@ struct ItemFormView: View {
                   .tag(store)
               }
             }
+            Picker (
+              "Location",
+              selection: viewStore.binding(
+                get: \.locationType,
+                send: ItemFormFeature.Action.didEditLocationType
+              )
+            ) {
+              ForEach(0..<Location.types.count) { index in
+                Text("\(Location.types[index])")
+                  .tag(Location.types[index])
+              }
+            }
+            switch viewStore.item.preferredStoreLocation.location {
+            case .aisle:
+              HStack {
+                Text("Aisle Number")
+                Spacer()
+                TextField(
+                  "Aisle Number",
+                  text: viewStore.binding(
+                    get: \.aisle,
+                    send: ItemFormFeature.Action.didEditAisle
+                  )
+                )
+              }
+            case .dairy:
+              EmptyView()
+            case .produce:
+              EmptyView()
+            case .unknown:
+              EmptyView()
+            }
           }
         }
+      }
+      .onAppear {
+        viewStore.send(.onAppear)
       }
     }
   }
