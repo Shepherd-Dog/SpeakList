@@ -17,7 +17,14 @@ struct TextField: View {
         text: $text) {
           Text("")
         }
+        .background(Color.white)
         .textFieldStyle(RoundedTextFieldStyle())
+        .clipShape(
+          RoundedRectangle(
+            cornerRadius: 8,
+            style: .continuous
+          )
+        )
     }
   }
 }
@@ -37,7 +44,6 @@ struct RoundedTextFieldStyle: TextFieldStyle {
           ),
           lineWidth: 2
         )
-        .background(Color.white)
       }
   }
 }
@@ -47,7 +53,7 @@ struct Preview: View {
 
   var body: some View {
     TextField("Text", text: $text)
-      .background(Color(uiColor: .systemGroupedBackground))
+      .background(Color(uiColor: .systemTeal))
   }
 }
 
