@@ -4,7 +4,7 @@ struct ItemFormFeature: Reducer {
   struct State: Equatable {
     var aisle: String = ""
     var item: ListItem
-    var locationType: String = ""
+    var locationType: Location.Stripped = .unknown
     var stores: IdentifiedArrayOf<GroceryStore>
   }
 
@@ -15,7 +15,8 @@ struct ItemFormFeature: Reducer {
     case didEditPreferredStore(GroceryStore)
     case didEditPreferredStoreLocation(Location)
     case didEditPreferredStoreLocationAisle(String)
-    case didEditLocationType(String)
+    case didEditLocationType(Location.Stripped)
+    case location(Location)
     case onAppear
   }
 
@@ -39,16 +40,18 @@ struct ItemFormFeature: Reducer {
         return .none
       case let .didEditLocationType(type):
         state.locationType = type
+//        state.item.preferredStoreLocation.location = location
+        state.item.preferredStoreLocation.location = Location(stripped: type)
 
-        if type == "Aisle" {
-          state.item.preferredStoreLocation.location = .aisle("")
-        } else if type == "Dairy" {
-          state.item.preferredStoreLocation.location = .dairy
-        } else if type == "Produce" {
-          state.item.preferredStoreLocation.location = .produce
-        } else {
-          state.item.preferredStoreLocation.location = .unknown
-        }
+//        if type == "Aisle" {
+//          state.item.preferredStoreLocation.location = .aisle("")
+//        } else if type == "Dairy" {
+//          state.item.preferredStoreLocation.location = .dairy
+//        } else if type == "Produce" {
+//          state.item.preferredStoreLocation.location = .produce
+//        } else {
+//          state.item.preferredStoreLocation.location = .unknown
+//        }
 
         return .none
       case let .didEditPreferredStore(store):
@@ -64,18 +67,11 @@ struct ItemFormFeature: Reducer {
         state.item.preferredStoreLocation.location = .aisle(aisle)
 
         return .none
+      case let .location(location):
+        return .none
       case .onAppear:
-        switch state.item.preferredStoreLocation.location {
-        case let .aisle(aisle):
-          state.locationType = "Aisle"
-          state.aisle = aisle
-        case .dairy:
-          state.locationType = "Dairy"
-        case .produce:
-          state.locationType = "Produce"
-        case .unknown:
-          state.locationType = "Unknown"
-        }
+        state.locationType = state.item.preferredStoreLocation.location.stripped
+
         return .none
       }
     }

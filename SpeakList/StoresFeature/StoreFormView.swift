@@ -9,37 +9,62 @@ struct StoreFormView: View {
       store,
       observe: { $0 }
     ) { viewStore in
-      Form {
-        Section(header: Text("Store")) {
-          VStack(alignment: .leading) {
-            Text("Name")
+//      ScrollView {
+        VStack {
+          //        Form {
+          
+//          Section(header: Text("Store")) {
+          VStack {
             TextField(
-              "Item",
+              "Name",
               text: viewStore.binding(
                 get: \.groceryStore.name,
                 send: { .didEditStoreName($0) }
               )
             )
-            .padding()
-            .border(.black)
           }
+          .padding(20)
+//          }
+          //        }
+          //        Section(header: Text("Layout")) {
+
+          List {
+            Section(
+              header: Text("Layout"),
+              footer: Text("The layout of the store determines the order for items to be sorted.")
+                .font(.caption)
+            ) {
+              ForEach(viewStore.groceryStore.locationsOrder) { location in
+                Text(location.name)
+              }
+              .onMove { indexSet, index in
+                viewStore.send(.onMove(indexSet, index))
+              }
+            }
+          }
+          .environment(\.editMode, .constant(.active))
+
+          //        }
         }
-      }
+//      }
     }
+    .background(Color(uiColor: .systemGroupedBackground))
   }
 }
 
 #Preview {
-  StoreFormView(
-    store: Store(
-      initialState: StoreFormFeature.State(
-        groceryStore: .init(
-          name: "Natural Grocers"
-        )
-      ),
-      reducer: {
-        StoreFormFeature()
-      }
+  NavigationStack {
+    StoreFormView(
+      store: Store(
+        initialState: StoreFormFeature.State(
+          groceryStore: .init(
+            name: "Natural Grocers"
+          )
+        ),
+        reducer: {
+          StoreFormFeature()
+        }
+      )
     )
-  )
+  }
 }

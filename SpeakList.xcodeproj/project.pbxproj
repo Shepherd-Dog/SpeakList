@@ -24,6 +24,7 @@
 		11609C8F2A80941C0052D80C /* StoreFormFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11609C8E2A80941C0052D80C /* StoreFormFeature.swift */; };
 		117063732A7BD82B003285DB /* StoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117063712A7BD82B003285DB /* StoresView.swift */; };
 		117063742A7BD82B003285DB /* StoresFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117063722A7BD82B003285DB /* StoresFeature.swift */; };
+		11927E3E2A894E30002D299D /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11927E3D2A894E30002D299D /* TextField.swift */; };
 		1194A0792A7BD65E006EB723 /* GroceryStoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1194A0762A7BD65E006EB723 /* GroceryStoreLocation.swift */; };
 		1194A07A2A7BD65E006EB723 /* GroceryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1194A0772A7BD65E006EB723 /* GroceryStore.swift */; };
 		1194A07B2A7BD65E006EB723 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1194A0782A7BD65E006EB723 /* Location.swift */; };
@@ -56,6 +57,7 @@
 		11609C8E2A80941C0052D80C /* StoreFormFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreFormFeature.swift; sourceTree = "<group>"; };
 		117063712A7BD82B003285DB /* StoresView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresView.swift; sourceTree = "<group>"; };
 		117063722A7BD82B003285DB /* StoresFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresFeature.swift; sourceTree = "<group>"; };
+		11927E3D2A894E30002D299D /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		1194A0762A7BD65E006EB723 /* GroceryStoreLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryStoreLocation.swift; sourceTree = "<group>"; };
 		1194A0772A7BD65E006EB723 /* GroceryStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryStore.swift; sourceTree = "<group>"; };
 		1194A0782A7BD65E006EB723 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				11F396042A850F8400607F6A /* GroceryStoresClient */,
 				1194A0802A7BD7C7006EB723 /* SFSpeechRecognizerClient */,
 				11F396072A865A7600607F6A /* ShoppingListClient */,
+				11927E3C2A894E1F002D299D /* DesignSystem */,
 				1194A07C2A7BD785006EB723 /* ItemFormFeature */,
 				1194A07D2A7BD793006EB723 /* PlanFeature */,
 				11F3960A2A87AACF00607F6A /* SettingsFeature */,
@@ -138,6 +141,14 @@
 				1155E7792A76B2E8006F842C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		11927E3C2A894E1F002D299D /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				11927E3D2A894E30002D299D /* TextField.swift */,
+			);
+			path = DesignSystem;
 			sourceTree = "<group>";
 		};
 		1194A07C2A7BD785006EB723 /* ItemFormFeature */ = {
@@ -330,6 +341,7 @@
 				11F396112A87D4ED00607F6A /* ShoppingTripFeature.swift in Sources */,
 				117063742A7BD82B003285DB /* StoresFeature.swift in Sources */,
 				11F396062A850F9700607F6A /* GroceryStoresClient.swift in Sources */,
+				11927E3E2A894E30002D299D /* TextField.swift in Sources */,
 				114A260D2A77D1DE00771CCC /* ItemFormFeature.swift in Sources */,
 				1194A07A2A7BD65E006EB723 /* GroceryStore.swift in Sources */,
 				117063732A7BD82B003285DB /* StoresView.swift in Sources */,

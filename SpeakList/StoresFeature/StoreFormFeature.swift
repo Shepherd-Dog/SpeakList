@@ -1,4 +1,5 @@
 import ComposableArchitecture
+import Foundation
 
 struct StoreFormFeature: Reducer {
   struct State: Equatable {
@@ -6,6 +7,7 @@ struct StoreFormFeature: Reducer {
   }
 
   enum Action: Equatable {
+    case onMove(IndexSet, Int)
     case didEditStoreName(String)
   }
 
@@ -15,6 +17,9 @@ struct StoreFormFeature: Reducer {
       case let .didEditStoreName(name):
         state.groceryStore.name = name
 
+        return .none
+      case let .onMove(indexSet, index):
+        state.groceryStore.locationsOrder.move(fromOffsets: indexSet, toOffset: index)
         return .none
       }
     }
