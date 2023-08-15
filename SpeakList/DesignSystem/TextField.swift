@@ -17,7 +17,7 @@ struct TextField: View {
         text: $text) {
           Text("")
         }
-        .background(Color.white)
+        .background(Color.textFieldBackground)
         .textFieldStyle(RoundedTextFieldStyle())
         .clipShape(
           RoundedRectangle(

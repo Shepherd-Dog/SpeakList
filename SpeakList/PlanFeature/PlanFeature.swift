@@ -10,7 +10,7 @@ struct PlanFeature: Reducer {
     var groupedItems: IdentifiedArrayOf<GroupedListItem> {
       items.reduce([]) { partialResult, item in
         var updatedResult = partialResult
-        let name = item.preferredStoreLocation.store.name
+        let name = item.preferredStoreLocation.store?.name ?? "None"
 
         if partialResult.contains(where: { $0.name == name }) == false {
           updatedResult.append(.init(name: name, items: .init(uniqueElements: [item])))

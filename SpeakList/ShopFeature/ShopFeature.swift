@@ -2,10 +2,8 @@ import ComposableArchitecture
 import Foundation
 
 struct ShoppingTrip: Equatable, Identifiable {
-  var id: GroceryStore.ID {
-    store.id
-  }
-  var store: GroceryStore
+  var id = UUID()
+  var store: GroceryStore?
   var groups: IdentifiedArrayOf<GroupedListItem>
 
   var allItems: IdentifiedArrayOf<ListItem> {
@@ -60,24 +58,23 @@ struct ShopFeature: Reducer {
             )
           }
 
-          updatedResult[id: store.id]?.groups[id: groupName]?.items.append(item)
+          updatedResult[id: store?.id ?? UUID(0)]?.groups[id: groupName]?.items.append(item)
 
           return IdentifiedArray(
             uniqueElements: updatedResult
               .sorted { lhs, rhs in
-                if lhs.store.name == "None" && rhs.store.name == "None" {
-                  return false
+                guard let lhsStore = lhs.store,
+                      let rhsStore = rhs.store else {
+                  if lhs.store == nil && rhs.store == nil {
+                    return false
+                  } else if lhs.store == nil {
+                    return false
+                  } else {
+                    return true
+                  }
                 }
 
-                if lhs.store.name == "None" {
-                  return false
-                }
-
-                if rhs.store.name == "None" {
-                  return true
-                }
-
-                return lhs.store.name < rhs.store.name
+                return lhsStore.name < rhsStore.name
               }
             )
         }

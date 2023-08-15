@@ -15,7 +15,7 @@ struct ShopView: View {
         ForEach(viewStore.trips) { trip in
           HStack {
             VStack(alignment: .leading, spacing: 8) {
-              Text(trip.store.name)
+              Text(trip.store?.name ?? "None")
                 .font(.headline)
               Text("Number of items: \(trip.allItems.count)")
                 .font(.subheadline)

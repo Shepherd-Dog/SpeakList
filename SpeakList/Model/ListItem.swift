@@ -10,7 +10,7 @@ struct ListItem: Codable, Equatable, Identifiable {
   // TODO: `checked` needs to live somewhere else, it is
   // specific to a shopping trip
   var checked: Bool
-  var preferredStoreLocation: GroceryStoreLocation = .init(location: .unknown, store: .none)
+  var preferredStoreLocation: GroceryStoreLocation = .init(location: .unknown, store: nil)
   var otherStoreLocations: IdentifiedArrayOf<GroceryStoreLocation> = []
 
 //  var preferredStore: GroceryStore?

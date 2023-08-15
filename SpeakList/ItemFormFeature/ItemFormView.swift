@@ -40,17 +40,17 @@ struct ItemFormView: View {
               )
             ) {
               Text("None")
-                .tag(GroceryStore.none)
+                .tag(Optional<GroceryStore>.none)
               ForEach(viewStore.stores) { store in
                 Text(store.name)
-                  .tag(store)
+                  .tag(Optional<GroceryStore>.some(store))
               }
             }
             Picker (
               "Location",
               selection: viewStore.binding(
-                get: \.locationType,
-                send: ItemFormFeature.Action.didEditLocationType
+                get: \.item.preferredStoreLocation.location.stripped,
+                send: ItemFormFeature.Action.didEditPreferredStoreLocation
               )
             ) {
               ForEach(Location.Stripped.allCases) { locationType in
@@ -58,18 +58,6 @@ struct ItemFormView: View {
                   .tag(locationType)
               }
             }
-//            Picker (
-//              "Location",
-//              selection: viewStore.binding(
-//                get: \.item.preferredStoreLocation.location,
-//                send: ItemFormFeature.Action.didEditPreferredStoreLocation
-//              )
-//            ) {
-//              ForEach(Location.allCases) { location in
-//                Text("\(location.typeName)")
-//                  .tag(location)
-//              }
-//            }
             switch viewStore.item.preferredStoreLocation.location {
             case .aisle:
               HStack {
@@ -78,8 +66,14 @@ struct ItemFormView: View {
                 TextField(
                   "",
                   text: viewStore.binding(
-                    get: \.aisle,
-                    send: ItemFormFeature.Action.didEditAisle
+                    get: {
+                      if case let .aisle(aisle) = $0.item.preferredStoreLocation.location {
+                        return aisle
+                      } else {
+                        return ""
+                      }
+                    },
+                    send: ItemFormFeature.Action.didEditPreferredStoreLocationAisle
                   )
                 ).multilineTextAlignment(.trailing)
               }
@@ -90,44 +84,11 @@ struct ItemFormView: View {
             case .unknown:
               EmptyView()
             }
-//            SwitchStore(
-//              store.scope(
-//                state: \.item.preferredStoreLocation.location,
-//                action: ItemFormFeature.Action.location
-//              )
-//            ) { initialState in
-//
-//              CaseLet(
-//                /Location.aisle,
-//                 action: ItemFormFeature.Action.location
-//              ) { caseLetStore in
-//                WithViewStore(caseLetStore) { caseLetViewStore in
-//                  HStack {
-//                    Text("Aisle Number")
-//                    Spacer()
-//                    TextField(
-//                      "",
-//                      text: caseLetViewStore.binding(
-//                        get: $0,
-//                        send: ItemFormFeature.Action.didEditAisle
-//                      )
-//                    ).multilineTextAlignment(.trailing)
-//                  }
-//                }
-//              }
-//            }
           }
         }
       }
-      .onAppear {
-        viewStore.send(.onAppear)
-      }
     }
   }
-}
-
-extension GroceryStore {
-  static let none: Self = .init(id: .zeros, name: "")
 }
 
 #Preview {
@@ -148,8 +109,4 @@ extension GroceryStore {
       }
     )
   )
-}
-
-extension UUID {
-  static let zeros = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
 }

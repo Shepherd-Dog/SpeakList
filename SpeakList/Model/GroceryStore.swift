@@ -14,3 +14,7 @@ struct GroceryStore: Codable, Equatable, Hashable, Identifiable {
     ]
   )
 }
+
+extension GroceryStore {
+  static let none: Self = .init(id: UUID(0), name: "")
+}

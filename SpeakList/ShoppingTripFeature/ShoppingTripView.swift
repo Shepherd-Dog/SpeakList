@@ -42,7 +42,7 @@ struct ShoppingTripView: View {
       .onAppear {
         viewStore.send(.onAppear)
       }
-      .navigationTitle(viewStore.trip.store.name)
+      .navigationTitle(viewStore.trip.store?.name ?? "None")
     }
   }
 }
