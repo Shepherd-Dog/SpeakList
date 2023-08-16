@@ -1,0 +1,397 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		112BD7782A8CFA4800394CF6 /* AVAudioEngineClient in Frameworks */ = {isa = PBXBuildFile; productRef = 112BD7772A8CFA4800394CF6 /* AVAudioEngineClient */; };
+		112BD77A2A8CFA4800394CF6 /* AVSpeechSynthesizerClient in Frameworks */ = {isa = PBXBuildFile; productRef = 112BD7792A8CFA4800394CF6 /* AVSpeechSynthesizerClient */; };
+		112BD77C2A8CFA4800394CF6 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 112BD77B2A8CFA4800394CF6 /* AppFeature */; };
+		112BD77E2A8CFA4800394CF6 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 112BD77D2A8CFA4800394CF6 /* DesignSystem */; };
+		112BD7802A8CFA4800394CF6 /* GroceryStoresClient in Frameworks */ = {isa = PBXBuildFile; productRef = 112BD77F2A8CFA4800394CF6 /* GroceryStoresClient */; };
+		1155E7732A76B2E6006F842C /* SpeakListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1155E7722A76B2E6006F842C /* SpeakListApp.swift */; };
+		1155E7772A76B2E8006F842C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1155E7762A76B2E8006F842C /* Assets.xcassets */; };
+		1155E77A2A76B2E8006F842C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1155E7792A76B2E8006F842C /* Preview Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		112BD7832A8CFC3D00394CF6 /* SpeakList */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SpeakList; path = ../..; sourceTree = "<group>"; };
+		1155E76F2A76B2E6006F842C /* SpeakList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeakList.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1155E7722A76B2E6006F842C /* SpeakListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakListApp.swift; sourceTree = "<group>"; };
+		1155E7762A76B2E8006F842C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1155E7792A76B2E8006F842C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		11609C8D2A80858A0052D80C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1155E76C2A76B2E6006F842C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				112BD7782A8CFA4800394CF6 /* AVAudioEngineClient in Frameworks */,
+				112BD77C2A8CFA4800394CF6 /* AppFeature in Frameworks */,
+				112BD7802A8CFA4800394CF6 /* GroceryStoresClient in Frameworks */,
+				112BD77A2A8CFA4800394CF6 /* AVSpeechSynthesizerClient in Frameworks */,
+				112BD77E2A8CFA4800394CF6 /* DesignSystem in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1155E7662A76B2E6006F842C = {
+			isa = PBXGroup;
+			children = (
+				1155E7712A76B2E6006F842C /* SpeakList */,
+				1155E7702A76B2E6006F842C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1155E7702A76B2E6006F842C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1155E76F2A76B2E6006F842C /* SpeakList.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1155E7712A76B2E6006F842C /* SpeakList */ = {
+			isa = PBXGroup;
+			children = (
+				11609C8D2A80858A0052D80C /* Info.plist */,
+				1155E7722A76B2E6006F842C /* SpeakListApp.swift */,
+				112BD7832A8CFC3D00394CF6 /* SpeakList */,
+				1155E7762A76B2E8006F842C /* Assets.xcassets */,
+				1155E7782A76B2E8006F842C /* Preview Content */,
+			);
+			path = SpeakList;
+			sourceTree = "<group>";
+		};
+		1155E7782A76B2E8006F842C /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1155E7792A76B2E8006F842C /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1155E76E2A76B2E6006F842C /* SpeakList */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1155E77D2A76B2E8006F842C /* Build configuration list for PBXNativeTarget "SpeakList" */;
+			buildPhases = (
+				1155E76B2A76B2E6006F842C /* Sources */,
+				1155E76C2A76B2E6006F842C /* Frameworks */,
+				1155E76D2A76B2E6006F842C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpeakList;
+			packageProductDependencies = (
+				112BD7772A8CFA4800394CF6 /* AVAudioEngineClient */,
+				112BD7792A8CFA4800394CF6 /* AVSpeechSynthesizerClient */,
+				112BD77B2A8CFA4800394CF6 /* AppFeature */,
+				112BD77D2A8CFA4800394CF6 /* DesignSystem */,
+				112BD77F2A8CFA4800394CF6 /* GroceryStoresClient */,
+			);
+			productName = SpeakList;
+			productReference = 1155E76F2A76B2E6006F842C /* SpeakList.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1155E7672A76B2E6006F842C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					1155E76E2A76B2E6006F842C = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 1155E76A2A76B2E6006F842C /* Build configuration list for PBXProject "SpeakList" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1155E7662A76B2E6006F842C;
+			packageReferences = (
+			);
+			productRefGroup = 1155E7702A76B2E6006F842C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1155E76E2A76B2E6006F842C /* SpeakList */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1155E76D2A76B2E6006F842C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1155E77A2A76B2E8006F842C /* Preview Assets.xcassets in Resources */,
+				1155E7772A76B2E8006F842C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1155E76B2A76B2E6006F842C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1155E7732A76B2E6006F842C /* SpeakListApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1155E77B2A76B2E8006F842C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1155E77C2A76B2E8006F842C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1155E77E2A76B2E8006F842C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SpeakList/Preview Content\"";
+				DEVELOPMENT_TEAM = 3NUBUGRL3Z;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpeakList/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = Meow;
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = Meow;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.brunow.SpeakList;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1155E77F2A76B2E8006F842C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SpeakList/Preview Content\"";
+				DEVELOPMENT_TEAM = 3NUBUGRL3Z;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpeakList/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = Meow;
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = Meow;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.brunow.SpeakList;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1155E76A2A76B2E6006F842C /* Build configuration list for PBXProject "SpeakList" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1155E77B2A76B2E8006F842C /* Debug */,
+				1155E77C2A76B2E8006F842C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1155E77D2A76B2E8006F842C /* Build configuration list for PBXNativeTarget "SpeakList" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1155E77E2A76B2E8006F842C /* Debug */,
+				1155E77F2A76B2E8006F842C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		112BD7772A8CFA4800394CF6 /* AVAudioEngineClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AVAudioEngineClient;
+		};
+		112BD7792A8CFA4800394CF6 /* AVSpeechSynthesizerClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AVSpeechSynthesizerClient;
+		};
+		112BD77B2A8CFA4800394CF6 /* AppFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppFeature;
+		};
+		112BD77D2A8CFA4800394CF6 /* DesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DesignSystem;
+		};
+		112BD77F2A8CFA4800394CF6 /* GroceryStoresClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GroceryStoresClient;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 1155E7672A76B2E6006F842C /* Project object */;
+}
