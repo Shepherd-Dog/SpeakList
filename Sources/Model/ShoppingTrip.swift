@@ -1,3 +1,4 @@
+import Dependencies
 import Foundation
 import IdentifiedCollections
 
@@ -17,11 +18,13 @@ public struct ShoppingTrip: Equatable, Identifiable {
   }
 
   public init(
-    id: UUID = UUID(),
+    id: UUID? = nil,
     store: GroceryStore? = nil,
     groups: IdentifiedArrayOf<GroupedListItem>
   ) {
-    self.id = id
+    @Dependency(\.uuid) var uuid
+
+    self.id = id ?? uuid()
     self.store = store
     self.groups = groups
   }

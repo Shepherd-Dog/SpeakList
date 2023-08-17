@@ -35,9 +35,11 @@ public struct ShopFeature: Reducer {
           let store = item.preferredStoreLocation.store
           let groupName = item.preferredStoreLocation.location.name
 
-          if partialResult.contains(where: { $0.store == store }) == false {
+          if let existingTrip = partialResult.first(where: { $0.store == store }) {
+            updatedResult[id: existingTrip.id]?.groups[id: groupName]?.items.append(item)
+          } else {
             updatedResult.append(
-              .init(
+              ShoppingTrip(
                 store: store,
                 groups: .init(
                   uniqueElements: [
@@ -50,8 +52,6 @@ public struct ShopFeature: Reducer {
               )
             )
           }
-
-          updatedResult[id: store?.id ?? UUID(0)]?.groups[id: groupName]?.items.append(item)
 
           return IdentifiedArray(
             uniqueElements: updatedResult
