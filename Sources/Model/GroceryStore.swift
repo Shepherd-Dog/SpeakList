@@ -16,10 +16,11 @@ public struct GroceryStore: Codable, Equatable, Hashable, Identifiable {
   )
 
   public init(
-    id: UUID = UUID(),
+    id: UUID? = nil,
     name: String
   ) {
-    self.id = id
+    @Dependency(\.uuid) var uuid
+    self.id = id ?? uuid()
     self.name = name
   }
 }

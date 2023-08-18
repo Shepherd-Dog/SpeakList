@@ -10,11 +10,7 @@ struct StoreFormView: View {
       store,
       observe: { $0 }
     ) { viewStore in
-//      ScrollView {
         VStack {
-          //        Form {
-          
-//          Section(header: Text("Store")) {
           VStack {
             TextField(
               "Name",
@@ -25,10 +21,6 @@ struct StoreFormView: View {
             )
           }
           .padding(20)
-//          }
-          //        }
-          //        Section(header: Text("Layout")) {
-
           List {
             Section(
               header: Text("Layout"),
@@ -44,10 +36,7 @@ struct StoreFormView: View {
             }
           }
           .environment(\.editMode, .constant(.active))
-
-          //        }
         }
-//      }
     }
     .background(Color(uiColor: .systemGroupedBackground))
   }

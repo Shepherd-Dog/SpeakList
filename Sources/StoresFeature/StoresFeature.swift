@@ -5,8 +5,8 @@ import Model
 public struct StoresFeature: Reducer {
   public struct State: Equatable {
     public var stores: IdentifiedArrayOf<GroceryStore> = []
-    @PresentationState var addStore: StoreFormFeature.State?
-    @PresentationState var editStore: StoreFormFeature.State?
+    @PresentationState public var addStore: StoreFormFeature.State?
+    @PresentationState public var editStore: StoreFormFeature.State?
 
     public init(stores: IdentifiedArrayOf<GroceryStore> = []) {
       self.stores = stores

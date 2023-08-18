@@ -4,7 +4,11 @@ import Model
 
 public struct StoreFormFeature: Reducer {
   public struct State: Equatable {
-    var groceryStore: GroceryStore
+    public var groceryStore: GroceryStore
+
+    public init(groceryStore: GroceryStore) {
+      self.groceryStore = groceryStore
+    }
   }
 
   public enum Action: Equatable {

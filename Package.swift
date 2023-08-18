@@ -182,6 +182,13 @@ let package = Package(
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
       ]
     ),
+    .testTarget(
+      name: "StoresFeatureTests",
+      dependencies: [
+        "StoresFeature",
+        .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+      ]
+    ),
     .target(
       name: "Model",
       dependencies: [

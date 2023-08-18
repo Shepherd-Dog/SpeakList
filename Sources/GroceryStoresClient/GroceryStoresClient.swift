@@ -39,3 +39,22 @@ extension DependencyValues {
     }
   }
 }
+
+extension GroceryStoresClient {
+  static var mockStoresCache: ActorIsolated<
+    IdentifiedArrayOf<
+      GroceryStore
+    >
+  > = .init(.init(uniqueElements: [
+    GroceryStore(id: UUID(42), name: "Sprout"),
+    GroceryStore(id: UUID(43), name: "Natural Grocers"),
+    GroceryStore(id: UUID(44), name: "Kroger"),
+  ]))
+
+  public static let mock: Self = .init {
+    await mockStoresCache.value
+  } saveGroceryStores: { stores in
+    await mockStoresCache.setValue(stores)
+  }
+
+}
