@@ -19,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		112BD7832A8CFC3D00394CF6 /* SpeakList */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SpeakList; path = ../..; sourceTree = "<group>"; };
+		112BD7842A905CB700394CF6 /* AllTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AllTests.xctestplan; sourceTree = "<group>"; };
 		1155E76F2A76B2E6006F842C /* SpeakList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeakList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1155E7722A76B2E6006F842C /* SpeakListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakListApp.swift; sourceTree = "<group>"; };
 		1155E7762A76B2E8006F842C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -66,6 +67,7 @@
 				112BD7832A8CFC3D00394CF6 /* SpeakList */,
 				1155E7762A76B2E8006F842C /* Assets.xcassets */,
 				1155E7782A76B2E8006F842C /* Preview Content */,
+				112BD7842A905CB700394CF6 /* AllTests.xctestplan */,
 			);
 			path = SpeakList;
 			sourceTree = "<group>";

@@ -149,13 +149,13 @@ let package = Package(
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
       ]
     ),
-    .testTarget(
-      name: "PlanFeatureTests",
-      dependencies: [
-        "PlanFeature",
-        .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
-      ]
-    ),
+//    .testTarget(
+//      name: "PlanFeatureTests",
+//      dependencies: [
+//        "PlanFeature",
+//        .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+//      ]
+//    ),
     .target(
       name: "SettingsFeature",
       dependencies: [

@@ -1,0 +1,57 @@
+{
+  "configurations" : [
+    {
+      "id" : "087965D2-E0E0-4DF0-A61A-068F22955F2D",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:..",
+        "identifier" : "DesignSystemTests",
+        "name" : "DesignSystemTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:..",
+        "identifier" : "PlanFeatureTests",
+        "name" : "PlanFeatureTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:..",
+        "identifier" : "SettingsFeatureTests",
+        "name" : "SettingsFeatureTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:..",
+        "identifier" : "ShopFeatureTests",
+        "name" : "ShopFeatureTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:..",
+        "identifier" : "StoresFeatureTests",
+        "name" : "StoresFeatureTests"
+      }
+    }
+  ],
+  "version" : 1
+}
