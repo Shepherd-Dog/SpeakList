@@ -19,7 +19,7 @@ class DesignSystemTests: XCTestCase {
   var isCIEnvironment: Bool {
     Logger.tests.error("Current directory path: \(FileManager.default.currentDirectoryPath)")
 
-    return FileManager.default.currentDirectoryPath.contains("/Volumes/workspace")
+    return FileManager.default.currentDirectoryPath.contains("repository")
 //    ProcessInfo.processInfo.environment["CI"] == "TRUE"
   }
 
@@ -36,7 +36,7 @@ class DesignSystemTests: XCTestCase {
       if isCIEnvironment {
         filePath = ciPath
       } else {
-        filePath = ciPath
+        filePath = localPath
       }
 
       assertSnapshot(
