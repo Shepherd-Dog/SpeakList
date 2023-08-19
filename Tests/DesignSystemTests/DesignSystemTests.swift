@@ -8,7 +8,8 @@ class DesignSystemTests: XCTestCase {
   let ciPath: StaticString = "/Volumes/workspace/repository/ci_scripts/DesignSystemTests.swift"
   let localPath: StaticString = #file
   var isCIEnvironment: Bool {
-    ProcessInfo.processInfo.environment["CI"] == "TRUE"
+    return FileManager.default.currentDirectoryPath.contains("/Volumes/workspace")
+//    ProcessInfo.processInfo.environment["CI"] == "TRUE"
   }
 
   func testTextFieldSnapshotColorScheme() {
