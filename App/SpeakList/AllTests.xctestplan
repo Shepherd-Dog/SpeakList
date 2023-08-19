@@ -4,7 +4,11 @@
       "id" : "087965D2-E0E0-4DF0-A61A-068F22955F2D",
       "name" : "Configuration 1",
       "options" : {
-
+        "targetForVariableExpansion" : {
+          "containerPath" : "container:..",
+          "identifier" : "DesignSystemTests",
+          "name" : "DesignSystemTests"
+        }
       }
     }
   ],
@@ -12,7 +16,7 @@
     "environmentVariableEntries" : [
       {
         "key" : "CI",
-        "value" : "$CI"
+        "value" : "$(CI)"
       }
     ],
     "testTimeoutsEnabled" : true
