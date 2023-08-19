@@ -17,7 +17,7 @@ class DesignSystemTests: XCTestCase {
   let ciPath: StaticString = "/Volumes/workspace/repository/ci_scripts/DesignSystemTests.swift"
   let localPath: StaticString = #file
   var isCIEnvironment: Bool {
-    Logger.tests.debug("Current directory path: \(FileManager.default.currentDirectoryPath)")
+    Logger.tests.error("Current directory path: \(FileManager.default.currentDirectoryPath)")
 
     return FileManager.default.currentDirectoryPath.contains("/Volumes/workspace")
 //    ProcessInfo.processInfo.environment["CI"] == "TRUE"
