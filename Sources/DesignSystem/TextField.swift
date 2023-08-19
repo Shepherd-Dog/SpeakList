@@ -1,15 +1,15 @@
 import SwiftUI
 
-struct TextField: View {
+public struct TextField: View {
   var label: LocalizedStringKey
   @Binding var text: String
 
-  init(_ label: LocalizedStringKey, text: Binding<String>) {
+  public init(_ label: LocalizedStringKey, text: Binding<String>) {
     self.label = label
     self._text = text
   }
 
-  var body: some View {
+  public var body: some View {
     VStack(alignment: .leading) {
       Text(label)
         .padding(.leading, 8)

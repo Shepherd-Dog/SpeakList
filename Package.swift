@@ -66,6 +66,7 @@ let package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.1.0"),
+    .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.10.0"),
   ],
   targets: [
     .target(
@@ -125,6 +126,13 @@ let package = Package(
       dependencies: [
       ]
     ),
+    .testTarget(
+      name: "DesignSystemTests",
+      dependencies: [
+        "DesignSystem",
+        .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
+      ]
+    ),
     .target(
       name: "ItemFormFeature",
       dependencies: [
@@ -141,10 +149,24 @@ let package = Package(
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
       ]
     ),
+    .testTarget(
+      name: "PlanFeatureTests",
+      dependencies: [
+        "PlanFeature",
+        .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+      ]
+    ),
     .target(
       name: "SettingsFeature",
       dependencies: [
         "Model",
+        .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+      ]
+    ),
+    .testTarget(
+      name: "SettingsFeatureTests",
+      dependencies: [
+        "SettingsFeature",
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
       ]
     ),
