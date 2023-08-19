@@ -131,9 +131,6 @@ let package = Package(
       dependencies: [
         "DesignSystem",
         .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
-      ],
-      resources: [
-        .copy("__Snapshots__")
       ]
     ),
     .target(
