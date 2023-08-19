@@ -57,7 +57,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "CI"
-            value = "$CI"
+            value = "$(CI)"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
