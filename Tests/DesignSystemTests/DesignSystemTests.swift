@@ -36,7 +36,7 @@ class DesignSystemTests: XCTestCase {
       if isCIEnvironment {
         filePath = ciPath
       } else {
-        filePath = localPath
+        filePath = ciPath
       }
 
       assertSnapshot(
