@@ -1,14 +1,24 @@
 import DesignSystem
+import OSLog
 import SnapshotTesting
 import SwiftUI
 import XCTest
+
+extension Logger {
+    /// Using your bundle identifier is a great way to ensure a unique identifier.
+    private static var subsystem = Bundle.main.bundleIdentifier!
+
+    /// Logs from tests..
+    static let tests = Logger(subsystem: subsystem, category: "Tests")
+}
 
 class DesignSystemTests: XCTestCase {
   // https://github.com/pointfreeco/swift-snapshot-testing/discussions/553#discussioncomment-3807207
   let ciPath: StaticString = "/Volumes/workspace/repository/ci_scripts/DesignSystemTests.swift"
   let localPath: StaticString = #file
   var isCIEnvironment: Bool {
-    print("Current directory path: \(FileManager.default.currentDirectoryPath)")
+    Logger.tests.debug("Current directory path: \(FileManager.default.currentDirectoryPath)")
+
     return FileManager.default.currentDirectoryPath.contains("/Volumes/workspace")
 //    ProcessInfo.processInfo.environment["CI"] == "TRUE"
   }
