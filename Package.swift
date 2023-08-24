@@ -127,7 +127,7 @@ let package = Package(
       ]
     ),
     .testTarget(
-      name: "DesignSystemTests",
+      name: "SnapshotTests",
       dependencies: [
         "DesignSystem",
         .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
