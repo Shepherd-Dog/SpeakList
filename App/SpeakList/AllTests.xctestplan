@@ -27,14 +27,6 @@
       "parallelizable" : true,
       "target" : {
         "containerPath" : "container:..",
-        "identifier" : "DesignSystemTests",
-        "name" : "DesignSystemTests"
-      }
-    },
-    {
-      "parallelizable" : true,
-      "target" : {
-        "containerPath" : "container:..",
         "identifier" : "PlanFeatureTests",
         "name" : "PlanFeatureTests"
       }
@@ -61,6 +53,14 @@
         "containerPath" : "container:..",
         "identifier" : "StoresFeatureTests",
         "name" : "StoresFeatureTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:..",
+        "identifier" : "SnapshotTests",
+        "name" : "SnapshotTests"
       }
     }
   ],
