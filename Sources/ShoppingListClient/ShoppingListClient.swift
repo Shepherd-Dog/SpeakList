@@ -39,3 +39,17 @@ extension DependencyValues {
     }
   }
 }
+
+extension ShoppingListClient {
+  public static var mock = Self {
+    [
+      ListItem(id: UUID(711), name: "Apples", checked: false),
+      ListItem(id: UUID(712), name: "Bananas", checked: false),
+      ListItem(id: UUID(713), name: "Peanut Butter", checked: false),
+      ListItem(id: UUID(714), name: "Protein Powder", checked: false),
+    ]
+  } saveShoppingList: { _ in
+    // no-op
+  }
+
+}

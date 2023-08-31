@@ -37,7 +37,10 @@ public struct ItemFormFeature: Reducer {
         state.item.quantity = quantity
         return .none
       case let .didEditPreferredStore(store):
-        state.item.preferredStoreLocation.store = store
+        state.item.preferredStoreLocation = GroceryStoreLocation(
+          location: state.item.preferredStoreLocation.location,
+          store: store
+        )
 
         return .none
       case let .didEditPreferredStoreLocation(location):

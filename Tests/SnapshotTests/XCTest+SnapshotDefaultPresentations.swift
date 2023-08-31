@@ -36,14 +36,14 @@ extension XCTest {
   ///   - line: The line number on which failure occurred. Defaults to the line number on which this function was called.
   func snapshotDefaultPresentations(
     view: some View,
-    snapshotDeviceScale: CGFloat = 3,
     snapshotDeviceOSVersions: [String: Double] = [
       "iOS": 17.0,
-      "macOS": 14.0, 
+      "macOS": 14.0,
       "tvOS": 17.0,
       "visionOS": 1.0,
       "watchOS": 10.0
     ],
+    snapshotDeviceScale: CGFloat = 3,
     viewImageConfig: ViewImageConfig = .iPhone13Pro,
     xcodeCloudFilePath: StaticString = xcodeCloudFilePath,
     file: StaticString = #file,

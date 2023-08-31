@@ -10,7 +10,7 @@ public struct ListItem: Codable, Equatable, Identifiable {
   // TODO: `checked` needs to live somewhere else, it is
   // specific to a shopping trip
   public var checked: Bool
-  public var preferredStoreLocation: GroceryStoreLocation = .init(location: .unknown, store: nil)
+  public var preferredStoreLocation: GroceryStoreLocation = .unknown
   public var otherStoreLocations: IdentifiedArrayOf<GroceryStoreLocation> = []
 
 //  var preferredStore: GroceryStore?
@@ -21,7 +21,7 @@ public struct ListItem: Codable, Equatable, Identifiable {
     name: String,
     quantity: Int = 1,
     checked: Bool,
-    preferredStoreLocation: GroceryStoreLocation = .init(location: .unknown, store: nil),
+    preferredStoreLocation: GroceryStoreLocation = .unknown,
     otherStoreLocations: IdentifiedArrayOf<GroceryStoreLocation> = []
   ) {
     self.id = id
