@@ -16,33 +16,38 @@ class ShopFeatureTests: XCTestCase {
 
     let sprouts = GroceryStore(id: UUID(42), name: "Sprouts")
 
+    var shoppingList: IdentifiedArrayOf<ListItem> = []
+
+    withDependencies {
+      $0.uuid = .incrementing
+    } operation: {
+      shoppingList = [
+        ListItem(
+          id: UUID(0),
+          name: "Apples",
+          checked: false,
+          preferredStoreLocation: GroceryStoreLocation(
+            id: UUID(0),
+            location: .produce,
+            store: sprouts
+          )
+        ),
+        ListItem(
+          id: UUID(1),
+          name: "Bananas",
+          checked: false,
+          preferredStoreLocation: GroceryStoreLocation(
+            id: UUID(0),
+            location: .produce,
+            store: sprouts
+          )
+        ),
+      ]
+    }
+
+
     await store.send(
-      .didReceiveShoppingList(
-        IdentifiedArrayOf<ListItem>(
-          uniqueElements: [
-            ListItem(
-              id: UUID(0),
-              name: "Apples",
-              checked: false,
-              preferredStoreLocation: GroceryStoreLocation(
-                id: UUID(0),
-                location: .produce,
-                store: sprouts
-              )
-            ),
-            ListItem(
-              id: UUID(1),
-              name: "Bananas",
-              checked: false,
-              preferredStoreLocation: GroceryStoreLocation(
-                id: UUID(0),
-                location: .produce,
-                store: sprouts
-              )
-            ),
-          ]
-        )
-      )
+      .didReceiveShoppingList(shoppingList)
     ) {
       $0.trips = IdentifiedArrayOf<ShoppingTrip>(
         uniqueElements: [
