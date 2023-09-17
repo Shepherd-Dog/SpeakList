@@ -61,7 +61,6 @@
       }
     },
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:..",
         "identifier" : "SnapshotTests",
