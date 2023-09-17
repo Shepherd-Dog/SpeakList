@@ -32,6 +32,9 @@
             reference = "container:SpeakList/AllTests.xctestplan"
             default = "YES">
          </TestPlanReference>
+         <TestPlanReference
+            reference = "container:SpeakList/SnapshotTests.xctestplan">
+         </TestPlanReference>
       </TestPlans>
    </TestAction>
    <LaunchAction
