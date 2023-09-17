@@ -20,6 +20,11 @@
         "value" : "$(CI)"
       }
     ],
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:SpeakList.xcodeproj",
+      "identifier" : "1155E76E2A76B2E6006F842C",
+      "name" : "SpeakList"
+    },
     "testTimeoutsEnabled" : true
   },
   "testTargets" : [
