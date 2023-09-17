@@ -38,6 +38,7 @@ extension XCTest {
   ///   - line: The line number on which failure occurred. Defaults to the line number on which this function was called.
   func assertStandardSnapshots(
     view: some View,
+    snapshotDeviceModelName: String = "iPhone 15 Pro",
     snapshotDeviceOSVersions: [String: Double] = [
       "iOS": 17.0,
       "macOS": 14.0,
@@ -52,6 +53,15 @@ extension XCTest {
     testName: String = #function,
     line: UInt = #line
   ) {
+    guard UIDevice.modelName == snapshotDeviceModelName else {
+      XCTFail(
+        "Running in a \(UIDevice.modelName) simulator instead of the required \(snapshotDeviceModelName) simulator.",
+        file: file,
+        line: line
+      )
+      return
+
+    }
     guard UIScreen.main.scale == snapshotDeviceScale else {
       XCTFail(
         "Running in simulator with @\(UIScreen.main.scale)x scale instead of the required @\(snapshotDeviceScale)x scale.",
