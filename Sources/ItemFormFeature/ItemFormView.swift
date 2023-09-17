@@ -26,13 +26,23 @@ public struct ItemFormView: View {
             )
           }
           VStack(alignment: .leading) {
-            TextField(
-              "Quantity",
-              text: viewStore.binding(
-                get: { "\($0.item.quantity)" },
-                send: { .didEditItemQuantity($0) }
+            HStack {
+              Stepper(
+                value: viewStore.binding(
+                  get: { Double($0.item.quantity) },
+                  send: { .didEditItemQuantity($0) }
+                ), 
+                in: 1...Double.greatestFiniteMagnitude,
+                format: .number,
+                label: {
+                  HStack {
+                    Text("Quantity")
+                    Spacer()
+                    Text("\(viewStore.item.quantity)")
+                  }
+                }
               )
-            )
+            }
           }
         }
         Section(header: Text("Preferred Store")) {

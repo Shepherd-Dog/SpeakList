@@ -14,7 +14,7 @@ public struct ItemFormFeature: Reducer {
 
   public enum Action: Equatable {
     case didEditItemName(String)
-    case didEditItemQuantity(String)
+    case didEditItemQuantity(Double)
     case didEditPreferredStore(GroceryStore?)
     case didEditPreferredStoreLocation(Location.Stripped)
     case didEditPreferredStoreLocationAisle(String)
@@ -29,12 +29,9 @@ public struct ItemFormFeature: Reducer {
         state.item.name = name
         return .none
       case let .didEditItemQuantity(quantity):
-        guard let quantity = Int(quantity) else {
-          // TODO: error
-          return .none
+        if quantity > 0 {
+          state.item.quantity = Int(quantity)
         }
-
-        state.item.quantity = quantity
         return .none
       case let .didEditPreferredStore(store):
         state.item.preferredStoreLocation = GroceryStoreLocation(
