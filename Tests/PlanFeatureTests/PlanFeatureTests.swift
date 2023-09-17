@@ -67,6 +67,10 @@ class PlanFeatureTests: XCTestCase {
       store.state.groupedItems
     )
 
+    await store.receive(.showList) {
+      $0.showList = true
+    }
+
     await store.send(
       .didTapEditItem(
         ListItem(
