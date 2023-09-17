@@ -23,6 +23,9 @@ extension XCTest {
   ///
   /// - Parameters:
   ///   - view: The SwiftUI `View` to snapshot.
+  ///   - snapshotDeviceModelName: The device model name used when recording snapshots.
+  ///   Defaults to `"iPhone 15 Pro"`. The test will fail if snapshots are recorded with a different
+  ///   device.
   ///   - snapshotDeviceScale: The device scale used when recorded snapshots. Defaults to 3.0.
   ///   The test will fail if snapshots are recorded with a different scale.
   ///   - snapshotDeviceOSVersions: A dictionary of the OS versions used for snapshots. Defaults
