@@ -59,13 +59,6 @@
         "identifier" : "StoresFeatureTests",
         "name" : "StoresFeatureTests"
       }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:..",
-        "identifier" : "SnapshotTests",
-        "name" : "SnapshotTests"
-      }
     }
   ],
   "version" : 1

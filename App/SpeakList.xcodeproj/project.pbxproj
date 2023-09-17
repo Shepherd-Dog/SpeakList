@@ -25,6 +25,7 @@
 		1155E7762A76B2E8006F842C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1155E7792A76B2E8006F842C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		11609C8D2A80858A0052D80C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1178759D2AB766820097FDF6 /* SnapshotTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = SnapshotTests.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +70,7 @@
 				1155E7762A76B2E8006F842C /* Assets.xcassets */,
 				1155E7782A76B2E8006F842C /* Preview Content */,
 				112BD7842A905CB700394CF6 /* AllTests.xctestplan */,
+				1178759D2AB766820097FDF6 /* SnapshotTests.xctestplan */,
 			);
 			path = SpeakList;
 			sourceTree = "<group>";
