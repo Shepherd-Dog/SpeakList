@@ -17,7 +17,7 @@ class DesignSystemTests: XCTestCase {
   func testTextFieldSnapshot() {
     let view = DesignSystem.TextField("Name", text: .constant("Tigger"))
 
-    snapshotDefaultPresentations(
+    assertStandardSnapshots(
       view: view,
       xcodeCloudFilePath: xcodeCloudPath
     )

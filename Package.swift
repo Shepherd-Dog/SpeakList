@@ -143,6 +143,7 @@ let package = Package(
     .target(
       name: "PlanFeature",
       dependencies: [
+        "GroceryStoresClient",
         "ItemFormFeature",
         "Model",
         "ShoppingListClient",

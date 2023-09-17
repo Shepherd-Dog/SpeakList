@@ -7,10 +7,11 @@ extension XCTest {
   private static var xcodeCloudFilePath: StaticString {
     "/Volumes/workspace/repository/ci_scripts/SnapshotTests.swift"
   }
+
   private static var isCIEnvironment: Bool {
     ProcessInfo.processInfo.environment["CI"] == "TRUE"
   }
-  
+
   /// Creates snapshots in a variety of different environments at the screen size of an iPhone 13 Pro.
   /// This method must be called when running tests on a device or simulator with the proper display scale
   /// and OS version.
@@ -27,6 +28,7 @@ extension XCTest {
   ///   - snapshotDeviceOSVersions: A dictionary of the OS versions used for snapshots. Defaults
   ///   to: ["iOS": 17.0, "macOS": 14.0, "tvOS": 17.0, "visionOS": 1.0, "watchOS": 10.0]. The test will fail
   ///   if snapshots are recorded with a different version.
+  ///   - viewImageConfig: The `ViewImageConfig` for the snapshot.
   ///   - xcodeCloudFilePath: A `StaticString` describing the path that will be used when
   ///   running these tests on Xcode Cloud. Defaults to `"/Volumes/workspace/repository/ci_scripts/SnapshotTests.swift"`. If your
   ///   tests are in a Swift file with a name other than "SnapshotTests.swift" you will need to provide this
@@ -34,7 +36,7 @@ extension XCTest {
   ///   - file: The file in which failure occurred. Defaults to the file name of the test case in which this function was called.
   ///   - testName: The name of the test in which failure occurred. Defaults to the function name of the test case in which this function was called.
   ///   - line: The line number on which failure occurred. Defaults to the line number on which this function was called.
-  func snapshotDefaultPresentations(
+  func assertStandardSnapshots(
     view: some View,
     snapshotDeviceOSVersions: [String: Double] = [
       "iOS": 17.0,

@@ -3,6 +3,30 @@ import ItemFormFeature
 import Model
 import SwiftUI
 
+fileprivate struct ItemRow: View {
+  var index: Int
+  var item: ListItem
+  var showList: Bool
+  var didTapEditItem: (ListItem) -> Void
+
+  var body: some View {
+    HStack {
+      VStack(alignment: .leading, spacing: 8) {
+        Text(item.name)
+          .font(.headline)
+        Text("Quantity: \(item.quantity)")
+          .font(.subheadline)
+      }
+      Spacer()
+      Button {
+        didTapEditItem(item)
+      } label: {
+        Text("Edit")
+      }
+    }
+  }
+}
+
 public struct PlanView: View {
   var store: StoreOf<PlanFeature>
 
@@ -21,20 +45,23 @@ public struct PlanView: View {
         ForEach(viewStore.groupedItems) { groupedItem in
           Section(groupedItem.name) {
             ForEach(groupedItem.items) { item in
-              HStack {
-                VStack(alignment: .leading, spacing: 8) {
-                  Text(item.name)
-                    .font(.headline)
-                  Text("Quantity: \(item.quantity)")
-                    .font(.subheadline)
-                }
-                Spacer()
-                Button {
-                  viewStore.send(.didTapEditItem(item))
-                } label: {
-                  Text("Edit")
-                }
-              }
+              ItemRow(
+                index: viewStore.groupedItems.index(id: groupedItem.id) ?? 0,
+                item: item,
+                showList: viewStore.showList,
+                didTapEditItem: { item in viewStore.send(.didTapEditItem(item)) }
+              )
+              .offset(x: viewStore.showList ? 0 : 50)
+              .opacity(viewStore.showList ? 1 : 0)
+              .animation(
+                .default
+                  .delay(
+                    Double(
+                      groupedItem.items.index(id: item.id) ?? 0
+                    ) * 0.1
+                  ),
+                value: viewStore.showList
+              )
             }
           }
         }
@@ -65,7 +92,6 @@ public struct PlanView: View {
             }
             .navigationTitle("Add Item")
         }
-
       }
       .sheet(
         store: store.scope(
@@ -104,8 +130,10 @@ public struct PlanView: View {
         }
       }
       .onAppear {
+//        showList = true
         viewStore.send(.onAppear)
       }
+//      .transaction { _ in }
     }
     .navigationTitle("Plan")
   }
@@ -117,7 +145,7 @@ public struct PlanView: View {
       store: .init(
         initialState: .init(
           items: IdentifiedArrayOf<ListItem>(
-            uniqueElements: [
+//            uniqueElements: [
 //              ListItem(
 //                name: "Bananas",
 //                quantity: 7,
@@ -138,7 +166,7 @@ public struct PlanView: View {
 //                quantity: 1,
 //                checked: false
 //              ),
-            ]
+//            ]
           ),
           stores: IdentifiedArrayOf<GroceryStore>(
             uniqueElements: [
@@ -149,7 +177,11 @@ public struct PlanView: View {
             ]
           )
         ),
-        reducer: { PlanFeature() }
+        reducer: {
+          PlanFeature()
+            .dependency(\.shoppingListClient, .mock)
+            .dependency(\.groceryStoresClient, .mock)
+        }
       )
     )
   }

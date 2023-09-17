@@ -9,6 +9,7 @@ public struct PlanFeature: Reducer {
     @PresentationState public var addItem: ItemFormFeature.State?
     @PresentationState public var editItem: ItemFormFeature.State?
     public var items: IdentifiedArrayOf<ListItem> = []
+    public var showList = false
     public var stores: IdentifiedArrayOf<GroceryStore> = []
 
     public init(
@@ -66,6 +67,7 @@ public struct PlanFeature: Reducer {
     case didTapEditItem(ListItem)
     case editItem(PresentationAction<ItemFormFeature.Action>)
     case onAppear
+    case showList
   }
 
   @Dependency(\.groceryStoresClient) var groceryStoresClient
@@ -137,7 +139,13 @@ public struct PlanFeature: Reducer {
           let list = try await shoppingListClient.fetchShoppingList()
 
           await send(.didReceiveShoppingList(list))
+
+          await send(.showList)
         }
+      case .showList:
+        state.showList = true
+
+        return .none
       }
     }
     .ifLet(\.$addItem, action: /Action.addItem) {
