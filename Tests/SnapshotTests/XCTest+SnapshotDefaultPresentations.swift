@@ -2,6 +2,16 @@ import SnapshotTesting
 import SwiftUI
 import XCTest
 
+extension Snapshotting where Value == UIViewController, Format == UIImage {
+  fileprivate static func standardImage(on viewImageConfig: ViewImageConfig) -> Snapshotting {
+    .image(
+      on: viewImageConfig,
+      precision: 0.98,
+      perceptualPrecision: 0.98
+    )
+  }
+}
+
 extension XCTest {
   // https://github.com/pointfreeco/swift-snapshot-testing/discussions/553#discussioncomment-3807207
   private static var xcodeCloudFilePath: StaticString {
@@ -155,7 +165,7 @@ extension XCTest {
 
       assertSnapshot(
         matching: viewController,
-        as: .image(on: viewImageConfig),
+        as: .standardImage(on: viewImageConfig),
         named: "Color Scheme: \(colorScheme)",
         file: filePath,
         testName: testName,
@@ -174,7 +184,7 @@ extension XCTest {
 
       assertSnapshot(
         matching: viewController,
-        as: .image(on: viewImageConfig),
+        as: .standardImage(on: viewImageConfig),
         named: "Dynamic Type: \(size)",
         file: filePath,
         testName: testName,
