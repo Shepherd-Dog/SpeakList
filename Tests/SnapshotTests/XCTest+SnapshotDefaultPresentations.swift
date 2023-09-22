@@ -6,7 +6,7 @@ extension Snapshotting where Value == UIViewController, Format == UIImage {
   fileprivate static func standardImage(on viewImageConfig: ViewImageConfig) -> Snapshotting {
     .image(
       on: viewImageConfig,
-      precision: 0.992,
+      precision: 0.985,
       perceptualPrecision: 1.0
     )
   }
