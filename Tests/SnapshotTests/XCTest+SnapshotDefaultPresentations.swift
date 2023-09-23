@@ -156,7 +156,7 @@ extension XCTest {
       let viewController = UIHostingController(
         rootView: view
           .transaction {
-            $0.disablesAnimations = true
+            $0.animation = nil
           }
       )
       assertSnapshot(
@@ -173,7 +173,7 @@ extension XCTest {
       let viewController = UIHostingController(
         rootView: view
           .transaction {
-            $0.disablesAnimations = true
+            $0.animation = nil
           }
           .background(colorScheme == .light ? Color.white : Color.black)
           .environment(\.colorScheme, colorScheme)
@@ -194,7 +194,7 @@ extension XCTest {
       let viewController = UIHostingController(
         rootView: view
           .transaction {
-            $0.disablesAnimations = true
+            $0.animation = nil
           }
           .environment(\.dynamicTypeSize, size)
       )
