@@ -126,13 +126,6 @@ let package = Package(
       dependencies: [
       ]
     ),
-    .testTarget(
-      name: "SnapshotTests",
-      dependencies: [
-        "DesignSystem",
-        .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
-      ]
-    ),
     .target(
       name: "ItemFormFeature",
       dependencies: [
@@ -198,6 +191,15 @@ let package = Package(
         "AVSpeechSynthesizerClient",
         "SFSpeechRecognizerClient",
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+      ]
+    ),
+    .testTarget(
+      name: "SnapshotTests",
+      dependencies: [
+        "DesignSystem",
+        "Model",
+        "PlanFeature",
+        .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
       ]
     ),
     .target(

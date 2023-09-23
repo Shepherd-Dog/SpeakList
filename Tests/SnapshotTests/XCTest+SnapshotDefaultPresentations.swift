@@ -6,7 +6,8 @@ extension Snapshotting where Value == UIViewController, Format == UIImage {
   fileprivate static func standardImage(on viewImageConfig: ViewImageConfig) -> Snapshotting {
     .image(
       on: viewImageConfig,
-      precision: 0.985,
+//      precision: 0.985,
+      precision: 1.0,
       perceptualPrecision: 1.0
     )
   }
@@ -152,6 +153,23 @@ extension XCTest {
       filePath = file
     }
 
+    do {
+      let viewController = UIHostingController(
+        rootView: view
+          .transaction {
+            $0.disablesAnimations = true
+          }
+      )
+      assertSnapshot(
+        matching: viewController,
+        as: .wait(for: 0.1, on: .standardImage(on: viewImageConfig)),
+        named: "Throwaway",
+        file: filePath,
+        testName: testName,
+        line: line
+      )
+    }
+
     for colorScheme in ColorScheme.allCases {
       let viewController = UIHostingController(
         rootView: view
@@ -165,7 +183,7 @@ extension XCTest {
 
       assertSnapshot(
         matching: viewController,
-        as: .standardImage(on: viewImageConfig),
+        as: .wait(for: 0.1, on: .standardImage(on: viewImageConfig)),
         named: "Color Scheme: \(colorScheme)",
         file: filePath,
         testName: testName,
@@ -184,7 +202,7 @@ extension XCTest {
 
       assertSnapshot(
         matching: viewController,
-        as: .standardImage(on: viewImageConfig),
+        as: .wait(for: 0.1, on: .standardImage(on: viewImageConfig)),
         named: "Dynamic Type: \(size)",
         file: filePath,
         testName: testName,
