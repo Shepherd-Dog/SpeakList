@@ -34,6 +34,8 @@ extension XCTest {
   ///
   /// - Parameters:
   ///   - view: The SwiftUI `View` to snapshot.
+  ///   - createThrowaway: Create 1px by 1px "throwaway" image to allow dependencies time to get
+  ///   setup.
   ///   - snapshotDeviceModelName: The device model name used when recording snapshots.
   ///   Defaults to `"iPhone 15 Pro"`. The test will fail if snapshots are recorded with a different
   ///   device.
@@ -52,6 +54,7 @@ extension XCTest {
   ///   - line: The line number on which failure occurred. Defaults to the line number on which this function was called.
   func assertStandardSnapshots(
     view: some View,
+    createThrowaway: Bool = false,
     snapshotDeviceModelName: String = "iPhone 15 Pro",
     snapshotDeviceOSVersions: [String: Double] = [
       "iOS": 17.0,
@@ -168,9 +171,7 @@ extension XCTest {
       }
     }
 
-    // Take a small, useless image to ensure that any dependencies have some
-    // time to get setup.
-    do {
+    if createThrowaway {
       let viewController = UIHostingController(
         rootView: view
           .transaction {
@@ -210,7 +211,7 @@ extension XCTest {
 
       assertSnapshot(
         matching: viewController,
-        as: .wait(for: 0.01, on: .standardImage(on: viewImageConfig)),
+        as: .wait(for: 0.1, on: .standardImage(on: viewImageConfig)),
         named: "Color Scheme: \(colorScheme)",
         file: filePath,
         testName: testName,
@@ -229,7 +230,7 @@ extension XCTest {
 
       assertSnapshot(
         matching: viewController,
-        as: .wait(for: 0.01, on: .standardImage(on: viewImageConfig)),
+        as: .wait(for: 0.1, on: .standardImage(on: viewImageConfig)),
         named: "Dynamic Type: \(size)",
         file: filePath,
         testName: testName,
