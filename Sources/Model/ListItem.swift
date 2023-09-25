@@ -34,29 +34,73 @@ public struct ListItem: Codable, Equatable, Identifiable {
 }
 
 extension ListItem {
+  public static let mockApples: Self = ListItem(
+    id: UUID(711),
+    name: "Apples",
+    quantity: 7,
+    checked: false,
+    preferredStoreLocation: GroceryStoreLocation(
+      id: UUID(1),
+      location: .produce,
+      store: GroceryStore(
+        id: UUID(42),
+        name: "Sprouts"
+      )
+    )
+  )
+
+  public static let mockBananas: Self = ListItem(
+    id: UUID(712),
+    name: "Bananas",
+    quantity: 7,
+    checked: false,
+    preferredStoreLocation: GroceryStoreLocation(
+      id: UUID(0),
+      location: .produce,
+      store: GroceryStore(
+        id: UUID(42),
+        name: "Sprouts"
+      )
+    )
+  )
+
+  public static let mockPeanutButter: Self = ListItem(
+    id: UUID(714),
+    name: "Peanut Butter",
+    quantity: 1,
+    checked: false,
+    preferredStoreLocation: GroceryStoreLocation(
+      id: UUID(3),
+      location: .aisle("42"),
+      store: GroceryStore(
+        id: UUID(44),
+        name: "Kroger"
+      )
+    )
+  )
+
+  public static let mockProteinPowder: Self = ListItem(
+    id: UUID(713),
+    name: "Protein Powder",
+    quantity: 1,
+    checked: false,
+    preferredStoreLocation: GroceryStoreLocation(
+      id: UUID(2),
+      location: .aisle("17"),
+      store: GroceryStore(
+        id: UUID(43),
+        name: "Natural Grocers"
+      )
+    )
+  )
+
   public static var mocks: IdentifiedArrayOf<ListItem> {
     IdentifiedArrayOf<ListItem>(
       uniqueElements: [
-        ListItem(
-          name: "Bananas",
-          quantity: 7,
-          checked: false
-        ),
-        ListItem(
-          name: "Apples",
-          quantity: 7,
-          checked: false
-        ),
-        ListItem(
-          name: "Protein Powder",
-          quantity: 1,
-          checked: false
-        ),
-        ListItem(
-          name: "Peanut Butter",
-          quantity: 1,
-          checked: false
-        ),
+        .mockBananas,
+        .mockApples,
+        .mockProteinPowder,
+        .mockPeanutButter,
       ]
     )
   }

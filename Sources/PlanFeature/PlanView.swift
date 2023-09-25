@@ -130,10 +130,8 @@ public struct PlanView: View {
         }
       }
       .onAppear {
-//        showList = true
         viewStore.send(.onAppear)
       }
-//      .transaction { _ in }
     }
     .navigationTitle("Plan")
   }
@@ -143,44 +141,9 @@ public struct PlanView: View {
   NavigationStack {
     PlanView(
       store: .init(
-        initialState: .init(
-          items: IdentifiedArrayOf<ListItem>(
-//            uniqueElements: [
-//              ListItem(
-//                name: "Bananas",
-//                quantity: 7,
-//                checked: false
-//              ),
-//              ListItem(
-//                name: "Apples",
-//                quantity: 7,
-//                checked: false
-//              ),
-//              ListItem(
-//                name: "Protein Powder",
-//                quantity: 1,
-//                checked: false
-//              ),
-//              ListItem(
-//                name: "Peanut Butter",
-//                quantity: 1,
-//                checked: false
-//              ),
-//            ]
-          ),
-          stores: IdentifiedArrayOf<GroceryStore>(
-            uniqueElements: [
-//              GroceryStore(name: "Albertsons"),
-//              GroceryStore(name: "Kroger"),
-//              GroceryStore(name: "Natural Grocers"),
-//              GroceryStore(name: "Zatural Grocers"),
-            ]
-          )
-        ),
+        initialState: .init(),
         reducer: {
           PlanFeature()
-            .dependency(\.shoppingListClient, .mock)
-            .dependency(\.groceryStoresClient, .mock)
         }
       )
     )

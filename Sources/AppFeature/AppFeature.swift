@@ -9,16 +9,7 @@ public struct AppFeature: Reducer {
   public struct State: Equatable {
     public var listFeature: PlanFeature.State = .init()
     public var settingsFeature: SettingsFeature.State = .init()
-    public var shopFeature: ShopFeature.State = .init(
-      trips: IdentifiedArrayOf<ShoppingTrip>(
-        uniqueElements: [
-//          ListItem(name: "Bananas", checked: false),
-//          ListItem(name: "Apples", checked: false),
-//          ListItem(name: "Protein Powder", checked: false),
-//          ListItem(name: "Peanut Butter", checked: false),
-        ]
-      )
-    )
+    public var shopFeature: ShopFeature.State = .init()
     public var storesFeature: StoresFeature.State = .init()
 
     public init(

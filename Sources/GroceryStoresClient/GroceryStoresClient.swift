@@ -26,7 +26,7 @@ extension GroceryStoresClient {
 
 extension GroceryStoresClient: DependencyKey {
   public static var liveValue: GroceryStoresClient = .userDefaults
-  public static var previewValue: GroceryStoresClient = .userDefaults
+  public static var previewValue: GroceryStoresClient = .mock
 }
 
 extension DependencyValues {

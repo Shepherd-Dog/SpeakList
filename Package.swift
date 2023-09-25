@@ -77,13 +77,13 @@ let package = Package(
         "GroceryStoresClient",
         "SFSpeechRecognizerClient",
         "ShoppingListClient",
-        "DesignSystem",
         "ItemFormFeature",
         "PlanFeature",
         "SettingsFeature",
         "ShopFeature",
         "ShoppingTripFeature",
         "StoresFeature",
+        "DesignSystem",
         "Model",
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
       ]
@@ -196,6 +196,7 @@ let package = Package(
     .testTarget(
       name: "SnapshotTests",
       dependencies: [
+        "AppFeature",
         "DesignSystem",
         "Model",
         "PlanFeature",

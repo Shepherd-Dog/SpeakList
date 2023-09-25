@@ -36,31 +36,31 @@ class PlanFeatureTests: XCTestCase {
     }
     await store.receive(
       .didReceiveShoppingList(
-        [
-          ListItem(id: UUID(711), name: "Apples", checked: false),
-          ListItem(id: UUID(712), name: "Bananas", checked: false),
-          ListItem(id: UUID(713), name: "Peanut Butter", checked: false),
-          ListItem(id: UUID(714), name: "Protein Powder", checked: false),
-        ]
+        ListItem.mocks
       )
     ) {
-      $0.items = [
-        ListItem(id: UUID(711), name: "Apples", checked: false),
-        ListItem(id: UUID(712), name: "Bananas", checked: false),
-        ListItem(id: UUID(713), name: "Peanut Butter", checked: false),
-        ListItem(id: UUID(714), name: "Protein Powder", checked: false),
-      ]
+      $0.items = ListItem.mocks
     }
 
     XCTAssertNoDifference(
       [
         GroupedListItem(
-          name: "None",
+          name: "Kroger",
           items: [
-            ListItem(id: UUID(711), name: "Apples", checked: false),
-            ListItem(id: UUID(712), name: "Bananas", checked: false),
-            ListItem(id: UUID(713), name: "Peanut Butter", checked: false),
-            ListItem(id: UUID(714), name: "Protein Powder", checked: false),
+            .mockPeanutButter,
+          ]
+        ),
+        GroupedListItem(
+          name: "Natural Grocers",
+          items: [
+            .mockProteinPowder,
+          ]
+        ),
+        GroupedListItem(
+          name: "Sprouts",
+          items: [
+            .mockBananas,
+            .mockApples,
           ]
         )
       ],
@@ -141,6 +141,18 @@ class PlanFeatureTests: XCTestCase {
     XCTAssertNoDifference(
       [
         GroupedListItem(
+          name: "Kroger",
+          items: [
+            .mockPeanutButter,
+          ]
+        ),
+        GroupedListItem(
+          name: "Natural Grocers",
+          items: [
+            .mockProteinPowder,
+          ]
+        ),
+        GroupedListItem(
           name: "Sprout",
           items: [
             ListItem(
@@ -156,13 +168,11 @@ class PlanFeatureTests: XCTestCase {
           ]
         ),
         GroupedListItem(
-          name: "None",
+          name: "Sprouts",
           items: [
-            ListItem(id: UUID(712), name: "Bananas", checked: false),
-            ListItem(id: UUID(713), name: "Peanut Butter", checked: false),
-            ListItem(id: UUID(714), name: "Protein Powder", checked: false),
+            .mockBananas,
           ]
-        )
+        ),
       ],
       store.state.groupedItems
     )

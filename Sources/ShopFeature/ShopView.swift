@@ -55,16 +55,7 @@ public struct ShopView: View {
   NavigationStack {
     ShopView(
       store: .init(
-        initialState: .init(
-          trips: IdentifiedArrayOf<ShoppingTrip>(
-            uniqueElements: [
-//              ListItem(name: "Bananas", checked: false),
-//              ListItem(name: "Apples", checked: false),
-//              ListItem(name: "Protein Powder", checked: false),
-//              ListItem(name: "Peanut Butter", checked: false),
-            ]
-          )
-        ),
+        initialState: .init(),
         reducer: { ShopFeature() }
       )
     )

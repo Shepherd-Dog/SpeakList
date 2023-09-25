@@ -153,6 +153,23 @@ extension XCTest {
       filePath = file
     }
 
+    // For some reason the tab bar's unselected icons do not get colored
+    // properly in snapshots.
+    UITabBar.appearance().unselectedItemTintColor = UIColor { traitCollection in
+      return switch traitCollection.userInterfaceStyle {
+      case .dark:
+        UIColor(red: 117/255.0, green: 117/255.0, blue: 117/255.0, alpha: 1)
+      case .light:
+        UIColor(red: 146/255.0, green: 146/255.0, blue: 152/255.0, alpha: 1)
+      case .unspecified:
+        UIColor(red: 146/255.0, green: 146/255.0, blue: 152/255.0, alpha: 1)
+      @unknown default:
+        fatalError()
+      }
+    }
+
+    // Take a small, useless image to ensure that any dependencies have some
+    // time to get setup.
     do {
       let viewController = UIHostingController(
         rootView: view
@@ -160,9 +177,19 @@ extension XCTest {
             $0.disablesAnimations = true
           }
       )
+
+      let screenScale = max(1, UIScreen.main.scale)
+
       assertSnapshot(
         matching: viewController,
-        as: .wait(for: 0.1, on: .standardImage(on: viewImageConfig)),
+        as: .standardImage(
+          on: ViewImageConfig(
+            size: CGSize(
+              width: 1/screenScale,
+              height: 1/screenScale
+            )
+          )
+        ),
         named: "Throwaway",
         file: filePath,
         testName: testName,
@@ -183,7 +210,7 @@ extension XCTest {
 
       assertSnapshot(
         matching: viewController,
-        as: .wait(for: 0.1, on: .standardImage(on: viewImageConfig)),
+        as: .wait(for: 0.01, on: .standardImage(on: viewImageConfig)),
         named: "Color Scheme: \(colorScheme)",
         file: filePath,
         testName: testName,
@@ -202,7 +229,7 @@ extension XCTest {
 
       assertSnapshot(
         matching: viewController,
-        as: .wait(for: 0.1, on: .standardImage(on: viewImageConfig)),
+        as: .wait(for: 0.01, on: .standardImage(on: viewImageConfig)),
         named: "Dynamic Type: \(size)",
         file: filePath,
         testName: testName,
