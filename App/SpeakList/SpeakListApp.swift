@@ -16,7 +16,9 @@ struct SpeakListApp: App {
 
   var body: some Scene {
     WindowGroup {
-      AppView(store: store)
+      if !_XCTIsTesting {
+        AppView(store: store)
+      }
     }
   }
 }

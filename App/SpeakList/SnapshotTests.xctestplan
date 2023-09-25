@@ -24,10 +24,9 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "target" : {
-        "containerPath" : "container:..",
-        "identifier" : "SnapshotTests",
+        "containerPath" : "container:SpeakList.xcodeproj",
+        "identifier" : "11C223552AC2496B006D18F4",
         "name" : "SnapshotTests"
       }
     }
