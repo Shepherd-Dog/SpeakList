@@ -7,7 +7,7 @@ extension Snapshotting where Value == UIViewController, Format == UIImage {
     .image(
       drawHierarchyInKeyWindow: true,
       precision: 1.0,
-      perceptualPrecision: 1.0,
+      perceptualPrecision: 0.995,
       size: viewImageConfig.size
     )
 //    .image(
