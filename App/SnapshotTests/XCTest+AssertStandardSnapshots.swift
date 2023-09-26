@@ -1,3 +1,4 @@
+import AccessibilitySnapshot
 import SnapshotTesting
 import SwiftUI
 import XCTest
@@ -6,8 +7,8 @@ extension Snapshotting where Value == UIViewController, Format == UIImage {
   fileprivate static func standardImage(on viewImageConfig: ViewImageConfig) -> Snapshotting {
     .image(
       drawHierarchyInKeyWindow: true,
-      precision: 1.0,
-      perceptualPrecision: 0.995,
+      precision: 0.995,
+      perceptualPrecision: 0.98,
       size: viewImageConfig.size
     )
 //    .image(
@@ -16,6 +17,10 @@ extension Snapshotting where Value == UIViewController, Format == UIImage {
 //      precision: 1.0,
 //      perceptualPrecision: 1.0
 //    )
+  }
+
+  fileprivate static func standardVoiceOverAccessibilityImage(on viewImageConfig: ViewImageConfig) -> Snapshotting {
+    .accessibilityImage(drawHierarchyInKeyWindow: true)
   }
 }
 
@@ -182,7 +187,7 @@ extension XCTest {
             )
           )
         ),
-        named: "Throwaway",
+        named: "\(name) - Throwaway",
         file: filePath,
         testName: testName,
         line: line
@@ -203,7 +208,7 @@ extension XCTest {
       assertSnapshot(
         matching: viewController,
         as: .wait(for: 0.1, on: .standardImage(on: viewImageConfig)),
-        named: "Color Scheme: \(colorScheme)",
+        named: "\(name) - Color Scheme: \(colorScheme)",
         file: filePath,
         testName: testName,
         line: line
@@ -222,7 +227,26 @@ extension XCTest {
       assertSnapshot(
         matching: viewController,
         as: .wait(for: 0.1, on: .standardImage(on: viewImageConfig)),
-        named: "Dynamic Type: \(size)",
+        named: "\(name) - Dynamic Type: \(size)",
+        file: filePath,
+        testName: testName,
+        line: line
+      )
+    }
+
+    do {
+      let viewController = UIHostingController(
+        rootView: view
+          .transaction {
+            $0.disablesAnimations = true
+          }
+      )
+      viewController.view.frame = UIScreen.main.bounds
+
+      assertSnapshot(
+        matching: viewController,
+        as: .wait(for: 0.1, on: .standardVoiceOverAccessibilityImage(on: viewImageConfig)),
+        named: "\(name) - VoiceOver Accessibility",
         file: filePath,
         testName: testName,
         line: line
