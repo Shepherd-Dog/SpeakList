@@ -23,6 +23,7 @@
 		11C223A42AC24A76006D18F4 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 11C223A32AC24A76006D18F4 /* SnapshotTesting */; };
 		11C223C02AC25803006D18F4 /* AccessibilitySnapshot in Frameworks */ = {isa = PBXBuildFile; productRef = 11C223BF2AC25803006D18F4 /* AccessibilitySnapshot */; };
 		11C223C22AC25803006D18F4 /* AccessibilitySnapshotCore in Frameworks */ = {isa = PBXBuildFile; productRef = 11C223C12AC25803006D18F4 /* AccessibilitySnapshotCore */; };
+		11C223C42AC27249006D18F4 /* SnapshotTesting+ImpreciseAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C223C32AC27249006D18F4 /* SnapshotTesting+ImpreciseAccessibility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		11C223612AC249D8006D18F4 /* UIDevice+ModelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ModelName.swift"; sourceTree = "<group>"; };
 		11C223922AC249D8006D18F4 /* AppFeatureSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeatureSnapshotTests.swift; sourceTree = "<group>"; };
 		11C223932AC249D8006D18F4 /* PlanFeatureSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanFeatureSnapshotTests.swift; sourceTree = "<group>"; };
+		11C223C32AC27249006D18F4 /* SnapshotTesting+ImpreciseAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SnapshotTesting+ImpreciseAccessibility.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 				11C223932AC249D8006D18F4 /* PlanFeatureSnapshotTests.swift */,
 				11C223612AC249D8006D18F4 /* UIDevice+ModelName.swift */,
 				11C2235F2AC249D8006D18F4 /* XCTest+AssertStandardSnapshots.swift */,
+				11C223C32AC27249006D18F4 /* SnapshotTesting+ImpreciseAccessibility.swift */,
 			);
 			path = SnapshotTests;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				11C223942AC249D8006D18F4 /* UIDevice+ModelName.swift in Sources */,
 				11C223952AC249D8006D18F4 /* PlanFeatureSnapshotTests.swift in Sources */,
 				11C223982AC249D8006D18F4 /* XCTest+AssertStandardSnapshots.swift in Sources */,
+				11C223C42AC27249006D18F4 /* SnapshotTesting+ImpreciseAccessibility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

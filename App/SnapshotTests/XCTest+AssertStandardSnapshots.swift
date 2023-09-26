@@ -20,7 +20,8 @@ extension Snapshotting where Value == UIViewController, Format == UIImage {
   }
 
   fileprivate static func standardVoiceOverAccessibilityImage(on viewImageConfig: ViewImageConfig) -> Snapshotting {
-    .accessibilityImage(drawHierarchyInKeyWindow: true)
+    .impreciseAccessibilityImage(drawHierarchyInKeyWindow: true, precision: 0.995)
+//    .accessibilityImage(drawHierarchyInKeyWindow: true)
   }
 }
 
