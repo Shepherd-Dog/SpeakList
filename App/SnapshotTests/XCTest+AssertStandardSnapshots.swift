@@ -166,6 +166,13 @@ extension XCTest {
     }
 
     print("\(Locale.preferredLanguages)")
+    if Locale.preferredLanguages.count > 1 {
+      XCTFail(
+        "Number of Preferred Languages: \(Locale.preferredLanguages.count)",
+        file: file,
+        line: line
+      )
+    }
 
     if Locale.preferredLanguages.contains(where: {
       $0.contains("ar") || $0.contains("hy")
@@ -194,9 +201,7 @@ extension XCTest {
     if createThrowaway {
       let viewController = UIHostingController(
         rootView: view
-          .transaction {
-            $0.disablesAnimations = true
-          }
+          .transaction { $0.animation = nil }
       )
 
       let screenScale = max(1, UIScreen.main.scale)
@@ -221,9 +226,7 @@ extension XCTest {
     for colorScheme in ColorScheme.allCases {
       let viewController = UIHostingController(
         rootView: view
-          .transaction {
-            $0.disablesAnimations = true
-          }
+          .transaction { $0.animation = nil }
           .background(colorScheme == .light ? Color.white : Color.black)
           .environment(\.colorScheme, colorScheme)
       )
@@ -242,9 +245,7 @@ extension XCTest {
     for size in DynamicTypeSize.allCases {
       let viewController = UIHostingController(
         rootView: view
-          .transaction {
-            $0.disablesAnimations = true
-          }
+          .transaction { $0.animation = nil }
           .environment(\.dynamicTypeSize, size)
       )
 
@@ -261,9 +262,7 @@ extension XCTest {
     do {
       let viewController = UIHostingController(
         rootView: view
-          .transaction {
-            $0.disablesAnimations = true
-          }
+          .transaction { $0.animation = nil }
       )
       viewController.view.frame = UIScreen.main.bounds
 
