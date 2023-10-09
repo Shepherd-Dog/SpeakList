@@ -168,7 +168,7 @@ extension XCTest {
     print("\(Locale.preferredLanguages)")
     if Locale.preferredLanguages.count > 1 {
       XCTFail(
-        "Number of Preferred Languages: \(Locale.preferredLanguages.count)",
+        "Preferred Languages: \(Locale.preferredLanguages.map({ $0 }).joined(separator: ","))",
         file: file,
         line: line
       )
