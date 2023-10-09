@@ -39,7 +39,8 @@ extension XCTest {
     ProcessInfo.processInfo.environment["CI"] == "TRUE"
   }
 
-  /// Creates snapshots in a variety of different environments at the screen size of an iPhone 13 Pro.
+  /// Creates snapshots in a variety of different environments at the screen size of an iPhone 13 Pro (by
+  /// default).
   /// This method must be called when running tests on a device or simulator with the proper display scale
   /// and OS version.
   ///
@@ -60,7 +61,7 @@ extension XCTest {
   ///   - snapshotDeviceOSVersions: A dictionary of the OS versions used for snapshots. Defaults
   ///   to: ["iOS": 17.0, "macOS": 14.0, "tvOS": 17.0, "visionOS": 1.0, "watchOS": 10.0]. The test will fail
   ///   if snapshots are recorded with a different version.
-  ///   - viewImageConfig: The `ViewImageConfig` for the snapshot.
+  ///   - viewImageConfig: The `ViewImageConfig` for the snapshot. Defaults to `.iPhone13Pro`.
   ///   - xcodeCloudFilePath: A `StaticString` describing the path that will be used when
   ///   running these tests on Xcode Cloud. Defaults to `"/Volumes/workspace/repository/ci_scripts/SnapshotTests.swift"`. If your
   ///   tests are in a Swift file with a name other than "SnapshotTests.swift" you will need to provide this
@@ -72,12 +73,12 @@ extension XCTest {
     view: some View,
     createThrowaway: Bool = false,
     snapshotDeviceModelName: String = "iPhone 15 Pro",
-    snapshotDeviceOSVersions: [String: Double] = [
-      "iOS": 17.0,
-      "macOS": 14.0,
-      "tvOS": 17.0,
-      "visionOS": 1.0,
-      "watchOS": 10.0
+    snapshotDeviceOSVersions: [String: String] = [
+      "iOS": "17.0.1",
+      "macOS": "14.0",
+      "tvOS": "17.0",
+      "visionOS": "1.0",
+      "watchOS": "10.0"
     ],
     snapshotDeviceScale: CGFloat = 3,
     viewImageConfig: ViewImageConfig = .iPhone13Pro,
@@ -158,6 +159,24 @@ extension XCTest {
     guard UIDevice.current.systemVersion == "\(snapshotDeviceOSVersion)" else {
       XCTFail(
         "Running with OS version \(UIDevice.current.systemVersion) instead of the required OS version \(snapshotDeviceOSVersion).",
+        file: file,
+        line: line
+      )
+      return
+    }
+
+    print("\(Locale.preferredLanguages)")
+
+    if Locale.preferredLanguages.contains(where: {
+      $0.contains("ar") || $0.contains("hy")
+    }) {
+      XCTFail(
+        """
+        Running on a simulator with Arabic or Armenian in its preferred
+        languages which will cause the snapshots to be rendered differently.
+        Please remove Arabic and/or Armenian from the simulator's preferred
+        languages (Settings > General > Language & Region).
+        """,
         file: file,
         line: line
       )
