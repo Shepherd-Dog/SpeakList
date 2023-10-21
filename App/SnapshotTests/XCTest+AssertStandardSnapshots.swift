@@ -32,9 +32,9 @@ extension XCTest {
     ProcessInfo.processInfo.environment["CI"] == "TRUE"
   }
 
-  /// Creates snapshots in a variety of different environments at the screen size of an iPhone 13 Pro (by
+  /// Creates snapshots in a variety of different environments at the screen size of an iPhone SE (by
   /// default).
-  /// This method must be called when running tests on a device or simulator with the proper display scale
+  /// This method ensures that tests are running on a the proper device or simulator
   /// and OS version.
   ///
   /// Environments used for these snapshots:
@@ -51,7 +51,7 @@ extension XCTest {
   ///   Defaults to `"iPhone 15 Pro"`. The test will fail if snapshots are recorded with a different
   ///   device.
   ///   - snapshotDeviceOSVersions: A dictionary of the OS versions used for snapshots. Defaults
-  ///   to: ["iOS": "17.0", "macOS": "14.0", "tvOS": "17.0", "visionOS": "1.0", "watchOS": "10.0"]. The test will fail
+  ///   to: ["iOS": "17.0.1", "macOS": "14.0", "tvOS": "17.0", "visionOS": "1.0", "watchOS": "10.0"]. The test will fail
   ///   if snapshots are recorded with a different version.
   ///   - viewImageConfig: The `ViewImageConfig` for the snapshot which will determine the size of the rendered snapshot.
   ///   Defaults to `.iPhoneSe`.
@@ -74,7 +74,6 @@ extension XCTest {
       "visionOS": "1.0",
       "watchOS": "10.0"
     ],
-    snapshotDeviceScale: CGFloat = 3,
     viewImageConfig: ViewImageConfig = .iPhoneSe,
     xcodeCloudFilePath: StaticString = xcodeCloudFilePath,
     file: StaticString = #file,
