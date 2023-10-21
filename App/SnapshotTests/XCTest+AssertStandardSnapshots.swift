@@ -46,7 +46,7 @@ extension XCTest {
   /// - Parameters:
   ///   - view: The SwiftUI `View` to snapshot.
   ///   - createThrowaway: Create 1px by 1px "throwaway" image to allow dependencies time to get
-  ///   setup.
+  ///   setup. Defaults to `false`.
   ///   - snapshotDeviceModelName: The device model name used when recording snapshots.
   ///   Defaults to `"iPhone 15 Pro"`. The test will fail if snapshots are recorded with a different
   ///   device.
@@ -153,10 +153,10 @@ extension XCTest {
         && Locale.preferredLanguages.first != "en" {
       XCTFail(
         """
-        Running on a simulator with its first preferred language set to
-        something other than English (US) may cause the snapshots to be rendered
-        differently. Please set English (US) as the simulator's first preferred
-        language (Settings > General > Language & Region). First preferred
+        Running on a simulator with its first preferred language set to \
+        something other than English (US) may cause the snapshots to be rendered \
+        differently. Please set English (US) as the simulator's first preferred \
+        language (Settings > General > Language & Region). First preferred \
         language: \(Locale.preferredLanguages.first ?? "Unknown")
         """,
         file: file,
@@ -170,9 +170,9 @@ extension XCTest {
     }) {
       XCTFail(
         """
-        Running on a simulator with Arabic or Armenian in its preferred
-        languages which will cause the snapshots to be rendered differently.
-        Please remove Arabic and/or Armenian from the simulator's preferred
+        Running on a simulator with Arabic or Armenian in its preferred \
+        languages which will cause the snapshots to be rendered differently. \
+        Please remove Arabic and/or Armenian from the simulator's preferred \
         languages (Settings > General > Language & Region).
         """,
         file: file,
