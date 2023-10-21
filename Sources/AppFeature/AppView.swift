@@ -14,7 +14,7 @@ public struct AppView: View {
 
   public var body: some View {
     TabView {
-      NavigationStack {
+      NavigationView {
         PlanView(
           store: store.scope(
             state: \.listFeature,

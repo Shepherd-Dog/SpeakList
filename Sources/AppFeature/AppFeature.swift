@@ -61,3 +61,15 @@ public struct AppFeature: Reducer {
     }
   }
 }
+
+
+enum ReturnValue: TheReturnType {
+ case meow
+}
+
+class Provider: InstanceProvider {
+   typealias ConcreteReturnType = ReturnValue
+
+  var value: ConcreteReturnType { .meow } // Compiler forces this to be public,
+                                         // which means ReturnValue must be public as well
+}

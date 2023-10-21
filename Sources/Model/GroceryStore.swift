@@ -28,3 +28,12 @@ public struct GroceryStore: Codable, Equatable, Hashable, Identifiable {
 //extension GroceryStore {
 //  static let none: Self = .init(id: UUID(0), name: "")
 //}
+
+
+public protocol TheReturnType {}
+
+public protocol InstanceProvider: AnyObject {
+    associatedtype ConcreteReturnType: TheReturnType
+
+    var value: ConcreteReturnType { get }
+}

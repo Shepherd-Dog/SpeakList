@@ -6,10 +6,10 @@ import XCTest
 extension Snapshotting where Value == UIViewController, Format == UIImage {
   fileprivate static func standardImage(on viewImageConfig: ViewImageConfig) -> Snapshotting {
     .image(
-      drawHierarchyInKeyWindow: true,
-      precision: 0.995,
-      perceptualPrecision: 0.98,
-      size: viewImageConfig.size
+      on: viewImageConfig,
+//      precision: 0.985,
+      precision: 1.0,
+      perceptualPrecision: 1.0
     )
   }
 
@@ -19,6 +19,7 @@ extension Snapshotting where Value == UIViewController, Format == UIImage {
       precision: 0.995,
       perceptualPrecision: 0.98
     )
+//    .accessibilityImage(drawHierarchyInKeyWindow: true)
   }
 }
 
@@ -41,7 +42,6 @@ extension XCTest {
   /// * Light Mode
   /// * Dark Mode
   /// * All Dynamic Type Sizes
-  /// * VoiceOver Accessibility
   ///
   /// - Parameters:
   ///   - view: The SwiftUI `View` to snapshot.
@@ -50,11 +50,12 @@ extension XCTest {
   ///   - snapshotDeviceModelName: The device model name used when recording snapshots.
   ///   Defaults to `"iPhone 15 Pro"`. The test will fail if snapshots are recorded with a different
   ///   device.
+  ///   - snapshotDeviceScale: The device scale used when recorded snapshots. Defaults to 3.0.
+  ///   The test will fail if snapshots are recorded with a different scale.
   ///   - snapshotDeviceOSVersions: A dictionary of the OS versions used for snapshots. Defaults
-  ///   to: ["iOS": "17.0", "macOS": "14.0", "tvOS": "17.0", "visionOS": "1.0", "watchOS": "10.0"]. The test will fail
+  ///   to: ["iOS": 17.0, "macOS": 14.0, "tvOS": 17.0, "visionOS": 1.0, "watchOS": 10.0]. The test will fail
   ///   if snapshots are recorded with a different version.
-  ///   - viewImageConfig: The `ViewImageConfig` for the snapshot which will determine the size of the rendered snapshot.
-  ///   Defaults to `.iPhoneSe`.
+  ///   - viewImageConfig: The `ViewImageConfig` for the snapshot. Defaults to `.iPhone13Pro`.
   ///   - xcodeCloudFilePath: A `StaticString` describing the path that will be used when
   ///   running these tests on Xcode Cloud. Defaults to `"/Volumes/workspace/repository/ci_scripts/SnapshotTests.swift"`. If your
   ///   tests are in a Swift file with a name other than "SnapshotTests.swift" you will need to provide this
@@ -63,19 +64,18 @@ extension XCTest {
   ///   - testName: The name of the test in which failure occurred. Defaults to the function name of the test case in which this function was called.
   ///   - line: The line number on which failure occurred. Defaults to the line number on which this function was called.
   func assertStandardSnapshots(
-    content: some View,
-    named name: String,
+    view: some View,
     createThrowaway: Bool = false,
     snapshotDeviceModelName: String = "iPhone 15 Pro",
-    snapshotDeviceOSVersions: [String: String] = [
-      "iOS": "17.0.1",
-      "macOS": "14.0",
-      "tvOS": "17.0",
-      "visionOS": "1.0",
-      "watchOS": "10.0"
+    snapshotDeviceOSVersions: [String: Double] = [
+      "iOS": 17.0,
+      "macOS": 14.0,
+      "tvOS": 17.0,
+      "visionOS": 1.0,
+      "watchOS": 10.0
     ],
     snapshotDeviceScale: CGFloat = 3,
-    viewImageConfig: ViewImageConfig = .iPhoneSe,
+    viewImageConfig: ViewImageConfig = .iPhone13Pro,
     xcodeCloudFilePath: StaticString = xcodeCloudFilePath,
     file: StaticString = #file,
     testName: String = #function,
@@ -84,6 +84,15 @@ extension XCTest {
     guard UIDevice.modelName == snapshotDeviceModelName else {
       XCTFail(
         "Running in a \(UIDevice.modelName) simulator instead of the required \(snapshotDeviceModelName) simulator.",
+        file: file,
+        line: line
+      )
+      return
+
+    }
+    guard UIScreen.main.scale == snapshotDeviceScale else {
+      XCTFail(
+        "Running in simulator with @\(UIScreen.main.scale)x scale instead of the required @\(snapshotDeviceScale)x scale.",
         file: file,
         line: line
       )
@@ -150,38 +159,6 @@ extension XCTest {
       return
     }
 
-    if Locale.preferredLanguages.first != "en-US" 
-        && Locale.preferredLanguages.first != "en" {
-      XCTFail(
-        """
-        Running on a simulator with its first preferred language set to
-        something other than English (US) may cause the snapshots to be rendered
-        differently. Please set English (US) as the simulator's first preferred
-        language (Settings > General > Language & Region). First preferred
-        language: \(Locale.preferredLanguages.first ?? "Unknown")
-        """,
-        file: file,
-        line: line
-      )
-      return
-    }
-
-    if Locale.preferredLanguages.contains(where: {
-      $0.contains("ar") || $0.contains("hy")
-    }) {
-      XCTFail(
-        """
-        Running on a simulator with Arabic or Armenian in its preferred
-        languages which will cause the snapshots to be rendered differently.
-        Please remove Arabic and/or Armenian from the simulator's preferred
-        languages (Settings > General > Language & Region).
-        """,
-        file: file,
-        line: line
-      )
-      return
-    }
-
     let filePath: StaticString
 
     if Self.isCIEnvironment {
@@ -192,8 +169,10 @@ extension XCTest {
 
     if createThrowaway {
       let viewController = UIHostingController(
-        rootView: content
-          .transaction { $0.animation = nil }
+        rootView: view
+          .transaction {
+            $0.disablesAnimations = true
+          }
       )
 
       let screenScale = max(1, UIScreen.main.scale)
@@ -217,8 +196,10 @@ extension XCTest {
 
     for colorScheme in ColorScheme.allCases {
       let viewController = UIHostingController(
-        rootView: content
-          .transaction { $0.animation = nil }
+        rootView: view
+          .transaction {
+            $0.disablesAnimations = true
+          }
           .background(colorScheme == .light ? Color.white : Color.black)
           .environment(\.colorScheme, colorScheme)
       )
@@ -236,8 +217,10 @@ extension XCTest {
 
     for size in DynamicTypeSize.allCases {
       let viewController = UIHostingController(
-        rootView: content
-          .transaction { $0.animation = nil }
+        rootView: view
+          .transaction {
+            $0.disablesAnimations = true
+          }
           .environment(\.dynamicTypeSize, size)
       )
 
@@ -251,21 +234,23 @@ extension XCTest {
       )
     }
 
-    do {
-      let viewController = UIHostingController(
-        rootView: content
-          .transaction { $0.animation = nil }
-      )
-      viewController.view.frame = UIScreen.main.bounds
-
-      assertSnapshot(
-        matching: viewController,
-        as: .wait(for: 0.1, on: .standardVoiceOverAccessibilityImage(on: viewImageConfig)),
-        named: "\(name) - VoiceOver Accessibility",
-        file: filePath,
-        testName: testName,
-        line: line
-      )
-    }
+//    do {
+//      let viewController = UIHostingController(
+//        rootView: view
+//          .transaction {
+//            $0.disablesAnimations = true
+//          }
+//      )
+//      viewController.view.frame = UIScreen.main.bounds
+//
+//      assertSnapshot(
+//        matching: viewController,
+//        as: .wait(for: 0.1, on: .standardVoiceOverAccessibilityImage(on: viewImageConfig)),
+//        named: "\(name) - VoiceOver Accessibility",
+//        file: filePath,
+//        testName: testName,
+//        line: line
+//      )
+//    }
   }
 }

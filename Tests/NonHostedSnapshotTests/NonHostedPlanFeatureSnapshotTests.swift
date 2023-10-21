@@ -24,8 +24,7 @@ class PlanFeatureSnapshotTests: XCTestCase {
       }
 
       assertStandardSnapshots(
-        content: view,
-        named: "Plan Feature",
+        view: view,
         createThrowaway: true,
         xcodeCloudFilePath: xcodeCloudPath
       )

@@ -18,8 +18,7 @@ class DesignSystemTests: XCTestCase {
     let view = DesignSystem.TextField("Name", text: .constant("Tigger"))
 
     assertStandardSnapshots(
-      content: view,
-      named: "Text Field",
+      view: view,
       xcodeCloudFilePath: xcodeCloudPath
     )
   }

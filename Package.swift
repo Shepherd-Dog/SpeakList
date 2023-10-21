@@ -65,6 +65,7 @@ let package = Package(
     ),
   ],
   dependencies: [
+    .package(url: "https://github.com/cashapp/AccessibilitySnapshot.git", from: "0.4.1"),
     .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.1.0"),
     .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.10.0"),
   ],
@@ -194,13 +195,14 @@ let package = Package(
       ]
     ),
     .testTarget(
-      name: "SnapshotTests",
+      name: "NonHostedSnapshotTests",
       dependencies: [
         "AppFeature",
         "DesignSystem",
         "Model",
         "PlanFeature",
         .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
+        .product(name: "AccessibilitySnapshot", package: "AccessibilitySnapshot"),
       ]
     ),
     .target(

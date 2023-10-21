@@ -23,8 +23,7 @@ class AppFeatureSnapshotTests: XCTestCase {
       )
 
       assertStandardSnapshots(
-        content: view,
-        named: "App Feature",
+        view: view,
         createThrowaway: true,
         xcodeCloudFilePath: xcodeCloudPath
       )

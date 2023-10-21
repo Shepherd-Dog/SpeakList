@@ -29,6 +29,13 @@
         "identifier" : "11C223552AC2496B006D18F4",
         "name" : "SnapshotTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..",
+        "identifier" : "NonHostedSnapshotTests",
+        "name" : "NonHostedSnapshotTests"
+      }
     }
   ],
   "version" : 1
