@@ -11,12 +11,6 @@ extension Snapshotting where Value == UIViewController, Format == UIImage {
       perceptualPrecision: 0.98,
       size: viewImageConfig.size
     )
-//    .image(
-//      on: viewImageConfig,
-////      precision: 0.985,
-//      precision: 1.0,
-//      perceptualPrecision: 1.0
-//    )
   }
 
   fileprivate static func standardVoiceOverAccessibilityImage(on viewImageConfig: ViewImageConfig) -> Snapshotting {
@@ -25,7 +19,6 @@ extension Snapshotting where Value == UIViewController, Format == UIImage {
       precision: 0.995,
       perceptualPrecision: 0.98
     )
-//    .accessibilityImage(drawHierarchyInKeyWindow: true)
   }
 }
 
@@ -48,6 +41,7 @@ extension XCTest {
   /// * Light Mode
   /// * Dark Mode
   /// * All Dynamic Type Sizes
+  /// * VoiceOver Accessibility
   ///
   /// - Parameters:
   ///   - view: The SwiftUI `View` to snapshot.
@@ -56,10 +50,8 @@ extension XCTest {
   ///   - snapshotDeviceModelName: The device model name used when recording snapshots.
   ///   Defaults to `"iPhone 15 Pro"`. The test will fail if snapshots are recorded with a different
   ///   device.
-  ///   - snapshotDeviceScale: The device scale used when recorded snapshots. Defaults to 3.0.
-  ///   The test will fail if snapshots are recorded with a different scale.
   ///   - snapshotDeviceOSVersions: A dictionary of the OS versions used for snapshots. Defaults
-  ///   to: ["iOS": 17.0, "macOS": 14.0, "tvOS": 17.0, "visionOS": 1.0, "watchOS": 10.0]. The test will fail
+  ///   to: ["iOS": "17.0", "macOS": "14.0", "tvOS": "17.0", "visionOS": "1.0", "watchOS": "10.0"]. The test will fail
   ///   if snapshots are recorded with a different version.
   ///   - viewImageConfig: The `ViewImageConfig` for the snapshot. Defaults to `.iPhone13Pro`.
   ///   - xcodeCloudFilePath: A `StaticString` describing the path that will be used when
@@ -90,15 +82,6 @@ extension XCTest {
     guard UIDevice.modelName == snapshotDeviceModelName else {
       XCTFail(
         "Running in a \(UIDevice.modelName) simulator instead of the required \(snapshotDeviceModelName) simulator.",
-        file: file,
-        line: line
-      )
-      return
-
-    }
-    guard UIScreen.main.scale == snapshotDeviceScale else {
-      XCTFail(
-        "Running in simulator with @\(UIScreen.main.scale)x scale instead of the required @\(snapshotDeviceScale)x scale.",
         file: file,
         line: line
       )
@@ -165,13 +148,18 @@ extension XCTest {
       return
     }
 
-    print("\(Locale.preferredLanguages)")
-    if Locale.preferredLanguages.count > 1 {
+    if Locale.preferredLanguages.first != "en-US" {
       XCTFail(
-        "Preferred Languages: \(Locale.preferredLanguages.map({ $0 }).joined(separator: ","))",
+        """
+        Running on a simulator with its first preferred language set to
+        something other than English (US) may cause the snapshots to be rendered
+        differently. Please set English (US) as the simulator's first preferred
+        language (Settings > General > Language & Region).
+        """,
         file: file,
         line: line
       )
+      return
     }
 
     if Locale.preferredLanguages.contains(where: {
