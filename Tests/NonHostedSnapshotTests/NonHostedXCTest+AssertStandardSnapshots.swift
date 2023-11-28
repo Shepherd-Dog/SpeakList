@@ -67,12 +67,12 @@ extension XCTest {
     view: some View,
     createThrowaway: Bool = false,
     snapshotDeviceModelName: String = "iPhone 15 Pro",
-    snapshotDeviceOSVersions: [String: Double] = [
-      "iOS": 17.0,
-      "macOS": 14.0,
-      "tvOS": 17.0,
-      "visionOS": 1.0,
-      "watchOS": 10.0
+    snapshotDeviceOSVersions: [String: String] = [
+      "iOS": "17.0.1",
+      "macOS": "14.0",
+      "tvOS": "17.0",
+      "visionOS": "1.0",
+      "watchOS": "10.0"
     ],
     snapshotDeviceScale: CGFloat = 3,
     viewImageConfig: ViewImageConfig = .iPhone13Pro,
@@ -108,7 +108,7 @@ extension XCTest {
       )
       return
     }
-    snapshotDeviceOSVersion = "\(version)"
+    snapshotDeviceOSVersion = version
     #elseif os(macOS)
     guard let version = snapshotDeviceOSVersions["macOS"] else {
       XCTFail(
@@ -118,7 +118,7 @@ extension XCTest {
       )
       return
     }
-    snapshotDeviceOSVersion = "\(version)"
+    snapshotDeviceOSVersion = version
     #elseif os(tvOS)
     guard let version = snapshotDeviceOSVersions["tvOS"] else {
       XCTFail(
@@ -128,7 +128,7 @@ extension XCTest {
       )
       return
     }
-    snapshotDeviceOSVersion = "\(version)"
+    snapshotDeviceOSVersion = version
     #elseif os(visionOS)
     guard let version = snapshotDeviceOSVersions["visionOS"] else {
       XCTFail(
@@ -138,7 +138,7 @@ extension XCTest {
       )
       return
     }
-    snapshotDeviceOSVersion = "\(version)"
+    snapshotDeviceOSVersion = version
     #elseif os(watchOS)
     guard let version = snapshotDeviceOSVersions["watchOS"] else {
       XCTFail(
@@ -148,7 +148,7 @@ extension XCTest {
       )
       return
     }
-    snapshotDeviceOSVersion = "\(version)"
+    snapshotDeviceOSVersion = version
     #endif
     guard UIDevice.current.systemVersion == "\(snapshotDeviceOSVersion)" else {
       XCTFail(
