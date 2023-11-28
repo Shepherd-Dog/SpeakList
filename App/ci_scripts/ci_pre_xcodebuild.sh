@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# Setup the simulators so that they only have one preferred language.
+# This works around an issue where the simulators on Sonoma have multiple
+# preferred languages which include Arabic and therefore provide different
+# results when running snapshot tests.
+#
+# This solution was inspired by: https://stackoverflow.com/a/74335552
 brew install jq
 brew install parallel
 
