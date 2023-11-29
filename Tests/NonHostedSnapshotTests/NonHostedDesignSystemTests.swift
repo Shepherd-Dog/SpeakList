@@ -12,7 +12,7 @@ extension Logger {
 }
 
 class DesignSystemTests: XCTestCase {
-  let xcodeCloudPath: StaticString = "/Volumes/workspace/repository/ci_scripts/DesignSystemTests.swift"
+  let xcodeCloudPath: StaticString = "/Volumes/workspace/repository/ci_scripts/NonHostedDesignSystemTests.swift"
 
   func testTextFieldSnapshot() {
     let view = DesignSystem.TextField("Name", text: .constant("Tigger"))

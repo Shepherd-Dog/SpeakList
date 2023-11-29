@@ -4,11 +4,15 @@ import SwiftUI
 import XCTest
 
 extension Snapshotting where Value == UIViewController, Format == UIImage {
-  fileprivate static func standardImage(on viewImageConfig: ViewImageConfig) -> Snapshotting {
+  fileprivate static func standardImage(
+    on viewImageConfig: ViewImageConfig,
+    perceptualPrecision: Float = 0.98,
+    precision: Float = 0.995
+  ) -> Snapshotting {
     .image(
       drawHierarchyInKeyWindow: true,
-      precision: 0.995,
-      perceptualPrecision: 0.98,
+      precision: precision,
+      perceptualPrecision: perceptualPrecision,
       size: viewImageConfig.size
     )
   }
@@ -205,7 +209,9 @@ extension XCTest {
               width: 1/screenScale,
               height: 1/screenScale
             )
-          )
+          ),
+          perceptualPrecision: 0.0,
+          precision: 0.0
         ),
         named: "\(name) - Throwaway",
         file: filePath,

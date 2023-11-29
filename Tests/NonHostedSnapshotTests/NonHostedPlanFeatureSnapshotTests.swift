@@ -5,7 +5,7 @@ import SwiftUI
 import XCTest
 
 class PlanFeatureSnapshotTests: XCTestCase {
-  let xcodeCloudPath: StaticString = "/Volumes/workspace/repository/ci_scripts/PlanFeatureSnapshotTests.swift"
+  let xcodeCloudPath: StaticString = "/Volumes/workspace/repository/ci_scripts/NonHostedPlanFeatureSnapshotTests.swift"
 
   func testListSnapshot() {
     withDependencies {
