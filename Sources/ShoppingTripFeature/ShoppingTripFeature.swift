@@ -3,7 +3,8 @@ import ComposableArchitecture
 import Model
 import SFSpeechRecognizerClient
 
-public struct ShoppingTripFeature: Reducer {
+@Reducer
+public struct ShoppingTripFeature {
   public struct State: Equatable {
     public var trip: ShoppingTrip
 

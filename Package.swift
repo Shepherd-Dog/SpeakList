@@ -65,8 +65,16 @@ let package = Package(
     ),
   ],
   dependencies: [
-    .package(url: "https://github.com/cashapp/AccessibilitySnapshot.git", from: "0.4.1"),
+//    .package(
+//      url: "https://github.com/cashapp/AccessibilitySnapshot.git",
+//      from: "0.4.1"
+//    ),
+    .package(
+      url: "https://github.com/DavidBrunow/AccessibilitySnapshot.git",
+      branch: "bugfix/navigationStackSortOrder"
+    ),
     .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.1.0"),
+    .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.1.0"),
     .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.10.0"),
   ],
   targets: [
@@ -93,12 +101,14 @@ let package = Package(
       name: "AVAudioEngineClient",
       dependencies: [
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+        .product(name: "DependenciesMacros", package: "swift-dependencies"),
       ]
     ),
     .target(
       name: "AVSpeechSynthesizerClient",
       dependencies: [
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+        .product(name: "DependenciesMacros", package: "swift-dependencies"),
       ]
     ),
     .target(
@@ -106,6 +116,7 @@ let package = Package(
       dependencies: [
         "Model",
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+        .product(name: "DependenciesMacros", package: "swift-dependencies"),
       ]
     ),
     .target(
@@ -113,6 +124,7 @@ let package = Package(
       dependencies: [
         "AVAudioEngineClient",
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+        .product(name: "DependenciesMacros", package: "swift-dependencies"),
       ]
     ),
     .target(
@@ -120,6 +132,7 @@ let package = Package(
       dependencies: [
         "Model",
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+        .product(name: "DependenciesMacros", package: "swift-dependencies"),
       ]
     ),
     .target(

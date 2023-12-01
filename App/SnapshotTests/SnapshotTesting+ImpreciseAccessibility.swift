@@ -63,6 +63,7 @@ extension Snapshotting where Value == UIView, Format == UIImage {
           viewRenderingMode: drawHierarchyInKeyWindow ? .drawHierarchyInRect : .renderLayerInContext,
           markerColors: markerColors,
           activationPointDisplayMode: activationPointDisplayMode
+          , showUserInputLabels: true
         )
 
         let window: UIWindow
@@ -77,9 +78,9 @@ extension Snapshotting where Value == UIView, Format == UIImage {
           window = UIWindow(frame: UIScreen.main.bounds)
 
           window.makeKeyAndVisible()
+          containerView.center = window.center
         }
 
-        containerView.center = window.center
         window.addSubview(containerView)
 
         do {

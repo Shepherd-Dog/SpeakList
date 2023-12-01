@@ -4,7 +4,8 @@ import ItemFormFeature
 import Model
 import ShoppingListClient
 
-public struct PlanFeature: Reducer {
+@Reducer
+public struct PlanFeature {
   public struct State: Equatable {
     @PresentationState public var addItem: ItemFormFeature.State?
     @PresentationState public var editItem: ItemFormFeature.State?
@@ -94,7 +95,7 @@ public struct PlanFeature: Reducer {
         state.addItem = nil
 
         return .run { [items = state.items] _ in
-          try await shoppingListClient.saveShoppingList(items)
+          try await shoppingListClient.save(shoppingList: items)
         }
       case .didCompleteEditItem:
         guard let editItem = state.editItem else {
@@ -104,7 +105,7 @@ public struct PlanFeature: Reducer {
         state.editItem = nil
 
         return .run { [items = state.items] _ in
-          try await shoppingListClient.saveShoppingList(items)
+          try await shoppingListClient.save(shoppingList: items)
         }
       case let .didReceiveGroceryStores(stores):
         state.stores = stores
@@ -148,10 +149,10 @@ public struct PlanFeature: Reducer {
         return .none
       }
     }
-    .ifLet(\.$addItem, action: /Action.addItem) {
+    .ifLet(\.$addItem, action: \.addItem) {
       ItemFormFeature()
     }
-    .ifLet(\.$editItem, action: /Action.editItem) {
+    .ifLet(\.$editItem, action: \.editItem) {
       ItemFormFeature()
     }
   }

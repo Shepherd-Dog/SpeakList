@@ -4,10 +4,10 @@ import Model
 import SwiftUI
 
 fileprivate struct ItemRow: View {
-  var index: Int
-  var item: ListItem
-  var showList: Bool
-  var didTapEditItem: (ListItem) -> Void
+  let index: Int
+  let item: ListItem
+  let showList: Bool
+  let didTapEditItem: (ListItem) -> Void
 
   var body: some View {
     HStack {

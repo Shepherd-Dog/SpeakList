@@ -2,10 +2,12 @@ import AVAudioEngineClient
 import AVFAudio
 import Combine
 import Dependencies
+import DependenciesMacros
 import Speech
 
+@DependencyClient
 public struct SFSpeechRecognizerClient {
-  public var listen: () -> AnyPublisher<String, Never>
+  public var listen: () -> AnyPublisher<String, Never> = { Empty().eraseToAnyPublisher() }
   public var requestAccess: () -> Void
   public var stopListening: () throws -> Void
 }

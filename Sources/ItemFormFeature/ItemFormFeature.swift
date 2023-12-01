@@ -1,7 +1,8 @@
 import ComposableArchitecture
 import Model
 
-public struct ItemFormFeature: Reducer {
+@Reducer
+public struct ItemFormFeature {
   public struct State: Equatable {
     public var item: ListItem
     public var stores: IdentifiedArrayOf<GroceryStore>

@@ -5,7 +5,8 @@ import SettingsFeature
 import ShopFeature
 import StoresFeature
 
-public struct AppFeature: Reducer {
+@Reducer
+public struct AppFeature {
   public struct State: Equatable {
     public var listFeature: PlanFeature.State = .init()
     public var settingsFeature: SettingsFeature.State = .init()
@@ -37,39 +38,27 @@ public struct AppFeature: Reducer {
   public var body: some ReducerOf<Self> {
     Scope(
       state: \.listFeature,
-      action: /Action.listFeature
+      action: \.listFeature
     ) {
       PlanFeature()
     }
     Scope(
       state: \.settingsFeature,
-      action: /Action.settingsFeature
+      action: \.settingsFeature
     ) {
       SettingsFeature()
     }
     Scope(
       state: \.shopFeature,
-      action: /Action.shopFeature
+      action: \.shopFeature
     ) {
       ShopFeature()
     }
     Scope(
       state: \.storesFeature,
-      action: /Action.storesFeature
+      action: \.storesFeature
     ) {
       StoresFeature()
     }
   }
-}
-
-
-enum ReturnValue: TheReturnType {
- case meow
-}
-
-class Provider: InstanceProvider {
-   typealias ConcreteReturnType = ReturnValue
-
-  var value: ConcreteReturnType { .meow } // Compiler forces this to be public,
-                                         // which means ReturnValue must be public as well
 }

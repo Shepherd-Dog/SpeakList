@@ -4,7 +4,8 @@ import Model
 import ShoppingListClient
 import ShoppingTripFeature
 
-public struct ShopFeature: Reducer {
+@Reducer
+public struct ShopFeature {
   public struct State: Equatable {
     @PresentationState var shoppingTripFeature: ShoppingTripFeature.State?
     public var trips: IdentifiedArrayOf<ShoppingTrip> = []
@@ -88,7 +89,7 @@ public struct ShopFeature: Reducer {
         return .none
       }
     }
-    .ifLet(\.$shoppingTripFeature, action: /Action.shoppingTripFeature) {
+    .ifLet(\.$shoppingTripFeature, action: \.shoppingTripFeature) {
       ShoppingTripFeature()
     }
   }

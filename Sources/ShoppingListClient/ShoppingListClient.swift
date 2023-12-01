@@ -1,11 +1,13 @@
 import Dependencies
+import DependenciesMacros
 import Foundation
 import IdentifiedCollections
 import Model
 
+@DependencyClient
 public struct ShoppingListClient {
   public var fetchShoppingList: () async throws -> IdentifiedArrayOf<ListItem>
-  public var saveShoppingList: (IdentifiedArrayOf<ListItem>) async throws -> Void
+  public var save: (_ shoppingList: IdentifiedArrayOf<ListItem>) async throws -> Void
 }
 
 extension ShoppingListClient {
@@ -17,7 +19,7 @@ extension ShoppingListClient {
     }
 
     return try JSONDecoder().decode(IdentifiedArrayOf<ListItem>.self, from: data)
-  } saveShoppingList: { stores in
+  } save: { stores in
     let json = String(data: try JSONEncoder().encode(stores), encoding: .utf8)
 
     UserDefaults.standard.setValue(json, forKey: "shopping-list")
@@ -43,7 +45,7 @@ extension DependencyValues {
 extension ShoppingListClient {
   public static var mock = Self {
     ListItem.mocks
-  } saveShoppingList: { _ in
+  } save: { _ in
     // no-op
   }
 

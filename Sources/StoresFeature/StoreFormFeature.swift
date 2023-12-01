@@ -2,7 +2,8 @@ import ComposableArchitecture
 import Foundation
 import Model
 
-public struct StoreFormFeature: Reducer {
+@Reducer
+public struct StoreFormFeature {
   public struct State: Equatable {
     public var groceryStore: GroceryStore
 

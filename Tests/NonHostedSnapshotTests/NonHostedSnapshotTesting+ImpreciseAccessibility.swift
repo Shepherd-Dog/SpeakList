@@ -69,6 +69,7 @@ extension Snapshotting where Value == UIView, Format == UIImage {
                     viewRenderingMode: drawHierarchyInKeyWindow ? .drawHierarchyInRect : .renderLayerInContext,
                     markerColors: markerColors,
                     activationPointDisplayMode: activationPointDisplayMode
+                    , showUserInputLabels: true
                 )
 
                 let window = UIWindow(frame: UIScreen.main.bounds)

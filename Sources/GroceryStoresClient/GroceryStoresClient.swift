@@ -1,11 +1,13 @@
 import Dependencies
+import DependenciesMacros
 import IdentifiedCollections
 import Foundation
 import Model
 
+@DependencyClient
 public struct GroceryStoresClient {
   public var fetchGroceryStores: () async throws -> IdentifiedArrayOf<GroceryStore>
-  public var saveGroceryStores: (IdentifiedArrayOf<GroceryStore>) async throws -> Void
+  public var save: (_ stores: IdentifiedArrayOf<GroceryStore>) async throws -> Void
 }
 
 extension GroceryStoresClient {
@@ -17,7 +19,7 @@ extension GroceryStoresClient {
     }
 
     return try JSONDecoder().decode(IdentifiedArrayOf<GroceryStore>.self, from: data)
-  } saveGroceryStores: { stores in
+  } save: { stores in
     let json = String(data: try JSONEncoder().encode(stores), encoding: .utf8)
 
     UserDefaults.standard.setValue(json, forKey: "grocery-stores")
@@ -26,7 +28,7 @@ extension GroceryStoresClient {
 
 extension GroceryStoresClient: DependencyKey {
   public static var liveValue: GroceryStoresClient = .userDefaults
-  public static var previewValue: GroceryStoresClient = .mock
+  public static var previewValue: GroceryStoresClient = .mockNonStaticComputed
 }
 
 extension DependencyValues {
@@ -53,8 +55,38 @@ extension GroceryStoresClient {
 
   public static let mock: Self = .init {
     await mockStoresCache.value
-  } saveGroceryStores: { stores in
+  } save: { stores in
     await mockStoresCache.setValue(stores)
+  }
+
+  public static let mockNonStatic: Self = {
+
+    var mockStoresCache: IdentifiedArrayOf<GroceryStore> = .init(.init(uniqueElements: [
+      GroceryStore(id: UUID(42), name: "ABCD"),
+      GroceryStore(id: UUID(43), name: "EFGH"),
+      GroceryStore(id: UUID(44), name: "JKLM"),
+    ]))
+
+    return .init {
+      mockStoresCache
+    } save: { stores in
+      mockStoresCache = stores
+    }
+  }()
+
+  public static var mockNonStaticComputed: Self {
+
+    var mockStoresCache: IdentifiedArrayOf<GroceryStore> = .init(.init(uniqueElements: [
+      GroceryStore(id: UUID(42), name: "ABCD"),
+      GroceryStore(id: UUID(43), name: "EFGH"),
+      GroceryStore(id: UUID(44), name: "JKLM"),
+    ]))
+
+    return .init {
+      mockStoresCache
+    } save: { stores in
+      mockStoresCache = stores
+    }
   }
 
 }

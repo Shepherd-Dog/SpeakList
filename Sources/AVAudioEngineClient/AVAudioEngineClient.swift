@@ -1,8 +1,10 @@
 import Dependencies
+import DependenciesMacros
 import AVFAudio
 
+@DependencyClient
 public struct AVAudioEngineClient {
-  public var installTap: (@escaping (AVAudioPCMBuffer, AVAudioTime) -> Void) -> Void
+  public var installTap: (@escaping (_ buffer: AVAudioPCMBuffer, _ time: AVAudioTime) -> Void) -> Void
   public var prepare: () -> Void
   public var setup: () throws -> Void
   public var start: () throws -> Void

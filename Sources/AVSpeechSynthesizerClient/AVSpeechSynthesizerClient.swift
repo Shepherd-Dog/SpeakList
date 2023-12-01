@@ -1,10 +1,12 @@
 import AVFAudio
 import Combine
 import Dependencies
+import DependenciesMacros
 
+@DependencyClient
 public struct AVSpeechSynthesizerClient {
-  public var didFinishPublisher: () -> AnyPublisher<Bool, Never>
-  public var speak: (String) -> Void
+  public var didFinishPublisher: () -> AnyPublisher<Bool, Never> = { Empty().eraseToAnyPublisher() }
+  public var speak: (_ text: String) -> Void
 }
 
 extension AVSpeechSynthesizerClient: DependencyKey {

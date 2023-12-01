@@ -1,6 +1,7 @@
 import ComposableArchitecture
 
-public struct SettingsFeature: Reducer {
+@Reducer
+public struct SettingsFeature {
   public struct State: Equatable {
     public init() {}
   }

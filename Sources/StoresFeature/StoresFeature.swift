@@ -2,7 +2,8 @@ import ComposableArchitecture
 import GroceryStoresClient
 import Model
 
-public struct StoresFeature: Reducer {
+@Reducer
+public struct StoresFeature {
   public struct State: Equatable {
     public var stores: IdentifiedArrayOf<GroceryStore> = []
     @PresentationState public var addStore: StoreFormFeature.State?
@@ -53,7 +54,7 @@ public struct StoresFeature: Reducer {
         state.addStore = nil
 
         return .run { [stores = state.stores] _ in
-          try await groceryStoresClient.saveGroceryStores(stores)
+          try await groceryStoresClient.save(stores: stores)
         }
       case .didCompleteEditStore:
         guard let editStore = state.editStore else {
@@ -64,7 +65,7 @@ public struct StoresFeature: Reducer {
         state.editStore = nil
 
         return .run { [stores = state.stores] _ in
-          try await groceryStoresClient.saveGroceryStores(stores)
+          try await groceryStoresClient.save(stores: stores)
         }
       case let .didReceiveGroceryStores(stores):
         state.stores = stores
