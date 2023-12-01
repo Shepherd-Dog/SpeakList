@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "accessibilitysnapshot",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/DavidBrunow/AccessibilitySnapshot.git",
+      "state" : {
+        "branch" : "bugfix/navigationStackSortOrder",
+        "revision" : "7f28b3651d3580cb45268a5df444a45cbe20a82e"
+      }
+    },
+    {
       "identity" : "combine-schedulers",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/combine-schedulers",
