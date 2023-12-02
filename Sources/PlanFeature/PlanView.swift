@@ -35,103 +35,96 @@ public struct PlanView: View {
   }
 
   public var body: some View {
-    WithViewStore(
-      store,
-      observe: { state in
-        state
-      }
-    ) { viewStore in
-      List {
-        ForEach(viewStore.groupedItems) { groupedItem in
-          Section(groupedItem.name) {
-            ForEach(groupedItem.items) { item in
-              ItemRow(
-                index: viewStore.groupedItems.index(id: groupedItem.id) ?? 0,
-                item: item,
-                showList: viewStore.showList,
-                didTapEditItem: { item in viewStore.send(.didTapEditItem(item)) }
-              )
-              .offset(x: viewStore.showList ? 0 : 50)
-              .opacity(viewStore.showList ? 1 : 0)
-              .animation(
-                .default
-                  .delay(
-                    Double(
-                      groupedItem.items.index(id: item.id) ?? 0
-                    ) * 0.1
-                  ),
-                value: viewStore.showList
-              )
-            }
+    List {
+      ForEach(store.groupedItems) { groupedItem in
+        Section(groupedItem.name) {
+          ForEach(groupedItem.items) { item in
+            ItemRow(
+              index: store.groupedItems.index(id: groupedItem.id) ?? 0,
+              item: item,
+              showList: store.showList,
+              didTapEditItem: { item in store.send(.didTapEditItem(item)) }
+            )
+            .offset(x: store.showList ? 0 : 50)
+            .opacity(store.showList ? 1 : 0)
+            .animation(
+              .default
+                .delay(
+                  Double(
+                    groupedItem.items.index(id: item.id) ?? 0
+                  ) * 0.1
+                ),
+              value: store.showList
+            )
           }
         }
       }
-      .sheet(
-        store: store.scope(
-          state: \.$addItem,
-          action: { .addItem($0) }
-        )
-      ) { store in
-        NavigationStack {
-          ItemFormView(store: store)
-            .toolbar {
-              ToolbarItem {
-                Button {
-                  viewStore.send(.didCompleteAddItem)
-                } label: {
-                  Text("Add")
-                }
-              }
-              ToolbarItem(placement: .cancellationAction) {
-                Button {
-                  viewStore.send(.didCancelAddItem)
-                } label: {
-                  Text("Cancel")
-                }
+    }
+    .sheet(
+      store: store.scope(
+        state: \.$addItem,
+        action: { .addItem($0) }
+      )
+    ) { store in
+      NavigationStack {
+        ItemFormView(store: store)
+          .toolbar {
+            ToolbarItem {
+              Button {
+                self.store.send(.didCompleteAddItem)
+              } label: {
+                Text("Add")
               }
             }
-            .navigationTitle("Add Item")
-        }
-      }
-      .sheet(
-        store: store.scope(
-          state: \.$editItem,
-          action: { .editItem($0) }
-        )
-      ) { store in
-        NavigationStack {
-          ItemFormView(store: store)
-            .toolbar {
-              ToolbarItem {
-                Button {
-                  viewStore.send(.didCompleteEditItem)
-                } label: {
-                  Text("Save")
-                }
-              }
-              ToolbarItem(placement: .cancellationAction) {
-                Button {
-                  viewStore.send(.didCancelEditItem)
-                } label: {
-                  Text("Cancel")
-                }
+            ToolbarItem(placement: .cancellationAction) {
+              Button {
+                self.store.send(.didCancelAddItem)
+              } label: {
+                Text("Cancel")
               }
             }
-            .navigationTitle("Edit Item")
-        }
-      }
-      .toolbar {
-        ToolbarItem {
-          Button {
-            viewStore.send(.didTapAddItem)
-          } label: {
-            Text("Add")
           }
+          .navigationTitle("Add Item")
+      }
+    }
+    .sheet(
+      store: store.scope(
+        state: \.$editItem,
+        action: { .editItem($0) }
+      )
+    ) { store in
+      NavigationStack {
+        ItemFormView(store: store)
+          .toolbar {
+            ToolbarItem {
+              Button {
+                self.store.send(.didCompleteEditItem)
+              } label: {
+                Text("Save")
+              }
+            }
+            ToolbarItem(placement: .cancellationAction) {
+              Button {
+                self.store.send(.didCancelEditItem)
+              } label: {
+                Text("Cancel")
+              }
+            }
+          }
+          .navigationTitle("Edit Item")
+      }
+    }
+    .toolbar {
+      ToolbarItem {
+        Button {
+          store.send(.didTapAddItem)
+        } label: {
+          Text("Add")
         }
       }
-      .onAppear {
-        viewStore.send(.onAppear)
-      }
+    }
+    .onAppear {
+      store.send(.onAppear)
     }
     .navigationTitle("Plan")
   }

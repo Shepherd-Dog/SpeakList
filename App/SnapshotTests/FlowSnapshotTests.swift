@@ -64,6 +64,8 @@ extension Snapshotting where Value: UIViewController, Format == UIImage {
 
 @MainActor
 class FlowSnapshotTests: XCTestCase {
+  let xcodeCloudPath: StaticString = "/Volumes/workspace/repository/ci_scripts/FlowSnapshotTests.swift"
+
   func testHappyPath() async throws {
     let store = Store(
       initialState: AppFeature.State()
@@ -114,6 +116,14 @@ class FlowSnapshotTests: XCTestCase {
         .init(name: "Light Mode")
       ]
     ) { viewController, uiUserInterfaceStyle, name in
+      let filePath: StaticString
+
+      if Self.isCIEnvironment {
+        filePath = self.xcodeCloudPath
+      } else {
+        filePath = #file
+      }
+
       if name.contains("Throwaway") {
         assertSnapshot(
           matching: viewController,
@@ -122,7 +132,8 @@ class FlowSnapshotTests: XCTestCase {
               perceptualPrecision: 0,
               precision: 0
           ),
-          named: name
+          named: name,
+          file: filePath
         )
       } else {
         assertSnapshot(
@@ -133,7 +144,8 @@ class FlowSnapshotTests: XCTestCase {
               overrideUserInterfaceStyle: uiUserInterfaceStyle
             )
           ),
-          named: name
+          named: name,
+          file: filePath
         )
       }
     }

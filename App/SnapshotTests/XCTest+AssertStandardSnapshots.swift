@@ -32,7 +32,7 @@ extension XCTest {
     "/Volumes/workspace/repository/ci_scripts/SnapshotTests.swift"
   }
 
-  private static var isCIEnvironment: Bool {
+  static var isCIEnvironment: Bool {
     ProcessInfo.processInfo.environment["CI"] == "TRUE"
   }
 
