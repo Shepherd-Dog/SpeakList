@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "8F5478D1-38CF-4347-A3AD-404E48CB311F",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:SpeakList.xcodeproj",
+        "identifier" : "11E4F0B92B1B98570051D943",
+        "name" : "FlowSnapshotTests"
+      }
+    }
+  ],
+  "version" : 1
+}

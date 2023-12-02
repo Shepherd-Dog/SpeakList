@@ -65,6 +65,7 @@ extension Snapshotting where Value: UIViewController, Format == UIImage {
 @MainActor
 class FlowSnapshotTests: XCTestCase {
   let xcodeCloudPath: StaticString = "/Volumes/workspace/repository/ci_scripts/FlowSnapshotTests.swift"
+  let localPath: StaticString = "/Users/davidbrunow/Developer/SpeakList/App/SnapshotTests/FlowSnapshotTests.swift"
 
   func testHappyPath() async throws {
     let store = Store(
@@ -121,7 +122,7 @@ class FlowSnapshotTests: XCTestCase {
       if Self.isCIEnvironment {
         filePath = self.xcodeCloudPath
       } else {
-        filePath = #file
+        filePath = self.localPath
       }
 
       if name.contains("Throwaway") {
