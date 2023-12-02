@@ -35,6 +35,9 @@
          <TestPlanReference
             reference = "container:SpeakList/SnapshotTests.xctestplan">
          </TestPlanReference>
+         <TestPlanReference
+            reference = "container:SpeakList/FlowSnapshotTests.xctestplan">
+         </TestPlanReference>
       </TestPlans>
       <Testables>
          <TestableReference
