@@ -203,8 +203,8 @@
 			name = SnapshotTests;
 			packageProductDependencies = (
 				11C223A32AC24A76006D18F4 /* SnapshotTesting */,
-				11C223BF2AC25803006D18F4 /* AccessibilitySnapshot */,
-				11C223C12AC25803006D18F4 /* AccessibilitySnapshotCore */,
+				11E4F0AF2B1A0E0A0051D943 /* AccessibilitySnapshot */,
+				11E4F0B12B1A0E0A0051D943 /* AccessibilitySnapshotCore */,
 			);
 			productName = SnapshotTests;
 			productReference = 11C223562AC2496B006D18F4 /* SnapshotTests.xctest */;
@@ -287,10 +287,12 @@
 			files = (
 				11C223972AC249D8006D18F4 /* DesignSystemTests.swift in Sources */,
 				11C223962AC249D8006D18F4 /* AppFeatureSnapshotTests.swift in Sources */,
+				11BD164D2AE42AC4001F29C3 /* FlowSnapshotTests.swift in Sources */,
 				11C223942AC249D8006D18F4 /* UIDevice+ModelName.swift in Sources */,
 				11C223952AC249D8006D18F4 /* PlanFeatureSnapshotTests.swift in Sources */,
 				11C223982AC249D8006D18F4 /* XCTest+AssertStandardSnapshots.swift in Sources */,
 				11BD16492ADEB9C9001F29C3 /* NavigationExampleSnapshotTests.swift in Sources */,
+				11BD164B2AE4253D001F29C3 /* FlowRunner.swift in Sources */,
 				11C223C42AC27249006D18F4 /* SnapshotTesting+ImpreciseAccessibility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -570,16 +572,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.0;
+				branch = "observation-beta";
+				kind = branch;
 			};
 		};
-		11C223BE2AC25803006D18F4 /* XCRemoteSwiftPackageReference "AccessibilitySnapshot" */ = {
+		11E4F0AE2B1A0E0A0051D943 /* XCRemoteSwiftPackageReference "AccessibilitySnapshot" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/cashapp/AccessibilitySnapshot.git";
+			repositoryURL = "https://github.com/DavidBrunow/AccessibilitySnapshot.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.6.0;
+				branch = bugfix/navigationStackSortOrder;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -610,14 +612,14 @@
 			package = 11C223A02AC24A76006D18F4 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
 		};
-		11C223BF2AC25803006D18F4 /* AccessibilitySnapshot */ = {
+		11E4F0AF2B1A0E0A0051D943 /* AccessibilitySnapshot */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 11C223BE2AC25803006D18F4 /* XCRemoteSwiftPackageReference "AccessibilitySnapshot" */;
+			package = 11E4F0AE2B1A0E0A0051D943 /* XCRemoteSwiftPackageReference "AccessibilitySnapshot" */;
 			productName = AccessibilitySnapshot;
 		};
-		11C223C12AC25803006D18F4 /* AccessibilitySnapshotCore */ = {
+		11E4F0B12B1A0E0A0051D943 /* AccessibilitySnapshotCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 11C223BE2AC25803006D18F4 /* XCRemoteSwiftPackageReference "AccessibilitySnapshot" */;
+			package = 11E4F0AE2B1A0E0A0051D943 /* XCRemoteSwiftPackageReference "AccessibilitySnapshot" */;
 			productName = AccessibilitySnapshotCore;
 		};
 /* End XCSwiftPackageProductDependency section */
