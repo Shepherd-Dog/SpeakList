@@ -39,19 +39,6 @@
             reference = "container:SpeakList/FlowSnapshotTests.xctestplan">
          </TestPlanReference>
       </TestPlans>
-      <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "11E4F0B92B1B98570051D943"
-               BuildableName = "FlowSnapshotTests.xctest"
-               BlueprintName = "FlowSnapshotTests"
-               ReferencedContainer = "container:SpeakList.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
