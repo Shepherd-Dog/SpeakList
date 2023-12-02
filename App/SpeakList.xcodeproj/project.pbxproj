@@ -16,15 +16,17 @@
 		1155E7772A76B2E8006F842C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1155E7762A76B2E8006F842C /* Assets.xcassets */; };
 		1155E77A2A76B2E8006F842C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1155E7792A76B2E8006F842C /* Preview Assets.xcassets */; };
 		11BD16492ADEB9C9001F29C3 /* NavigationExampleSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BD16482ADEB9C9001F29C3 /* NavigationExampleSnapshotTests.swift */; };
+		11BD164B2AE4253D001F29C3 /* FlowRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BD164A2AE4253D001F29C3 /* FlowRunner.swift */; };
+		11BD164D2AE42AC4001F29C3 /* FlowSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BD164C2AE42AC4001F29C3 /* FlowSnapshotTests.swift */; };
 		11C223942AC249D8006D18F4 /* UIDevice+ModelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C223612AC249D8006D18F4 /* UIDevice+ModelName.swift */; };
 		11C223952AC249D8006D18F4 /* PlanFeatureSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C223932AC249D8006D18F4 /* PlanFeatureSnapshotTests.swift */; };
 		11C223962AC249D8006D18F4 /* AppFeatureSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C223922AC249D8006D18F4 /* AppFeatureSnapshotTests.swift */; };
 		11C223972AC249D8006D18F4 /* DesignSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C223602AC249D8006D18F4 /* DesignSystemTests.swift */; };
 		11C223982AC249D8006D18F4 /* XCTest+AssertStandardSnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C2235F2AC249D8006D18F4 /* XCTest+AssertStandardSnapshots.swift */; };
 		11C223A42AC24A76006D18F4 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 11C223A32AC24A76006D18F4 /* SnapshotTesting */; };
-		11C223C02AC25803006D18F4 /* AccessibilitySnapshot in Frameworks */ = {isa = PBXBuildFile; productRef = 11C223BF2AC25803006D18F4 /* AccessibilitySnapshot */; };
-		11C223C22AC25803006D18F4 /* AccessibilitySnapshotCore in Frameworks */ = {isa = PBXBuildFile; productRef = 11C223C12AC25803006D18F4 /* AccessibilitySnapshotCore */; };
 		11C223C42AC27249006D18F4 /* SnapshotTesting+ImpreciseAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C223C32AC27249006D18F4 /* SnapshotTesting+ImpreciseAccessibility.swift */; };
+		11E4F0B02B1A0E0A0051D943 /* AccessibilitySnapshot in Frameworks */ = {isa = PBXBuildFile; productRef = 11E4F0AF2B1A0E0A0051D943 /* AccessibilitySnapshot */; };
+		11E4F0B22B1A0E0A0051D943 /* AccessibilitySnapshotCore in Frameworks */ = {isa = PBXBuildFile; productRef = 11E4F0B12B1A0E0A0051D943 /* AccessibilitySnapshotCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		11609C8D2A80858A0052D80C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1178759D2AB766820097FDF6 /* SnapshotTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = SnapshotTests.xctestplan; sourceTree = "<group>"; };
 		11BD16482ADEB9C9001F29C3 /* NavigationExampleSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationExampleSnapshotTests.swift; sourceTree = "<group>"; };
+		11BD164A2AE4253D001F29C3 /* FlowRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowRunner.swift; sourceTree = "<group>"; };
+		11BD164C2AE42AC4001F29C3 /* FlowSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowSnapshotTests.swift; sourceTree = "<group>"; };
 		11C223562AC2496B006D18F4 /* SnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11C2235F2AC249D8006D18F4 /* XCTest+AssertStandardSnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTest+AssertStandardSnapshots.swift"; sourceTree = "<group>"; };
 		11C223602AC249D8006D18F4 /* DesignSystemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemTests.swift; sourceTree = "<group>"; };
@@ -74,9 +78,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11C223C22AC25803006D18F4 /* AccessibilitySnapshotCore in Frameworks */,
+				11E4F0B22B1A0E0A0051D943 /* AccessibilitySnapshotCore in Frameworks */,
 				11C223A42AC24A76006D18F4 /* SnapshotTesting in Frameworks */,
-				11C223C02AC25803006D18F4 /* AccessibilitySnapshot in Frameworks */,
+				11E4F0B02B1A0E0A0051D943 /* AccessibilitySnapshot in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +147,8 @@
 				11C223612AC249D8006D18F4 /* UIDevice+ModelName.swift */,
 				11C2235F2AC249D8006D18F4 /* XCTest+AssertStandardSnapshots.swift */,
 				11C223C32AC27249006D18F4 /* SnapshotTesting+ImpreciseAccessibility.swift */,
+				11BD164A2AE4253D001F29C3 /* FlowRunner.swift */,
+				11BD164C2AE42AC4001F29C3 /* FlowSnapshotTests.swift */,
 			);
 			path = SnapshotTests;
 			sourceTree = "<group>";

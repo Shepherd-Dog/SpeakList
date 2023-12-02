@@ -6,6 +6,7 @@ import ShoppingListClient
 
 @Reducer
 public struct PlanFeature {
+  @ObservableState
   public struct State: Equatable {
     @PresentationState public var addItem: ItemFormFeature.State?
     @PresentationState public var editItem: ItemFormFeature.State?
@@ -15,12 +16,14 @@ public struct PlanFeature {
 
     public init(
       items: IdentifiedArrayOf<ListItem> = [],
-      stores: IdentifiedArrayOf<GroceryStore> = []
+      stores: IdentifiedArrayOf<GroceryStore> = [],
+      showList: Bool = false
     ) {
       self.addItem = addItem
       self.editItem = editItem
       self.items = items
       self.stores = stores
+      self.showList = showList
     }
 
     public var groupedItems: IdentifiedArrayOf<GroupedListItem> {

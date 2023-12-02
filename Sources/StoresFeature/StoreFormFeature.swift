@@ -4,6 +4,7 @@ import Model
 
 @Reducer
 public struct StoreFormFeature {
+  @ObservableState
   public struct State: Equatable {
     public var groceryStore: GroceryStore
 

@@ -73,7 +73,11 @@ let package = Package(
       url: "https://github.com/DavidBrunow/AccessibilitySnapshot.git",
       branch: "bugfix/navigationStackSortOrder"
     ),
-    .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.1.0"),
+    .package(
+      url: "https://github.com/pointfreeco/swift-composable-architecture",
+//      from: "1.1.0"
+      branch: "observation-beta"
+    ),
     .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.1.0"),
     .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.10.0"),
   ],

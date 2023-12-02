@@ -7,6 +7,7 @@ import StoresFeature
 
 @Reducer
 public struct AppFeature {
+  @ObservableState
   public struct State: Equatable {
     public var listFeature: PlanFeature.State = .init()
     public var settingsFeature: SettingsFeature.State = .init()

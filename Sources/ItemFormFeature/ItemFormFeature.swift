@@ -3,6 +3,7 @@ import Model
 
 @Reducer
 public struct ItemFormFeature {
+  @ObservableState
   public struct State: Equatable {
     public var item: ListItem
     public var stores: IdentifiedArrayOf<GroceryStore>

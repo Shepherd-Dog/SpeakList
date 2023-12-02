@@ -4,6 +4,7 @@ import Model
 
 @Reducer
 public struct StoresFeature {
+  @ObservableState
   public struct State: Equatable {
     public var stores: IdentifiedArrayOf<GroceryStore> = []
     @PresentationState public var addStore: StoreFormFeature.State?

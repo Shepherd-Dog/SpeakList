@@ -2,6 +2,7 @@ import ComposableArchitecture
 
 @Reducer
 public struct SettingsFeature {
+  @ObservableState
   public struct State: Equatable {
     public init() {}
   }

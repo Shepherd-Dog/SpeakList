@@ -6,6 +6,7 @@ import ShoppingTripFeature
 
 @Reducer
 public struct ShopFeature {
+  @ObservableState
   public struct State: Equatable {
     @PresentationState var shoppingTripFeature: ShoppingTripFeature.State?
     public var trips: IdentifiedArrayOf<ShoppingTrip> = []

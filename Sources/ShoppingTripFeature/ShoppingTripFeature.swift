@@ -5,6 +5,7 @@ import SFSpeechRecognizerClient
 
 @Reducer
 public struct ShoppingTripFeature {
+  @ObservableState
   public struct State: Equatable {
     public var trip: ShoppingTrip
 
