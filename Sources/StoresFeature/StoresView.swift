@@ -10,91 +10,84 @@ public struct StoresView: View {
   }
 
   public var body: some View {
-    WithViewStore(
-      store,
-      observe: { state in
-        state
-      }
-    ) { viewStore in
-      List {
-        ForEach(viewStore.stores) { store in
-          HStack {
-            Text(store.name)
-            Spacer()
-            Button {
-              viewStore.send(.editStoreButtonTapped(store))
-            } label: {
-              Text("Edit")
-            }
-          }
-        }
-      }
-      .toolbar {
-        ToolbarItem {
+    List {
+      ForEach(self.store.stores) { store in
+        HStack {
+          Text(store.name)
+          Spacer()
           Button {
-            viewStore.send(.addStoreButtonTapped)
+            self.store.send(.editStoreButtonTapped(store))
           } label: {
-            Text("Add")
+            Text("Edit")
           }
         }
       }
-      .sheet(
-        store: store.scope(
-          state: \.$addStore,
-          action: { .addStore($0) }
-        )
-      ) { store in
-        NavigationStack {
-          StoreFormView(store: store)
-            .toolbar {
-              ToolbarItem {
-                Button {
-                  viewStore.send(.didCompleteAddStore)
-                } label: {
-                  Text("Add")
-                }
-              }
-              ToolbarItem(placement: .cancellationAction) {
-                Button {
-                  viewStore.send(.didCancelAddStore)
-                } label: {
-                  Text("Cancel")
-                }
-              }
-            }
-            .navigationTitle("Add Store")
+    }
+    .toolbar {
+      ToolbarItem {
+        Button {
+          self.store.send(.addStoreButtonTapped)
+        } label: {
+          Text("Add")
         }
       }
-      .sheet(
-        store: store.scope(
-          state: \.$editStore,
-          action: { .editStore($0) }
-        )
-      ) { store in
-        NavigationStack {
-          StoreFormView(store: store)
-            .toolbar {
-              ToolbarItem {
-                Button {
-                  viewStore.send(.didCompleteEditStore)
-                } label: {
-                  Text("Save")
-                }
-              }
-              ToolbarItem(placement: .cancellationAction) {
-                Button {
-                  viewStore.send(.didCancelEditStore)
-                } label: {
-                  Text("Cancel")
-                }
+    }
+    .sheet(
+      store: store.scope(
+        state: \.$addStore,
+        action: { .addStore($0) }
+      )
+    ) { store in
+      NavigationStack {
+        StoreFormView(store: store)
+          .toolbar {
+            ToolbarItem {
+              Button {
+                self.store.send(.didCompleteAddStore)
+              } label: {
+                Text("Add")
               }
             }
-            .navigationTitle("Edit Store")
-        }
+            ToolbarItem(placement: .cancellationAction) {
+              Button {
+                self.store.send(.didCancelAddStore)
+              } label: {
+                Text("Cancel")
+              }
+            }
+          }
+          .navigationTitle("Add Store")
       }
-      .onAppear {
-        viewStore.send(.onAppear)
+    }
+    .sheet(
+      store: store.scope(
+        state: \.$editStore,
+        action: { .editStore($0) }
+      )
+    ) { store in
+      NavigationStack {
+        StoreFormView(store: store)
+          .toolbar {
+            ToolbarItem {
+              Button {
+                self.store.send(.didCompleteEditStore)
+              } label: {
+                Text("Save")
+              }
+            }
+            ToolbarItem(placement: .cancellationAction) {
+              Button {
+                self.store.send(.didCancelEditStore)
+              } label: {
+                Text("Cancel")
+              }
+            }
+          }
+          .navigationTitle("Edit Store")
       }
+    }
+    .onAppear {
+      self.store.send(.onAppear)
     }
     .navigationTitle("Stores")
   }

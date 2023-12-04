@@ -66,4 +66,13 @@ public enum Location: Codable, Equatable, Hashable {
       return "Unknown"
     }
   }
+
+  public var aisleName: String {
+    switch self {
+    case let .aisle(name):
+      return name
+    default:
+      return ""
+    }
+  }
 }

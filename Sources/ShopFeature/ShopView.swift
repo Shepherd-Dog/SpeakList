@@ -11,41 +11,34 @@ public struct ShopView: View {
   }
 
   public var body: some View {
-    WithViewStore(
-      store,
-      observe: { state in
-        state
-      }
-    ) { viewStore in
-      List {
-        ForEach(viewStore.trips) { trip in
-          HStack {
-            VStack(alignment: .leading, spacing: 8) {
-              Text(trip.store?.name ?? "None")
-                .font(.headline)
-              Text("Number of items: \(trip.allItems.count)")
-                .font(.subheadline)
-            }
-            Spacer()
-            Button {
-              viewStore.send(.didTapShoppingTrip(trip))
-            } label: {
-              Image(systemName: "chevron.forward")
-            }
+    List {
+      ForEach(self.store.trips) { trip in
+        HStack {
+          VStack(alignment: .leading, spacing: 8) {
+            Text(trip.store?.name ?? "None")
+              .font(.headline)
+            Text("Number of items: \(trip.allItems.count)")
+              .font(.subheadline)
+          }
+          Spacer()
+          Button {
+            self.store.send(.didTapShoppingTrip(trip))
+          } label: {
+            Image(systemName: "chevron.forward")
           }
         }
       }
-      .onAppear {
-        viewStore.send(.onAppear)
-      }
-      .navigationDestination(
-        store: store.scope(
-          state: \.$shoppingTripFeature,
-          action: ShopFeature.Action.shoppingTripFeature
-        )
-      ) { store in
-        ShoppingTripView(store: store)
-      }
+    }
+    .onAppear {
+      self.store.send(.onAppear)
+    }
+    .navigationDestination(
+      store: store.scope(
+        state: \.$shoppingTripFeature,
+        action: ShopFeature.Action.shoppingTripFeature
+      )
+    ) { store in
+      ShoppingTripView(store: store)
     }
     .navigationTitle("Shop")
   }

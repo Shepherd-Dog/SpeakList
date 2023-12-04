@@ -13,6 +13,10 @@ public struct ListItem: Codable, Equatable, Identifiable {
   public var preferredStoreLocation: GroceryStoreLocation = .unknown
   public var otherStoreLocations: IdentifiedArrayOf<GroceryStoreLocation> = []
 
+  public var quantityAsDouble: Double {
+    Double(quantity)
+  }
+
 //  var preferredStore: GroceryStore?
 //  var otherStores: IdentifiedArrayOf<GroceryStore> = []
 

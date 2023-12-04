@@ -3,40 +3,32 @@ import Model
 import SwiftUI
 
 struct StoreFormView: View {
-  var store: StoreOf<StoreFormFeature>
+  @State var store: StoreOf<StoreFormFeature>
 
   var body: some View {
-    WithViewStore(
-      store,
-      observe: { $0 }
-    ) { viewStore in
-        VStack {
-          VStack {
-            TextField(
-              "Name",
-              text: viewStore.binding(
-                get: \.groceryStore.name,
-                send: { .didEditStoreName($0) }
-              )
-            )
+    VStack {
+      VStack {
+        TextField(
+          "Name",
+          text: self.$store.groceryStore.name.sending(\.didEditStoreName)
+        )
+      }
+      .padding(20)
+      List {
+        Section(
+          header: Text("Layout"),
+          footer: Text("The layout of the store determines the order for items to be sorted.")
+            .font(.caption)
+        ) {
+          ForEach(self.store.groceryStore.locationsOrder) { location in
+            Text(location.name)
           }
-          .padding(20)
-          List {
-            Section(
-              header: Text("Layout"),
-              footer: Text("The layout of the store determines the order for items to be sorted.")
-                .font(.caption)
-            ) {
-              ForEach(viewStore.groceryStore.locationsOrder) { location in
-                Text(location.name)
-              }
-              .onMove { indexSet, index in
-                viewStore.send(.onMove(indexSet, index))
-              }
-            }
+          .onMove { indexSet, index in
+            self.store.send(.onMove(indexSet, index))
           }
-          .environment(\.editMode, .constant(.active))
         }
+      }
+      .environment(\.editMode, .constant(.active))
     }
     .background(Color(uiColor: .systemGroupedBackground))
   }

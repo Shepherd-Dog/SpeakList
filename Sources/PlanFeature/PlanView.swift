@@ -28,7 +28,7 @@ fileprivate struct ItemRow: View {
 }
 
 public struct PlanView: View {
-  var store: StoreOf<PlanFeature>
+  @State var store: StoreOf<PlanFeature>
 
   public init(store: StoreOf<PlanFeature>) {
     self.store = store
@@ -61,9 +61,9 @@ public struct PlanView: View {
       }
     }
     .sheet(
-      store: store.scope(
-        state: \.$addItem,
-        action: { .addItem($0) }
+      item: $store.scope(
+        state: \.addItem,
+        action: \.addItem
       )
     ) { store in
       NavigationStack {
@@ -88,9 +88,9 @@ public struct PlanView: View {
       }
     }
     .sheet(
-      store: store.scope(
-        state: \.$editItem,
-        action: { .editItem($0) }
+      item: $store.scope(
+        state: \.editItem,
+        action: \.editItem
       )
     ) { store in
       NavigationStack {

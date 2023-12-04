@@ -9,11 +9,7 @@ public struct SettingsView: View {
   }
 
   public var body: some View {
-    WithViewStore(store) {
-      $0
-    } content: { viewStore in
-      Text("Insert settings here")
-    }
-    .navigationTitle("Settings")
+    Text("Insert settings here")
+      .navigationTitle("Settings")
   }
 }

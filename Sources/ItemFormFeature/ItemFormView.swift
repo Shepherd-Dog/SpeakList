@@ -3,102 +3,76 @@ import Model
 import SwiftUI
 
 public struct ItemFormView: View {
-  var store: StoreOf<ItemFormFeature>
+  @State var store: StoreOf<ItemFormFeature>
 
   public init(store: StoreOf<ItemFormFeature>) {
     self.store = store
   }
 
   public var body: some View {
-    WithViewStore(
-      store,
-      observe: { $0 }
-    ) { viewStore in
-      Form {
-        Section(header: Text("Item")) {
-          VStack(alignment: .leading) {
-            TextField(
-              "Name",
-              text: viewStore.binding(
-                get: \.item.name,
-                send: { .didEditItemName($0) }
-              )
+    Form {
+      Section(header: Text("Item")) {
+        VStack(alignment: .leading) {
+          TextField(
+            "Name",
+            text: self.$store.item.name.sending(\.didEditItemName)
+          )
+        }
+        VStack(alignment: .leading) {
+          HStack {
+            Stepper(
+              value: self.$store.item.quantityAsDouble.sending(\.didEditItemQuantity),
+              in: 1...Double.greatestFiniteMagnitude,
+              format: .number,
+              label: {
+                HStack {
+                  Text("Quantity")
+                  Spacer()
+                  Text("\(self.store.item.quantity)")
+                }
+              }
             )
           }
-          VStack(alignment: .leading) {
-            HStack {
-              Stepper(
-                value: viewStore.binding(
-                  get: { Double($0.item.quantity) },
-                  send: { .didEditItemQuantity($0) }
-                ), 
-                in: 1...Double.greatestFiniteMagnitude,
-                format: .number,
-                label: {
-                  HStack {
-                    Text("Quantity")
-                    Spacer()
-                    Text("\(viewStore.item.quantity)")
-                  }
-                }
-              )
+        }
+      }
+      Section(header: Text("Preferred Store")) {
+        VStack(alignment: .leading) {
+          Picker(
+            "Store",
+            selection: self.$store.item.preferredStoreLocation.store.sending(\.didEditPreferredStore)
+          ) {
+            Text("None")
+              .tag(Optional<GroceryStore>.none)
+            ForEach(self.store.stores) { groceryStore in
+              Text(groceryStore.name)
+                .tag(Optional<GroceryStore>.some(groceryStore))
             }
           }
-        }
-        Section(header: Text("Preferred Store")) {
-          VStack(alignment: .leading) {
-            Picker(
-              "Store",
-              selection: viewStore.binding(
-                get: \.item.preferredStoreLocation.store,
-                send: { .didEditPreferredStore($0) }
-              )
-            ) {
-              Text("None")
-                .tag(Optional<GroceryStore>.none)
-              ForEach(viewStore.stores) { store in
-                Text(store.name)
-                  .tag(Optional<GroceryStore>.some(store))
-              }
+          Picker (
+            "Location",
+            selection: self.$store.item.preferredStoreLocation.location.stripped.sending(\.didEditPreferredStoreLocation)
+          ) {
+            ForEach(Location.Stripped.allCases) { locationType in
+              Text("\(locationType.name)")
+                .tag(locationType)
             }
-            Picker (
-              "Location",
-              selection: viewStore.binding(
-                get: \.item.preferredStoreLocation.location.stripped,
-                send: ItemFormFeature.Action.didEditPreferredStoreLocation
-              )
-            ) {
-              ForEach(Location.Stripped.allCases) { locationType in
-                Text("\(locationType.name)")
-                  .tag(locationType)
-              }
+          }
+          switch self.store.item.preferredStoreLocation.location {
+          case .aisle:
+            HStack {
+              Text("Aisle Number")
+              Spacer()
+              TextField(
+                "",
+                text: self.$store.item.preferredStoreLocation.location.aisleName.sending(\.didEditPreferredStoreLocationAisle)
+              ).multilineTextAlignment(.trailing)
             }
-            switch viewStore.item.preferredStoreLocation.location {
-            case .aisle:
-              HStack {
-                Text("Aisle Number")
-                Spacer()
-                TextField(
-                  "",
-                  text: viewStore.binding(
-                    get: {
-                      if case let .aisle(aisle) = $0.item.preferredStoreLocation.location {
-                        return aisle
-                      } else {
-                        return ""
-                      }
-                    },
-                    send: ItemFormFeature.Action.didEditPreferredStoreLocationAisle
-                  )
-                ).multilineTextAlignment(.trailing)
-              }
-            case .dairy:
-              EmptyView()
-            case .produce:
-              EmptyView()
-            case .unknown:
-              EmptyView()
-            }
+          case .dairy:
+            EmptyView()
+          case .produce:
+            EmptyView()
+          case .unknown:
+            EmptyView()
           }
         }
       }
