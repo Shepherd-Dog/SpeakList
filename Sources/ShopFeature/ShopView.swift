@@ -35,7 +35,7 @@ public struct ShopView: View {
     .navigationDestination(
       store: store.scope(
         state: \.$shoppingTripFeature,
-        action: ShopFeature.Action.shoppingTripFeature
+        action: \.shoppingTripFeature
       )
     ) { store in
       ShoppingTripView(store: store)

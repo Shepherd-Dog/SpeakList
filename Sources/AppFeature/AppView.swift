@@ -18,7 +18,7 @@ public struct AppView: View {
         PlanView(
           store: store.scope(
             state: \.listFeature,
-            action: AppFeature.Action.listFeature
+            action: \.listFeature
           )
         )
       }
@@ -27,7 +27,7 @@ public struct AppView: View {
         ShopView(
           store: store.scope(
             state: \.shopFeature,
-            action: AppFeature.Action.shopFeature
+            action: \.shopFeature
           )
         )
       }
@@ -36,7 +36,7 @@ public struct AppView: View {
         StoresView(
           store: store.scope(
             state: \.storesFeature,
-            action: AppFeature.Action.storesFeature
+            action: \.storesFeature
           )
         )
       }
@@ -45,7 +45,7 @@ public struct AppView: View {
         SettingsView(
           store: store.scope(
             state: \.settingsFeature,
-            action: AppFeature.Action.settingsFeature
+            action: \.settingsFeature
           )
         )
       }

@@ -3,7 +3,7 @@ import Model
 import SwiftUI
 
 public struct StoresView: View {
-  var store: StoreOf<StoresFeature>
+  @State var store: StoreOf<StoresFeature>
 
   public init(store: StoreOf<StoresFeature>) {
     self.store = store
@@ -33,9 +33,9 @@ public struct StoresView: View {
       }
     }
     .sheet(
-      store: store.scope(
-        state: \.$addStore,
-        action: { .addStore($0) }
+      item: $store.scope(
+        state: \.addStore,
+        action: \.addStore
       )
     ) { store in
       NavigationStack {
@@ -60,9 +60,9 @@ public struct StoresView: View {
       }
     }
     .sheet(
-      store: store.scope(
-        state: \.$editStore,
-        action: { .editStore($0) }
+      item: $store.scope(
+        state: \.editStore,
+        action: \.editStore
       )
     ) { store in
       NavigationStack {

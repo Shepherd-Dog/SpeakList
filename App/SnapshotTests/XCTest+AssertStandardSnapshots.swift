@@ -3,6 +3,11 @@ import SnapshotTesting
 import SwiftUI
 import XCTest
 
+enum Throwaway {
+  case data
+  case image
+}
+
 extension Snapshotting where Value == UIViewController, Format == UIImage {
   fileprivate static func standardImage(
     on viewImageConfig: ViewImageConfig,
@@ -69,7 +74,7 @@ extension XCTest {
   func assertStandardSnapshots(
     content: some View,
     named name: String,
-    createThrowaway: Bool = false,
+    throwaway: Throwaway? = nil,
     snapshotDeviceModelName: String = "iPhone 15 Pro",
     snapshotDeviceOSVersions: [String: String] = [
       "iOS": "17.0.1",
@@ -193,22 +198,31 @@ extension XCTest {
       filePath = file
     }
 
-    if createThrowaway {
+    if let throwaway {
       let viewController = UIHostingController(
         rootView: content
           .transaction { $0.animation = nil }
       )
+      
+      let size: CGSize
 
-      let screenScale = max(1, UIScreen.main.scale)
+      switch throwaway {
+      case .data:
+        let screenScale = max(1, UIScreen.main.scale)
+
+        size = CGSize(
+          width: 1/screenScale,
+          height: 1/screenScale
+        )
+      case .image:
+        size = viewImageConfig.size ?? .init(width: 0, height: 0)
+      }
 
       assertSnapshot(
         matching: viewController,
         as: .standardImage(
           on: ViewImageConfig(
-            size: CGSize(
-              width: 1/screenScale,
-              height: 1/screenScale
-            )
+            size: size
           ),
           perceptualPrecision: 0.0,
           precision: 0.0

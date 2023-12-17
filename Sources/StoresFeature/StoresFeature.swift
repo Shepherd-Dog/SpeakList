@@ -7,8 +7,8 @@ public struct StoresFeature {
   @ObservableState
   public struct State: Equatable {
     public var stores: IdentifiedArrayOf<GroceryStore> = []
-    @PresentationState public var addStore: StoreFormFeature.State?
-    @PresentationState public var editStore: StoreFormFeature.State?
+    @Presents public var addStore: StoreFormFeature.State?
+    @Presents public var editStore: StoreFormFeature.State?
 
     public init(stores: IdentifiedArrayOf<GroceryStore> = []) {
       self.stores = stores

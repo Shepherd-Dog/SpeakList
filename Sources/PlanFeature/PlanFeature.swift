@@ -8,8 +8,8 @@ import ShoppingListClient
 public struct PlanFeature {
   @ObservableState
   public struct State: Equatable {
-    @PresentationState public var addItem: ItemFormFeature.State?
-    @PresentationState public var editItem: ItemFormFeature.State?
+    @Presents public var addItem: ItemFormFeature.State?
+    @Presents public var editItem: ItemFormFeature.State?
     public var items: IdentifiedArrayOf<ListItem> = []
     public var showList = false
     public var stores: IdentifiedArrayOf<GroceryStore> = []

@@ -8,7 +8,7 @@ import ShoppingTripFeature
 public struct ShopFeature {
   @ObservableState
   public struct State: Equatable {
-    @PresentationState var shoppingTripFeature: ShoppingTripFeature.State?
+    @Presents var shoppingTripFeature: ShoppingTripFeature.State?
     public var trips: IdentifiedArrayOf<ShoppingTrip> = []
 
     public init(trips: IdentifiedArrayOf<ShoppingTrip> = []) {
