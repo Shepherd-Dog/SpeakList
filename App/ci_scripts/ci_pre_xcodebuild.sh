@@ -3,6 +3,8 @@
 # Enable all the macros to run on CI
 defaults write com.apple.dt.Xcode IDESkipMacroFingerprintValidation -bool YES
 
+brew install swift-format
+
 if [[ $CI_XCODEBUILD_ACTION == "test-without-building" ]]
 then
   # Setup the simulators so that they only have one preferred language.

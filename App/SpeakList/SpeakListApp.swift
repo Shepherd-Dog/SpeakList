@@ -8,26 +8,27 @@ import SwiftUI
 
 @main
 struct SpeakListApp: App {
-  var store: StoreOf<AppFeature> = .init(
-    initialState: .init()
-  ) {
-    AppFeature()
-  }
+	var store: StoreOf<AppFeature> = .init(
+		initialState: .init()
+	) {
+		AppFeature()
+	}
 
-  var body: some Scene {
-    WindowGroup {
-      if !_XCTIsTesting {
-        AppView(store: store)
-      }
-    }
-  }
+	var body: some Scene {
+		WindowGroup {
+			if !_XCTIsTesting {
+				AppView(store: store)
+			}
+		}
+	}
 }
 
 #Preview {
-  AppView(
-    store: .init(
-      initialState: .init()) {
-      AppFeature()
-    }
-  )
+	AppView(
+		store: .init(
+			initialState: .init()
+		) {
+			AppFeature()
+		}
+	)
 }

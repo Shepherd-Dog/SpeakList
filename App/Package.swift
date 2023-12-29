@@ -2,15 +2,11 @@
 import PackageDescription
 
 let package = Package(
-  name: "empty",
-  platforms: [
-  .iOS(.v16),
-  ],
-  products: [
-  ],
-  dependencies: [
-  ],
-  targets: [
-  ]
+	name: "empty",
+	platforms: [
+		.iOS(.v16)
+	],
+	products: [],
+	dependencies: [],
+	targets: []
 )
-
