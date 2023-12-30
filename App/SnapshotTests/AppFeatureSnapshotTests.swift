@@ -2,6 +2,7 @@ import AppFeature
 import ComposableArchitecture
 import Model
 import PlanFeature
+import SnapshotTesting
 import SwiftUI
 import XCTest
 

@@ -4,8 +4,7 @@
 defaults write com.apple.dt.Xcode IDESkipMacroFingerprintValidation -bool YES
 
 # brew install swift-format
-brew install --build-from-source swift-format
-
+# brew install --build-from-source swift-format
 
 if [[ $CI_XCODEBUILD_ACTION == "test-without-building" ]]
 then
