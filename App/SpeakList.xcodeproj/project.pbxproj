@@ -74,6 +74,7 @@
 		11C3B1642B12E782004A7E32 /* ci_pre_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_pre_xcodebuild.sh; sourceTree = "<group>"; };
 		11E4F0B52B1B98420051D943 /* FlowSnapshotTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = FlowSnapshotTests.xctestplan; sourceTree = "<group>"; };
 		11E4F0BA2B1B98570051D943 /* FlowSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlowSnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		11ECF1A82B3FBFFD00DEDF9D /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				11C3B1642B12E782004A7E32 /* ci_pre_xcodebuild.sh */,
+				11ECF1A82B3FBFFD00DEDF9D /* ci_post_clone.sh */,
 			);
 			path = ci_scripts;
 			sourceTree = "<group>";
@@ -364,7 +366,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=\"/opt/homebrew/bin:$PATH\"\nswift-format lint -r ../App ../Sources\n";
+			shellScript = "../Tooling/swift-format lint -r ../App ../Sources\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
