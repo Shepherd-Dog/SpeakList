@@ -34,4 +34,6 @@ class AppFeatureSnapshotTests: XCTestCase {
 		}
 	}
 }
+
+extension Snapshotting where Value: SwiftUI.View, Format == String {
 }
