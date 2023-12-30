@@ -3,8 +3,9 @@
 # Enable all the macros to run on CI
 defaults write com.apple.dt.Xcode IDESkipMacroFingerprintValidation -bool YES
 
-xcode-select --install
-brew install swift-format
+# brew install swift-format
+brew install --build-from-source swift-format
+
 
 if [[ $CI_XCODEBUILD_ACTION == "test-without-building" ]]
 then
