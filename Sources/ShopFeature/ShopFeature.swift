@@ -43,6 +43,17 @@ public struct ShopFeature {
 						if let existingTrip = partialResult.first(where: {
 							$0.store == store
 						}) {
+							if updatedResult[id: existingTrip.id]?
+								.groups[id: groupName] == nil
+							{
+								updatedResult[id: existingTrip.id]?
+									.groups[
+										id: groupName] =
+									.init(
+										name: groupName,
+										items: [])
+							}
+
 							updatedResult[id: existingTrip.id]?.groups[
 								id: groupName]?.items.append(item)
 						} else {

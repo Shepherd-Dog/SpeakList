@@ -42,6 +42,16 @@ class ShopFeatureTests: XCTestCase {
             store: sprouts
           )
         ),
+        ListItem(
+          id: UUID(2),
+          name: "Water",
+          checked: false,
+          preferredStoreLocation: GroceryStoreLocation(
+            id: UUID(0),
+            location: .aisle("13C"),
+            store: sprouts
+          )
+        ),
       ]
     }
 
@@ -82,13 +92,30 @@ class ShopFeatureTests: XCTestCase {
                       ),
                     ]
                   )
-                )
+                ),
+                GroupedListItem(
+                  name: "Aisle 13C",
+                  items: IdentifiedArrayOf<ListItem>(
+                    uniqueElements: [
+                      ListItem(
+                        id: UUID(2),
+                        name: "Water",
+                        checked: false,
+                        preferredStoreLocation: GroceryStoreLocation(
+                          id: UUID(0),
+                          location: .aisle("13C"),
+                          store: sprouts
+                        )
+                      ),
+                    ]
+                  )
+                ),
               ]
             )
           )
         ]
       )
-      XCTAssertEqual($0.trips.first?.allItems.count, 2)
+      XCTAssertEqual($0.trips.first?.allItems.count, 3)
     }
   }
 }
