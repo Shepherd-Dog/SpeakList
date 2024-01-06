@@ -176,5 +176,9 @@ class PlanFeatureTests: XCTestCase {
       ],
       store.state.groupedItems
     )
+
+    await store.send(.onDelete(IndexSet(integer: 0))) {
+      $0.items.remove(at: 0)
+    }
   }
 }
