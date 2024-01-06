@@ -21,6 +21,23 @@ public enum Location: Codable, Equatable, Hashable {
 				return "Unknown"
 			}
 		}
+
+		public init?(rawValue: String) {
+			if rawValue.lowercased().contains("aisle") {
+				self = .aisle
+			} else {
+				switch rawValue {
+				case "Dairy":
+					self = .dairy
+				case "Produce":
+					self = .produce
+				case "Unknown":
+					self = .unknown
+				default:
+					return nil
+				}
+			}
+		}
 	}
 
 	case aisle(String)

@@ -1,5 +1,6 @@
 import ComposableArchitecture
 import Foundation
+import GroceryStoresClient
 import Model
 import ShoppingListClient
 import ShoppingTripFeature
@@ -17,12 +18,14 @@ public struct ShopFeature {
 	}
 
 	public enum Action: Equatable {
-		case didReceiveShoppingList(IdentifiedArrayOf<ListItem>)
+		case didReceiveShoppingList(
+			IdentifiedArrayOf<ListItem>, IdentifiedArrayOf<GroceryStore>)
 		case didTapShoppingTrip(ShoppingTrip)
 		case onAppear
 		case shoppingTripFeature(PresentationAction<ShoppingTripFeature.Action>)
 	}
 
+	@Dependency(\.groceryStoresClient) var groceryStoresClient
 	@Dependency(\.mainQueue) var mainQueue
 	@Dependency(\.shoppingListClient) var shoppingListClient
 
@@ -31,12 +34,21 @@ public struct ShopFeature {
 	public var body: some ReducerOf<Self> {
 		Reduce { state, action in
 			switch action {
-			case let .didReceiveShoppingList(items):
+			case let .didReceiveShoppingList(items, honestStores):
 				state.trips = items.reduce(
 					[],
 					{ partialResult, item in
 						var updatedResult = partialResult
-						let store = item.preferredStoreLocation.store
+						guard
+							let itemStore = item.preferredStoreLocation
+								.store
+						else {
+							return updatedResult
+						}
+						guard let store = honestStores[id: itemStore.id]
+						else {
+							return []
+						}
 						let groupName = item.preferredStoreLocation.location
 							.name
 
@@ -56,6 +68,46 @@ public struct ShopFeature {
 
 							updatedResult[id: existingTrip.id]?.groups[
 								id: groupName]?.items.append(item)
+							updatedResult[id: existingTrip.id]?.groups
+								.sort { lhs, rhs in
+									let sortOrder = store
+										.locationsOrder
+
+									if let lhsLocation =
+										Location.Stripped(
+											rawValue:
+												lhs
+												.name
+										),
+										let rhsLocation =
+											Location
+											.Stripped(
+												rawValue:
+													rhs
+													.name
+											),
+										let lhsIndex =
+											sortOrder
+											.index(
+												id:
+													lhsLocation
+													.id
+											),
+										let rhsIndex =
+											sortOrder
+											.index(
+												id:
+													rhsLocation
+													.id
+											)
+									{
+										return lhsIndex
+											< rhsIndex
+									} else {
+										return lhs.name
+											< rhs.name
+									}
+								}
 						} else {
 							updatedResult.append(
 								ShoppingTrip(
@@ -117,8 +169,10 @@ public struct ShopFeature {
 			case .onAppear:
 				return .run { send in
 					let list = try await shoppingListClient.fetchShoppingList()
+					let stores =
+						try await groceryStoresClient.fetchGroceryStores()
 
-					await send(.didReceiveShoppingList(list))
+					await send(.didReceiveShoppingList(list, stores))
 				}
 			case .shoppingTripFeature:
 				return .none

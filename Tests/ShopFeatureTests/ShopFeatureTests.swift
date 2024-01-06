@@ -5,117 +5,160 @@ import XCTest
 
 @MainActor
 class ShopFeatureTests: XCTestCase {
-  func testBasics() async {
-    let store = TestStore(
-      initialState: ShopFeature.State()
-    ) {
-      ShopFeature()
-    } withDependencies: {
-      $0.uuid = .incrementing
-    }
+	func testBasics() async {
+		let store = TestStore(
+			initialState: ShopFeature.State()
+		) {
+			ShopFeature()
+		} withDependencies: {
+			$0.uuid = .incrementing
+		}
 
-    let sprouts = GroceryStore(id: UUID(42), name: "Sprouts")
+		let sprouts = GroceryStore(id: UUID(42), name: "Sprouts")
 
-    var shoppingList: IdentifiedArrayOf<ListItem> = []
+		var groceryStores: IdentifiedArrayOf<GroceryStore> = []
+		var shoppingList: IdentifiedArrayOf<ListItem> = []
 
-    withDependencies {
-      $0.uuid = .incrementing
-    } operation: {
-      shoppingList = [
-        ListItem(
-          id: UUID(0),
-          name: "Apples",
-          checked: false,
-          preferredStoreLocation: GroceryStoreLocation(
-            id: UUID(0),
-            location: .produce,
-            store: sprouts
-          )
-        ),
-        ListItem(
-          id: UUID(1),
-          name: "Bananas",
-          checked: false,
-          preferredStoreLocation: GroceryStoreLocation(
-            id: UUID(0),
-            location: .produce,
-            store: sprouts
-          )
-        ),
-        ListItem(
-          id: UUID(2),
-          name: "Water",
-          checked: false,
-          preferredStoreLocation: GroceryStoreLocation(
-            id: UUID(0),
-            location: .aisle("13C"),
-            store: sprouts
-          )
-        ),
-      ]
-    }
+		withDependencies {
+			$0.uuid = .incrementing
+		} operation: {
+			shoppingList = [
+				ListItem(
+					id: UUID(0),
+					name: "Apples",
+					checked: false,
+					preferredStoreLocation: GroceryStoreLocation(
+						id: UUID(0),
+						location: .produce,
+						store: sprouts
+					)
+				),
+				ListItem(
+					id: UUID(1),
+					name: "Bananas",
+					checked: false,
+					preferredStoreLocation: GroceryStoreLocation(
+						id: UUID(0),
+						location: .produce,
+						store: sprouts
+					)
+				),
+				ListItem(
+					id: UUID(2),
+					name: "Water",
+					checked: false,
+					preferredStoreLocation: GroceryStoreLocation(
+						id: UUID(0),
+						location: .aisle("13C"),
+						store: sprouts
+					)
+				),
+			]
 
+			groceryStores = [
+				sprouts
+			]
+		}
 
-    await store.send(
-      .didReceiveShoppingList(shoppingList)
-    ) {
-      $0.trips = IdentifiedArrayOf<ShoppingTrip>(
-        uniqueElements: [
-          ShoppingTrip(
-            id: UUID(0),
-            store: sprouts,
-            groups: IdentifiedArrayOf<GroupedListItem>(
-              uniqueElements: [
-                GroupedListItem(
-                  name: "Produce",
-                  items: IdentifiedArrayOf<ListItem>(
-                    uniqueElements: [
-                      ListItem(
-                        id: UUID(0),
-                        name: "Apples",
-                        checked: false,
-                        preferredStoreLocation: GroceryStoreLocation(
-                          id: UUID(0),
-                          location: .produce,
-                          store: sprouts
-                        )
-                      ),
-                      ListItem(
-                        id: UUID(1),
-                        name: "Bananas",
-                        checked: false,
-                        preferredStoreLocation: GroceryStoreLocation(
-                          id: UUID(0),
-                          location: .produce,
-                          store: sprouts
-                        )
-                      ),
-                    ]
-                  )
-                ),
-                GroupedListItem(
-                  name: "Aisle 13C",
-                  items: IdentifiedArrayOf<ListItem>(
-                    uniqueElements: [
-                      ListItem(
-                        id: UUID(2),
-                        name: "Water",
-                        checked: false,
-                        preferredStoreLocation: GroceryStoreLocation(
-                          id: UUID(0),
-                          location: .aisle("13C"),
-                          store: sprouts
-                        )
-                      ),
-                    ]
-                  )
-                ),
-              ]
-            )
-          )
-        ]
-      )
-      XCTAssertEqual($0.trips.first?.allItems.count, 3)
-    }
-  }
+		await store.send(
+			.didReceiveShoppingList(shoppingList, groceryStores)
+		) {
+			$0.trips = IdentifiedArrayOf<ShoppingTrip>(
+				uniqueElements: [
+					ShoppingTrip(
+						id: UUID(0),
+						store: sprouts,
+						groups: IdentifiedArrayOf<GroupedListItem>(
+							uniqueElements: [
+								GroupedListItem(
+									name: "Aisle 13C",
+									items: IdentifiedArrayOf<
+										ListItem
+									>(
+										uniqueElements: [
+											ListItem(
+												id:
+													UUID(
+														2
+													),
+												name:
+													"Water",
+												checked:
+													false,
+												preferredStoreLocation:
+													GroceryStoreLocation(
+														id:
+															UUID(
+																0
+															),
+														location:
+															.aisle(
+																"13C"
+															),
+														store:
+															sprouts
+													)
+											)
+										]
+									)
+								),
+								GroupedListItem(
+									name: "Produce",
+									items: IdentifiedArrayOf<
+										ListItem
+									>(
+										uniqueElements: [
+											ListItem(
+												id:
+													UUID(
+														0
+													),
+												name:
+													"Apples",
+												checked:
+													false,
+												preferredStoreLocation:
+													GroceryStoreLocation(
+														id:
+															UUID(
+																0
+															),
+														location:
+															.produce,
+														store:
+															sprouts
+													)
+											),
+											ListItem(
+												id:
+													UUID(
+														1
+													),
+												name:
+													"Bananas",
+												checked:
+													false,
+												preferredStoreLocation:
+													GroceryStoreLocation(
+														id:
+															UUID(
+																0
+															),
+														location:
+															.produce,
+														store:
+															sprouts
+													)
+											),
+										]
+									)
+								),
+							]
+						)
+					)
+				]
+			)
+			XCTAssertEqual($0.trips.first?.allItems.count, 3)
+		}
+	}
 }
