@@ -65,6 +65,9 @@ public struct PlanView: View {
 							value: store.showList
 						)
 					}
+					.onDelete {
+						store.send(.onDelete($0))
+					}
 				}
 			}
 		}

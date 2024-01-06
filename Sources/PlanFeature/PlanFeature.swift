@@ -1,4 +1,5 @@
 import ComposableArchitecture
+import Foundation
 import GroceryStoresClient
 import ItemFormFeature
 import Model
@@ -76,6 +77,7 @@ public struct PlanFeature {
 		case didTapEditItem(ListItem)
 		case editItem(PresentationAction<ItemFormFeature.Action>)
 		case onAppear
+		case onDelete(IndexSet)
 		case showList
 	}
 
@@ -151,6 +153,12 @@ public struct PlanFeature {
 					await send(.didReceiveShoppingList(list))
 
 					await send(.showList)
+				}
+			case let .onDelete(offsets):
+				state.items.remove(atOffsets: offsets)
+
+				return .run { [items = state.items] _ in
+					try await shoppingListClient.save(shoppingList: items)
 				}
 			case .showList:
 				state.showList = true
