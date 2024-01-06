@@ -177,8 +177,8 @@ class PlanFeatureTests: XCTestCase {
       store.state.groupedItems
     )
 
-    await store.send(.onDelete(IndexSet(integer: 0))) {
-      $0.items.remove(at: 0)
+    await store.send(.onDelete("Sprout", IndexSet(integer: 0))) {
+      $0.items.remove(id: UUID(711))
     }
   }
 }
