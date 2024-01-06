@@ -66,7 +66,7 @@ public struct PlanView: View {
 						)
 					}
 					.onDelete {
-						store.send(.onDelete($0))
+						store.send(.onDelete(groupedItem.name, $0))
 					}
 				}
 			}

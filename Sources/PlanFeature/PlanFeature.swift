@@ -77,7 +77,7 @@ public struct PlanFeature {
 		case didTapEditItem(ListItem)
 		case editItem(PresentationAction<ItemFormFeature.Action>)
 		case onAppear
-		case onDelete(IndexSet)
+		case onDelete(GroupedListItem.ID, IndexSet)
 		case showList
 	}
 
@@ -154,8 +154,18 @@ public struct PlanFeature {
 
 					await send(.showList)
 				}
-			case let .onDelete(offsets):
-				state.items.remove(atOffsets: offsets)
+			case let .onDelete(groupID, offsets):
+				var ids: [ListItem.ID] = []
+
+				for offset in offsets {
+					if let group = state.groupedItems[id: groupID] {
+						ids.append(group.items[offset].id)
+					}
+				}
+
+				for id in ids {
+					state.items.remove(id: id)
+				}
 
 				return .run { [items = state.items] _ in
 					try await shoppingListClient.save(shoppingList: items)
