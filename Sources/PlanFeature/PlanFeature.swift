@@ -133,8 +133,12 @@ public struct PlanFeature {
 
 				return .none
 			case let .didTapEditItem(item):
+				var mutableItem = item
+				mutableItem.preferredStoreLocation.store = state.stores.first {
+					$0.id == item.preferredStoreLocation.store?.id
+				}
 				state.editItem = ItemFormFeature.State(
-					item: item,
+					item: mutableItem,
 					stores: state.stores
 				)
 
