@@ -20,17 +20,10 @@ class StoresFeatureTests: XCTestCase {
 
 		await store.receive(
 			.didReceiveGroceryStores(
-				.init(uniqueElements: [
-					GroceryStore(id: UUID(42), name: "Sprout"),
-					GroceryStore(id: UUID(43), name: "Natural Grocers"),
-					GroceryStore(id: UUID(44), name: "Kroger"),
-				]))
+				.mocksWithTypoInSprouts
+			)
 		) {
-			$0.stores = [
-				GroceryStore(id: UUID(42), name: "Sprout"),
-				GroceryStore(id: UUID(43), name: "Natural Grocers"),
-				GroceryStore(id: UUID(44), name: "Kroger"),
-			]
+			$0.stores = .mocksWithTypoInSprouts
 		}
 
 		await store.send(.addStoreButtonTapped) {

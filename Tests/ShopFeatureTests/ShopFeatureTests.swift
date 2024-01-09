@@ -14,7 +14,7 @@ class ShopFeatureTests: XCTestCase {
 			$0.uuid = .incrementing
 		}
 
-		let sprouts = GroceryStore(id: UUID(42), name: "Sprouts")
+		let sprouts = GroceryStore.mockSprouts
 
 		var groceryStores: IdentifiedArrayOf<GroceryStore> = []
 		var shoppingList: IdentifiedArrayOf<ListItem> = []
@@ -30,7 +30,7 @@ class ShopFeatureTests: XCTestCase {
 					preferredStoreLocation: GroceryStoreLocation(
 						id: UUID(0),
 						location: .produce,
-						store: sprouts
+						storeID: sprouts.id
 					)
 				),
 				ListItem(
@@ -40,7 +40,7 @@ class ShopFeatureTests: XCTestCase {
 					preferredStoreLocation: GroceryStoreLocation(
 						id: UUID(0),
 						location: .produce,
-						store: sprouts
+						storeID: sprouts.id
 					)
 				),
 				ListItem(
@@ -50,7 +50,7 @@ class ShopFeatureTests: XCTestCase {
 					preferredStoreLocation: GroceryStoreLocation(
 						id: UUID(0),
 						location: .aisle("13C"),
-						store: sprouts
+						storeID: sprouts.id
 					)
 				),
 			]
@@ -95,8 +95,9 @@ class ShopFeatureTests: XCTestCase {
 															.aisle(
 																"13C"
 															),
-														store:
+														storeID:
 															sprouts
+															.id
 													)
 											)
 										]
@@ -125,8 +126,9 @@ class ShopFeatureTests: XCTestCase {
 															),
 														location:
 															.produce,
-														store:
+														storeID:
 															sprouts
+															.id
 													)
 											),
 											ListItem(
@@ -146,8 +148,9 @@ class ShopFeatureTests: XCTestCase {
 															),
 														location:
 															.produce,
-														store:
+														storeID:
 															sprouts
+															.id
 													)
 											),
 										]

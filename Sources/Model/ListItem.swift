@@ -46,10 +46,7 @@ extension ListItem {
 		preferredStoreLocation: GroceryStoreLocation(
 			id: UUID(1),
 			location: .produce,
-			store: GroceryStore(
-				id: UUID(42),
-				name: "Sprouts"
-			)
+			storeID: GroceryStore.mockSprouts.id
 		)
 	)
 
@@ -61,10 +58,7 @@ extension ListItem {
 		preferredStoreLocation: GroceryStoreLocation(
 			id: UUID(0),
 			location: .produce,
-			store: GroceryStore(
-				id: UUID(42),
-				name: "Sprouts"
-			)
+			storeID: GroceryStore.mockSprouts.id
 		)
 	)
 
@@ -76,10 +70,7 @@ extension ListItem {
 		preferredStoreLocation: GroceryStoreLocation(
 			id: UUID(3),
 			location: .aisle("42"),
-			store: GroceryStore(
-				id: UUID(44),
-				name: "Kroger"
-			)
+			storeID: GroceryStore.mockKroger.id
 		)
 	)
 
@@ -91,21 +82,18 @@ extension ListItem {
 		preferredStoreLocation: GroceryStoreLocation(
 			id: UUID(2),
 			location: .aisle("17"),
-			store: GroceryStore(
-				id: UUID(43),
-				name: "Natural Grocers"
-			)
+			storeID: GroceryStore.mockNaturalGrocers.id
 		)
 	)
+}
 
-	public static var mocks: IdentifiedArrayOf<ListItem> {
-		IdentifiedArrayOf<ListItem>(
-			uniqueElements: [
-				.mockBananas,
-				.mockApples,
-				.mockProteinPowder,
-				.mockPeanutButter,
-			]
-		)
+extension IdentifiedArray where ID == UUID, Element == ListItem {
+	public static var mocks: Self {
+		[
+			.mockBananas,
+			.mockApples,
+			.mockProteinPowder,
+			.mockPeanutButter,
+		]
 	}
 }

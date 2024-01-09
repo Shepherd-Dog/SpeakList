@@ -12,7 +12,9 @@ class PlanFeatureTests: XCTestCase {
 		) {
 			PlanFeature()
 		} withDependencies: {
-			$0.groceryStoresClient = .mock
+			$0.groceryStoresClient.fetchGroceryStores = {
+				.mocks
+			}
 			$0.shoppingListClient = .mock
 			$0.uuid = .incrementing
 		}
@@ -21,25 +23,17 @@ class PlanFeatureTests: XCTestCase {
 
 		await store.receive(
 			.didReceiveGroceryStores(
-				[
-					GroceryStore(id: UUID(42), name: "Sprout"),
-					GroceryStore(id: UUID(43), name: "Natural Grocers"),
-					GroceryStore(id: UUID(44), name: "Kroger"),
-				]
+				.mocks
 			)
 		) {
-			$0.stores = [
-				GroceryStore(id: UUID(42), name: "Sprout"),
-				GroceryStore(id: UUID(43), name: "Natural Grocers"),
-				GroceryStore(id: UUID(44), name: "Kroger"),
-			]
+			$0.stores = .mocks
 		}
 		await store.receive(
 			.didReceiveShoppingList(
-				ListItem.mocks
+				.mocks
 			)
 		) {
-			$0.items = ListItem.mocks
+			$0.items = .mocks
 		}
 
 		XCTAssertNoDifference(
@@ -86,11 +80,7 @@ class PlanFeatureTests: XCTestCase {
 					name: "Apples",
 					checked: false
 				),
-				stores: [
-					GroceryStore(id: UUID(42), name: "Sprout"),
-					GroceryStore(id: UUID(43), name: "Natural Grocers"),
-					GroceryStore(id: UUID(44), name: "Kroger"),
-				]
+				stores: .mocks
 			)
 		}
 
@@ -102,7 +92,7 @@ class PlanFeatureTests: XCTestCase {
 			.editItem(
 				.presented(
 					.didEditPreferredStore(
-						GroceryStore(id: UUID(42), name: "Sprout")
+						GroceryStore.mockSprouts.id
 					)
 				)
 			)
@@ -110,7 +100,7 @@ class PlanFeatureTests: XCTestCase {
 			$0.editItem?.item.preferredStoreLocation = GroceryStoreLocation(
 				id: UUID(1),
 				location: .unknown,
-				store: GroceryStore(id: UUID(42), name: "Sprout")
+				storeID: GroceryStore.mockSprouts.id
 			)
 		}
 
@@ -133,7 +123,7 @@ class PlanFeatureTests: XCTestCase {
 				preferredStoreLocation: GroceryStoreLocation(
 					id: UUID(1),
 					location: .produce,
-					store: GroceryStore(id: UUID(42), name: "Sprout")
+					storeID: GroceryStore.mockSprouts.id
 				)
 			)
 		}
@@ -153,8 +143,9 @@ class PlanFeatureTests: XCTestCase {
 					]
 				),
 				GroupedListItem(
-					name: "Sprout",
+					name: "Sprouts",
 					items: [
+						.mockBananas,
 						ListItem(
 							id: UUID(711),
 							name: "Organic Apples",
@@ -163,24 +154,17 @@ class PlanFeatureTests: XCTestCase {
 								GroceryStoreLocation(
 									id: UUID(1),
 									location: .produce,
-									store: GroceryStore(
-										id: UUID(42),
-										name: "Sprout")
+									storeID: GroceryStore
+										.mockSprouts.id
 								)
-						)
-					]
-				),
-				GroupedListItem(
-					name: "Sprouts",
-					items: [
-						.mockBananas
+						),
 					]
 				),
 			],
 			store.state.groupedItems
 		)
 
-		await store.send(.onDelete("Sprout", IndexSet(integer: 0))) {
+		await store.send(.onDelete("Sprouts", IndexSet(integer: 1))) {
 			$0.items.remove(id: UUID(711))
 		}
 	}

@@ -44,16 +44,20 @@ public struct ItemFormView: View {
 					Picker(
 						"Store",
 						selection: self.$store.item.preferredStoreLocation
-							.store.sending(
+							.storeID.sending(
 								\.didEditPreferredStore)
 					) {
 						Text("None")
-							.tag(Optional<GroceryStore>.none)
+							.tag(Optional<GroceryStore.ID>.none)
 						ForEach(self.store.stores) { groceryStore in
 							Text(groceryStore.name)
 								.tag(
-									Optional<GroceryStore>.some(
-										groceryStore))
+									Optional<GroceryStore.ID>
+										.some(
+											groceryStore
+												.id
+										)
+								)
 						}
 					}
 					Picker(

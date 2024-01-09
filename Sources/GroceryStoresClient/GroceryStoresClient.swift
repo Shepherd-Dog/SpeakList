@@ -49,11 +49,12 @@ extension GroceryStoresClient {
 				GroceryStore
 			>
 		> = .init(
-			.init(uniqueElements: [
-				GroceryStore(id: UUID(42), name: "Sprout"),
-				GroceryStore(id: UUID(43), name: "Natural Grocers"),
-				GroceryStore(id: UUID(44), name: "Kroger"),
-			]))
+			[
+				GroceryStore.mockSprout,
+				GroceryStore.mockNaturalGrocers,
+				GroceryStore.mockKroger,
+			]
+		)
 
 	public static let mock: Self = .init {
 		await mockStoresCache.value

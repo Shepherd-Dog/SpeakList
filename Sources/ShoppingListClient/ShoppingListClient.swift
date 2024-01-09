@@ -44,7 +44,7 @@ extension DependencyValues {
 
 extension ShoppingListClient {
 	public static var mock = Self {
-		ListItem.mocks
+		.mocks
 	} save: { _ in
 		// no-op
 	}

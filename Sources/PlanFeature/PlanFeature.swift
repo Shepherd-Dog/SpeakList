@@ -30,13 +30,18 @@ public struct PlanFeature {
 		public var groupedItems: IdentifiedArrayOf<GroupedListItem> {
 			items.reduce([]) { partialResult, item in
 				var updatedResult = partialResult
-				let name = item.preferredStoreLocation.store?.name ?? "None"
+				let name =
+					stores.first { store in
+						store.id == item.preferredStoreLocation.storeID
+					}?.name ?? "None"
 
 				if partialResult.contains(where: { $0.name == name }) == false {
 					updatedResult.append(
 						.init(
 							name: name,
-							items: .init(uniqueElements: [item])))
+							items: .init(uniqueElements: [item])
+						)
+					)
 				}
 
 				updatedResult[id: name]?.items.append(item)
@@ -133,12 +138,8 @@ public struct PlanFeature {
 
 				return .none
 			case let .didTapEditItem(item):
-				var mutableItem = item
-				mutableItem.preferredStoreLocation.store = state.stores.first {
-					$0.id == item.preferredStoreLocation.store?.id
-				}
 				state.editItem = ItemFormFeature.State(
-					item: mutableItem,
+					item: item,
 					stores: state.stores
 				)
 

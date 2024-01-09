@@ -17,7 +17,7 @@ public struct ItemFormFeature {
 	public enum Action: Equatable {
 		case didEditItemName(String)
 		case didEditItemQuantity(Double)
-		case didEditPreferredStore(GroceryStore?)
+		case didEditPreferredStore(GroceryStore.ID?)
 		case didEditPreferredStoreLocation(Location.Stripped)
 		case didEditPreferredStoreLocationAisle(String)
 	}
@@ -35,10 +35,10 @@ public struct ItemFormFeature {
 					state.item.quantity = Int(quantity)
 				}
 				return .none
-			case let .didEditPreferredStore(store):
+			case let .didEditPreferredStore(storeID):
 				state.item.preferredStoreLocation = GroceryStoreLocation(
 					location: state.item.preferredStoreLocation.location,
-					store: store
+					storeID: storeID
 				)
 
 				return .none

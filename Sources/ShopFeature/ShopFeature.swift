@@ -40,12 +40,13 @@ public struct ShopFeature {
 					{ partialResult, item in
 						var updatedResult = partialResult
 						guard
-							let itemStore = item.preferredStoreLocation
-								.store
+							let itemStoreID = item
+								.preferredStoreLocation
+								.storeID
 						else {
 							return updatedResult
 						}
-						guard let store = honestStores[id: itemStore.id]
+						guard let store = honestStores[id: itemStoreID]
 						else {
 							return []
 						}
