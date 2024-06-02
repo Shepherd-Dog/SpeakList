@@ -79,7 +79,7 @@ extension XCTest {
 		throwaway: Throwaway? = nil,
 		snapshotDeviceModelName: String = "iPhone 15 Pro",
 		snapshotDeviceOSVersions: [String: String] = [
-			"iOS": "17.2",
+			"iOS": "17.5",
 			"macOS": "14.0",
 			"tvOS": "17.0",
 			"visionOS": "1.0",
