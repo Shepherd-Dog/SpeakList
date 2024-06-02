@@ -84,7 +84,7 @@ extension Snapshotting where Value == UIView, Format == UIImage {
 				do {
 					try containerView.parseAccessibility(
 						useMonochromeSnapshot: useMonochromeSnapshot)
-				} catch AccessibilitySnapshotView.Error
+				} catch ImageRenderingError
 					.containedViewExceedsMaximumSize
 				{
 					fatalError(
@@ -94,7 +94,7 @@ extension Snapshotting where Value == UIView, Format == UIImage {
 						iOS 14.
 						"""
 					)
-				} catch AccessibilitySnapshotView.Error
+				} catch ImageRenderingError
 					.containedViewHasUnsupportedTransform
 				{
 					fatalError(
